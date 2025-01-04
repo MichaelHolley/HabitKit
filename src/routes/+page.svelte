@@ -22,6 +22,6 @@
 
 <div class="flex flex-col items-start justify-start gap-3">
 	{#each data.habits as habit}
-		<!-- <a href="/{habit.id}" class="btn btn-link btn-primary">{habit.name}</a> -->
+		<a href="/{habit.id}" class="btn btn-link btn-primary">{habit.name}</a>
 	{/each}
 </div>
