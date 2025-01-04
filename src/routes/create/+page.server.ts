@@ -13,7 +13,7 @@ export const actions: Actions = {
 			return redirect(302, '/');
 		}
 
-		const node = await prisma.habit.create({
+		const habit = await prisma.habit.create({
 			data: {
 				name: name as string,
 				userId: event.locals.user.id,
@@ -21,6 +21,6 @@ export const actions: Actions = {
 			}
 		});
 
-		return redirect(302, `/${node.id}`);
+		return redirect(302, `/${habit.id}`);
 	}
 };
