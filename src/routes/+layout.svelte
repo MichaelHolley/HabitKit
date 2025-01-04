@@ -1,6 +1,9 @@
 <script lang="ts">
 	import '../app.css';
+
 	let { children } = $props();
 </script>
 
-{@render children()}
+<main class="container mx-auto px-3 py-8">
+	{@render children()}
+</main>
