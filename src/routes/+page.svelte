@@ -20,8 +20,8 @@
 	<a href="/create" class="btn btn-primary">Create Habit</a>
 </div>
 
-<!-- <div class="flex flex-col items-start justify-start gap-3">
-	{#each data.nodes as node}
-		<a href="/{node.id}" class="btn btn-link btn-primary">{node.name}</a>
+<div class="flex flex-col items-start justify-start gap-3">
+	{#each data.habits as habit}
+		<!-- <a href="/{habit.id}" class="btn btn-link btn-primary">{habit.name}</a> -->
 	{/each}
-</div> -->
+</div>

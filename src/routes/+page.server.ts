@@ -7,8 +7,7 @@ export const load: PageServerLoad = async (event) => {
 		return redirect(302, '/auth');
 	}
 
-	const habits = [];
-	return { user: event.locals.user, habits };
+	return { user: event.locals.user, habits: [] };
 };
 
 export const actions: Actions = {
