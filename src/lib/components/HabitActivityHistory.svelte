@@ -23,14 +23,13 @@
 
 	const today = new Date();
 	const startDate = new Date(today);
-	// set the start date to the monday of showWeeks weeks ago from today
-	startDate.setDate(today.getDate() - today.getDay() + 1 - 7 * showWeeks);
+	startDate.setDate(today.getDate() - today.getDay() - (7 * showWeeks - 1));
 
 	onMount(() => {
 		let current = new Date(startDate);
 		while (current <= today) {
-			current.setDate(current.getDate() + 1);
 			days.push(new Date(current));
+			current.setDate(current.getDate() + 1);
 		}
 	});
 
@@ -49,7 +48,7 @@
 	{#each days as day, i}
 		{#if i % 7 === 0 && day.getDate() <= 7}
 			<div class="-mr-2">
-				{months[days[i + 6].getMonth()]}
+				{months[days[i + 6]?.getMonth()]}
 			</div>
 		{:else if i % 7 === 0}
 			<div></div>
