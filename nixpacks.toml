@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['nodejs', 'pnpm']
+
+[phases.install]
+cmds = ['pnpm install --frozen-lockfile']
+
+[phases.build]
+cmds = ['pnpm prisma generate', 'pnpm build']
+
+[start]
+cmd = 'pnpm prisma migrate deploy && ORIGIN=http://localhost:3000 node build/index.js'

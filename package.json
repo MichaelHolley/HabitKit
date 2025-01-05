@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"packageManager": "pnpm@9.15.0",
 	"scripts": {
 		"dev": "vite dev --open",
 		"build": "vite build",
@@ -11,10 +12,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"db:start": "docker compose up",
 		"prisma:generate": "prisma generate",
 		"prisma:migrate-dev": "prisma migrate dev",
-		"prisma:migrate-prod": "prisma migrate prod"
+		"prisma:migrate-prod": "prisma migrate deploy"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",

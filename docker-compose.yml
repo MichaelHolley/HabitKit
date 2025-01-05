@@ -1,4 +1,13 @@
 services:
+  habitkitweb:
+    image: habitkit
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql://root:mysecretpassword@db:3306/HabitKit
   db:
     image: mysql
     restart: always
