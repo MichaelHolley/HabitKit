@@ -7,14 +7,19 @@
 	const activeDateSet = $derived(new Set(dates));
 
 	let today = new Date();
-	let startDate = new Date(today.getFullYear(), today.getMonth() - 11, 1); // Start from 11 months ago
-	let endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Adjust to the end of the current month
+	let startDate = new Date(today);
+	startDate.setDate(today.getDate() - today.getDay() + 1); // Set to the first day of the current week (Monday)
+	startDate.setDate(startDate.getDate() - 364); // Adjust to start from the past 51 weeks
+
+	let endDate = new Date(today);
+	endDate.setDate(endDate.getDate() + (7 - endDate.getDay())); // Ensure endDate is a Sunday
 
 	onMount(() => {
 		let current = new Date(startDate);
 
 		while (current <= endDate) {
 			let week = [];
+			// Loop Monday to Sunday
 			for (let i = 0; i < 7; i++) {
 				week.push(new Date(current));
 				current.setDate(current.getDate() + 1);
