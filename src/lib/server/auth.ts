@@ -1,9 +1,8 @@
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
-import { PrismaClient } from '@prisma/client';
 import type { RequestEvent } from '@sveltejs/kit';
+import { prisma } from './prisma';
 
-const prisma = new PrismaClient();
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 export const sessionCookieName = 'auth-session';

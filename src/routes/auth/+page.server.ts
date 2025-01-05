@@ -1,11 +1,9 @@
 import * as auth from '$lib/server/auth';
 import { hash, verify } from '@node-rs/argon2';
 import { encodeBase32LowerCase } from '@oslojs/encoding';
-import { PrismaClient } from '@prisma/client';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from '../$types';
-
-const prisma = new PrismaClient();
+import { prisma } from '$lib/server/prisma';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) {
