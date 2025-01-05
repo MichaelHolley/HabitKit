@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 
 	let { dates } = $props();
-	let weeks = $state([]);
-
 	const activeDateSet = $derived(new Set(dates));
+
+	let weeks = $state([]);
 
 	let today = new Date();
 	let startDate = new Date(today);
@@ -26,20 +26,33 @@
 			}
 			weeks.push(week);
 		}
+
+		console.log(weeks);
 	});
 
 	// Function to format dates as 'YYYY-MM-DD'
 	const formatDate = (date) => date.toISOString().split('T')[0];
 </script>
 
-<div class="flex">
-	{#each weeks as week (week[0].toISOString())}
-		<div class="mr-[1px] flex flex-col">
-			{#each week as day (day.toISOString())}
+<div class="flex flex-col">
+	{#each { length: 7 } as _, i}
+		<div class="flex flex-row items-center gap-1 text-xs">
+			{#if i === 0}
+				<div class="min-w-8">Mon</div>
+			{:else if i == 2}
+				<div class="min-w-8">Wed</div>
+			{:else if i == 4}
+				<div class="min-w-8">Fri</div>
+			{:else if i == 6}
+				<div class="min-w-8">Sun</div>
+			{:else}
+				<div class="min-w-8"></div>
+			{/if}
+			{#each weeks as week}
 				<div
-					class="m-[1px] h-3 w-3 rounded-sm bg-neutral"
-					class:active={activeDateSet.has(formatDate(day))}
-					title={formatDate(day)}
+					class="h-3 w-3 rounded-sm bg-neutral"
+					class:active={activeDateSet.has(formatDate(week[i]))}
+					title={formatDate(week[i])}
 				></div>
 			{/each}
 		</div>
