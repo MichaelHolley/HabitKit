@@ -50,7 +50,5 @@ export const actions: Actions = {
 				dates
 			}
 		});
-
-		return redirect(302, `/${event.params.id}`);
 	}
 };
