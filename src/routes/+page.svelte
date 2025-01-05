@@ -17,7 +17,7 @@
 </div>
 
 <div class="mb-3 flex flex-row items-center justify-between">
-	<h1 class="text-3xl">Your Habits</h1>
+	<h1 class="text-3xl">Habits</h1>
 	<a href="/create" class="btn btn-primary">Create Habit</a>
 </div>
 
