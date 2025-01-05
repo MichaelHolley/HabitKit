@@ -7,3 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysecretpassword
       MYSQL_DATABASE: HabitKit
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

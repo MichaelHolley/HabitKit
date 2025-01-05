@@ -1,6 +1,5 @@
 import * as auth from '$lib/server/auth';
 import { hash, verify } from '@node-rs/argon2';
-import { encodeBase32LowerCase } from '@oslojs/encoding';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from '../$types';
 import { prisma } from '$lib/server/prisma';
@@ -62,7 +61,6 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid password' });
 		}
 
-		const userId = generateUserId();
 		const passwordHash = await hash(password, {
 			memoryCost: 19456,
 			timeCost: 2,
@@ -71,12 +69,12 @@ export const actions: Actions = {
 		});
 
 		try {
-			await prisma.user.create({
+			const user = await prisma.user.create({
 				data: { username: username as string, passwordHash }
 			});
 
 			const sessionToken = auth.generateSessionToken();
-			const session = await auth.createSession(sessionToken, userId);
+			const session = await auth.createSession(sessionToken, user.id);
 			auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 		} catch (e) {
 			return fail(500, { message: 'An error has occurred' });
@@ -84,12 +82,6 @@ export const actions: Actions = {
 		return redirect(302, '/');
 	}
 };
-
-function generateUserId() {
-	const bytes = crypto.getRandomValues(new Uint8Array(15));
-	const id = encodeBase32LowerCase(bytes);
-	return id;
-}
 
 function validateUsername(username: unknown): username is string {
 	return (
