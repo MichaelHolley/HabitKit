@@ -14,6 +14,12 @@
 	<p class="text-neutral-400">{data.habit?.updatedAt.toLocaleString()}</p>
 </div>
 
+<div class="col-span-2 my-3 flex flex-row">
+	<form method="post" action="?/delete" use:enhance>
+		<button class="btn btn-error btn-xs">Delete</button>
+	</form>
+</div>
+
 <div class="my-6 flex flex-row flex-wrap items-end gap-8">
 	<div class="flex overflow-x-scroll pb-4">
 		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />

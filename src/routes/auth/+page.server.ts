@@ -1,8 +1,8 @@
 import * as auth from '$lib/server/auth';
-import { hash, verify } from '@node-rs/argon2';
+import { createUser, findUser } from '$lib/server/user';
+import { verify } from '@node-rs/argon2';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from '../$types';
-import { prisma } from '$lib/server/prisma';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) {
@@ -24,9 +24,7 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid password' });
 		}
 
-		const existingUser = await prisma.user.findUnique({
-			where: { username: username as string }
-		});
+		const existingUser = await findUser(username as string);
 
 		if (!existingUser) {
 			return fail(400, { message: 'Incorrect username or password' });
@@ -61,17 +59,8 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid password' });
 		}
 
-		const passwordHash = await hash(password, {
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		});
-
 		try {
-			const user = await prisma.user.create({
-				data: { username: username as string, passwordHash }
-			});
+			const user = await createUser(username as string, password as string);
 
 			const sessionToken = auth.generateSessionToken();
 			const session = await auth.createSession(sessionToken, user.id);

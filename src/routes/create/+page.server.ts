@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { prisma } from '$lib/server/prisma';
+import { createHabit } from '$lib/server/habit';
 
 export const actions: Actions = {
 	createHabit: async (event) => {
@@ -11,13 +11,7 @@ export const actions: Actions = {
 			return redirect(302, '/');
 		}
 
-		const habit = await prisma.habit.create({
-			data: {
-				name: name as string,
-				userId: event.locals.user.id,
-				dates: []
-			}
-		});
+		const habit = await createHabit(name as string, event.locals.user.id);
 
 		return redirect(302, `/${habit.id}`);
 	}
