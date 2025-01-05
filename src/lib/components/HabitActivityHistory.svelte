@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let { dates } = $props();
+	let { dates, showWeeks } = $props();
 	const activeDateSet = $derived(new Set(dates));
 
 	let weeks = $state([]);
@@ -9,7 +9,7 @@
 	let today = new Date();
 	let startDate = new Date(today);
 	startDate.setDate(today.getDate() - today.getDay() + 1); // Set to the first day of the current week (Monday)
-	startDate.setDate(startDate.getDate() - 364); // Adjust to start from the past 51 weeks
+	startDate.setDate(startDate.getDate() - 7 * showWeeks); // Adjust to start from the past 51 weeks
 
 	let endDate = new Date(today);
 	endDate.setDate(endDate.getDate() + (7 - endDate.getDay())); // Ensure endDate is a Sunday

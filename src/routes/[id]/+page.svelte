@@ -12,8 +12,8 @@
 	<p class="text-sm text-neutral-400">Updated: {data.habit?.updatedAt.toLocaleString()}</p>
 </div>
 
-<div class="my-6">
-	<HabitActivityHistory dates={data.habit?.dates} />
+<div class="my-8">
+	<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
 </div>
 
 <form method="post" action="?/addDate" use:enhance class="flex max-w-lg flex-col gap-3">
