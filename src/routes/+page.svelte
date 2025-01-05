@@ -25,7 +25,7 @@
 	{#each data.habits as habit}
 		<a href="/{habit.id}" class="flex flex-col gap-1">
 			<span class="link-hover link link-primary text-xl">{habit.name}</span>
-			<div class="rounded-lg bg-base-300 p-4">
+			<div class="rounded-lg bg-base-200 p-4">
 				<HabitActivityHistory dates={habit.dates} showWeeks={12} />
 			</div>
 		</a>

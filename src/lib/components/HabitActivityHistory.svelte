@@ -35,29 +35,6 @@
 	});
 
 	const formatDate = (date: Date) => date.toISOString().split('T')[0];
-
-	const getMonthChangeIndex = (dates: Date[]) => {
-		let monthChangeIndex = -1;
-		for (let i = 1; i < dates.length; i++) {
-			if (dates[i].getMonth() !== dates[i - 1].getMonth()) {
-				monthChangeIndex = i;
-				break;
-			}
-		}
-
-		return monthChangeIndex;
-	};
-
-	// Function which checks if one of the dates in the array within the first 7 days of the month
-	const isNewMonth = (dates: Date[]) => {
-		for (let i = 0; i < 7; i++) {
-			if (dates[i].getDate() <= 7) {
-				return true;
-			}
-		}
-
-		return false;
-	};
 </script>
 
 <div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-[0.5rem]">
