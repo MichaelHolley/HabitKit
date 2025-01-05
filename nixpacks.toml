@@ -8,4 +8,4 @@ cmds = ['pnpm install --frozen-lockfile']
 cmds = ['pnpm prisma generate', 'pnpm build']
 
 [start]
-cmd = 'pnpm prisma migrate deploy && ORIGIN=http://localhost:3000 node build/index.js'
+cmd = 'pnpm prisma migrate deploy && node build/index.js'
