@@ -26,8 +26,6 @@
 			}
 			weeks.push(week);
 		}
-
-		console.log(weeks);
 	});
 
 	// Function to format dates as 'YYYY-MM-DD'
