@@ -12,6 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
+		"db:start": "docker-compose up",
 		"prisma:generate": "prisma generate",
 		"prisma:migrate-dev": "prisma migrate dev",
 		"prisma:migrate-prod": "prisma migrate deploy"

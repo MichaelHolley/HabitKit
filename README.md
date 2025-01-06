@@ -1,38 +1,45 @@
-# sv
+# HabitKit
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-## Creating a project
+# Running locally
 
-If you're seeing this, you've probably already done this step. Congrats!
+Start the database:
+`pnpm run db:start`
 
-```bash
-# create a new project in the current directory
-npx sv create
+Migrate the database:
+`pnpm run prisma:migrate-dev`
 
-# create a new project in my-app
-npx sv create my-app
+Start the web server:
+`pnpm run dev`
+
+# Deployment
+
+## `docker-compose.yml`
+
+```yml
+services:
+  habitkitweb:
+    image: mpholley/habitkit:latest
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql://root:mysecretpassword@db:3306/HabitKit
+      - ORIGIN=
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_DATABASE: HabitKit
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
