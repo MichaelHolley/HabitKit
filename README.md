@@ -2,20 +2,23 @@
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-# Running locally
+## Running locally
 
 Start the database:
 `pnpm run db:start`
+
+Generate Prisma Client:
+`pnpm run prisma:generate`
 
 Migrate the database:
 `pnpm run prisma:migrate-dev`
 
 Start the web server:
-`pnpm run dev`
+`pnpm dev`
 
-# Deployment
+## Deployment
 
-## `docker-compose.yml`
+### `docker-compose.yml`
 
 ```yml
 services:
