@@ -18,7 +18,7 @@
 
 <div class="mb-3 flex flex-row items-center justify-between">
 	<h1 class="text-3xl">Habits</h1>
-	<a href="/create" class="btn btn-primary">Create Habit</a>
+	<a href="/create" class="btn btn-primary">+ Track New</a>
 </div>
 
 <div class="flex flex-row flex-wrap items-start justify-start gap-6">
