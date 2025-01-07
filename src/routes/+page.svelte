@@ -21,7 +21,7 @@
 	<a href="/create" class="btn btn-primary">+ Track New</a>
 </div>
 
-<div class="flex flex-row flex-wrap items-start justify-start gap-6">
+<div class="flex flex-row flex-wrap justify-start gap-6">
 	{#each data.habits as habit}
 		<a href="/{habit.id}" class="flex flex-col gap-1">
 			<span class="link-hover link link-primary text-xl">{habit.name}</span>

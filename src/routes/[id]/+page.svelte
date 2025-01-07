@@ -14,24 +14,29 @@
 	<p class="text-neutral-400">{data.habit?.updatedAt.toLocaleString()}</p>
 </div>
 
-<div class="col-span-2 my-3 flex flex-row">
+<div class="my-3 flex flex-row">
 	<form method="post" action="?/delete" use:enhance>
 		<button class="btn btn-error btn-xs">Delete</button>
 	</form>
 </div>
 
-<div class="my-6 flex flex-row flex-wrap items-end gap-8">
+<div class="my-6 flex flex-row flex-wrap items-start gap-8">
 	<div class="flex overflow-x-scroll pb-4">
 		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
 	</div>
 
-	<form method="post" action="?/addDate" use:enhance class="flex max-w-xs grow flex-col gap-3">
-		<label class="flex flex-col gap-1 text-sm">
+	<form
+		method="post"
+		action="?/addDate"
+		use:enhance
+		class="flex max-w-md grow flex-col items-end gap-3"
+	>
+		<label class="flex w-full flex-col gap-1 text-sm">
 			Date
 			<input name="date" type="date" class="input input-bordered" required />
 		</label>
 
-		<button class="btn btn-primary">+ Add Date</button>
+		<button class="btn btn-primary w-fit">+ Add Date</button>
 	</form>
 </div>
 
