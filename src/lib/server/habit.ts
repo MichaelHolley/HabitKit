@@ -18,7 +18,7 @@ export const getUserHabits = async (userId: string) => {
 		}
 	});
 
-	return habits;
+	return habits.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
 };
 
 export const updateDates = async (id: string, userId: string, dates: string[]) => {
