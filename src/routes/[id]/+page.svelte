@@ -19,7 +19,7 @@
 	</p>
 </div>
 
-<div class="my-3 flex flex-row">
+<div class="my-6 flex flex-row">
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 
