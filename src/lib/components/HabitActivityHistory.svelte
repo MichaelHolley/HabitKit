@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import ActivityBubble from './ActivityBubble.svelte';
 
 	let { dates, showWeeks } = $props();
 	const activeDateSet = $derived(new Set(dates));
@@ -53,16 +54,6 @@
 		{:else if i % 7 === 0}
 			<div></div>
 		{/if}
-		<div
-			class="h-3 w-3 rounded-sm bg-neutral"
-			class:active={activeDateSet.has(formatDate(day))}
-			title={formatDate(day)}
-		></div>
+		<ActivityBubble active={activeDateSet.has(formatDate(day))} title={formatDate(day)} />
 	{/each}
 </div>
-
-<style>
-	.active {
-		@apply bg-primary;
-	}
-</style>
