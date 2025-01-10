@@ -25,31 +25,33 @@
 		<a href="/create" class="btn btn-outline btn-primary btn-sm">+ Track New</a>
 	</div>
 
-	<div class="my-6 max-w-2xl">
+	<div class="my-6">
 		<h3 class="mb-3 text-2xl">Last 30 Days</h3>
-		<div class="grid items-center gap-1 rounded-lg bg-base-200 p-4 text-[0.5rem]">
-			<div class="col-span-1"></div>
-			<div class="col-span-5">{thirtyDaysAgo.format('DD-MMM')}</div>
-			<div class="col-span-5">{thirtyDaysAgo.add(5, 'day').format('DD-MMM')}</div>
-			<div class="col-span-5">{thirtyDaysAgo.add(10, 'day').format('DD-MMM')}</div>
-			<div class="col-span-5">{thirtyDaysAgo.add(15, 'day').format('DD-MMM')}</div>
-			<div class="col-span-5">{thirtyDaysAgo.add(20, 'day').format('DD-MMM')}</div>
-			<div class="col-span-4">{thirtyDaysAgo.add(25, 'day').format('DD-MMM')}</div>
-			<div class="col-span-1">{thirtyDaysAgo.add(30, 'day').format('DD-MMM')}</div>
+		<div class="flex flex-shrink">
+			<div class="grid items-center gap-1 rounded-lg bg-base-200 p-4 text-[0.5rem]">
+				<div class="col-span-1"></div>
+				<div class="col-span-5">{thirtyDaysAgo.format('DD-MMM')}</div>
+				<div class="col-span-5">{thirtyDaysAgo.add(5, 'day').format('DD-MMM')}</div>
+				<div class="col-span-5">{thirtyDaysAgo.add(10, 'day').format('DD-MMM')}</div>
+				<div class="col-span-5">{thirtyDaysAgo.add(15, 'day').format('DD-MMM')}</div>
+				<div class="col-span-5">{thirtyDaysAgo.add(20, 'day').format('DD-MMM')}</div>
+				<div class="col-span-4">{thirtyDaysAgo.add(25, 'day').format('DD-MMM')}</div>
+				<div class="col-span-1">{thirtyDaysAgo.add(30, 'day').format('DD-MMM')}</div>
 
-			{#each data.summary as summaryItem}
-				<a class="link-hover link link-primary text-sm" href="/{summaryItem.id}"
-					>{summaryItem.name}</a
-				>
-				{#each { length: 30 } as _, i}
-					<ActivityBubble
-						active={summaryItem.dates.includes(
-							thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')
-						)}
-						title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
-					/>
+				{#each data.summary as summaryItem}
+					<a class="link-hover link link-primary mr-2 text-sm" href="/{summaryItem.id}"
+						>{summaryItem.name}</a
+					>
+					{#each { length: 30 } as _, i}
+						<ActivityBubble
+							active={summaryItem.dates.includes(
+								thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')
+							)}
+							title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
+						/>
+					{/each}
 				{/each}
-			{/each}
+			</div>
 		</div>
 	</div>
 
@@ -67,7 +69,7 @@
 
 <style>
 	.grid {
-		display: grid;
+		grid-auto-columns: min-content;
 		grid-template-columns: repeat(31, auto);
 	}
 </style>
