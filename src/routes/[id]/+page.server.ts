@@ -10,6 +10,10 @@ export const load: PageServerLoad = async (event) => {
 
 	const habit = await getHabitForUser(event.params.id, event.locals.user.id);
 
+	if (habit === null) {
+		return redirect(302, '/');
+	}
+
 	return { habit: habit };
 };
 
