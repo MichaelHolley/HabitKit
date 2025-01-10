@@ -20,7 +20,7 @@
 </div>
 
 <section class="my-6">
-	<div class="flex flex-row items-center gap-6">
+	<div class="flex flex-row items-center gap-4">
 		<h2 class="text-3xl">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm">+ Track New</a>
 	</div>
