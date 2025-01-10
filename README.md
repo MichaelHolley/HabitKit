@@ -1,6 +1,11 @@
+> [!WARNING]  
+> WIP - This repo is still work in progress. Issues during app-usage may occur.
+
 # HabitKit
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
+
+![habitkit](https://github.com/user-attachments/assets/e4a30e41-c3ef-4c49-9214-1ef533fe2f9a)
 
 ## Running locally
 
