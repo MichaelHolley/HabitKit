@@ -1,14 +1,12 @@
 import { prisma } from './prisma';
 
 export const getHabitForUser = async (id: string, userId: string) => {
-	const habit = await prisma.habit.findUnique({
+	return await prisma.habit.findUnique({
 		where: {
 			id: id,
 			userId: userId
 		}
 	});
-
-	return habit;
 };
 
 export const getUserHabits = async (userId: string) => {
@@ -22,7 +20,7 @@ export const getUserHabits = async (userId: string) => {
 };
 
 export const updateDates = async (id: string, userId: string, dates: string[]) => {
-	await prisma.habit.update({
+	return await prisma.habit.update({
 		where: { id: id, userId: userId },
 		data: {
 			dates
@@ -31,15 +29,13 @@ export const updateDates = async (id: string, userId: string, dates: string[]) =
 };
 
 export const createHabit = async (name: string, userId: string) => {
-	const habit = await prisma.habit.create({
+	return await prisma.habit.create({
 		data: {
 			name: name as string,
 			userId: userId,
 			dates: []
 		}
 	});
-
-	return habit;
 };
 
 export const deleteHabit = async (id: string, userId: string) => {

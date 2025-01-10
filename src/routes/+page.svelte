@@ -75,7 +75,6 @@
 
 <style>
 	.grid {
-		grid-auto-columns: min-content;
 		grid-template-columns: repeat(31, auto);
 	}
 </style>

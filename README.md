@@ -10,13 +10,13 @@ A simple and intuitive app to track, build, and maintain your habits for a bette
 ## Running locally
 
 Start the database:
-`pnpm run db:start`
+`pnpm db:start`
 
 Generate Prisma Client:
-`pnpm run prisma:generate`
+`pnpm prisma:generate`
 
 Migrate the database:
-`pnpm run prisma:migrate-dev`
+`pnpm prisma:migrate-dev`
 
 Start the web server:
 `pnpm dev`
