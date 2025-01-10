@@ -44,6 +44,7 @@
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
 		"@prisma/client": "6.1.0",
+		"dayjs": "^1.11.13",
 		"mysql2": "^3.11.0"
 	}
 }
