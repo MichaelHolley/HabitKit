@@ -39,13 +39,13 @@
 
 <div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-[0.5rem]">
 	<div></div>
-	<div class="pr-1">Mon</div>
+	<div class="sticky left-0 pr-1">Mon</div>
 	<div></div>
-	<div class="pr-1">Wed</div>
+	<div class="sticky left-0 pr-1">Wed</div>
 	<div></div>
-	<div class="pr-1">Fri</div>
+	<div class="sticky left-0 pr-1">Fri</div>
 	<div></div>
-	<div class="pr-1">Sun</div>
+	<div class="sticky left-0 pr-1">Sun</div>
 	{#each days as day, i}
 		{#if i % 7 === 0 && day.getDate() <= 7}
 			<div class="-mr-2">
