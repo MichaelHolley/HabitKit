@@ -5,7 +5,7 @@
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-![habitkit](https://github.com/user-attachments/assets/e4a30e41-c3ef-4c49-9214-1ef533fe2f9a)
+![image](https://github.com/user-attachments/assets/1fcd0733-f82f-474f-a1b5-844f9167aae8)
 
 ## Running locally
 
