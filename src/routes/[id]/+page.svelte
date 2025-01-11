@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import HabitActivityHistory from '$lib/components/HabitActivityHistory.svelte';
+	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 	let deleteModal: HTMLDialogElement;
 </script>
+
+<div class="mb-3">
+	<NavigateBackButton backUrl="/" />
+</div>
 
 <h2 class="mb-3 text-3xl">{data.habit?.name}</h2>
 <div class="grid gap-x-3 text-start text-xs">
@@ -19,7 +24,8 @@
 	</p>
 </div>
 
-<div class="my-6 flex flex-row">
+<div class="my-6 flex flex-row gap-3">
+	<a href="/{data.habit.id}/values" class="btn btn-outline btn-error btn-xs">Show Values</a>
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 

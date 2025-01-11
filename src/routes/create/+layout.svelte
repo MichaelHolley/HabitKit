@@ -3,10 +3,8 @@
 	let { children } = $props();
 </script>
 
-<div>
-	<div class="mb-3">
-		<NavigateBackButton backUrl="/" />
-	</div>
-
-	{@render children()}
+<div class="mb-3">
+	<NavigateBackButton backUrl="/" />
 </div>
+
+{@render children()}

@@ -1,3 +1,8 @@
-<button class="link-hover link link-primary" onclick={() => history.back()}>
-	&larr; Go back
-</button>
+<script>
+	import { goto } from '$app/navigation';
+	const { backUrl } = $props();
+</script>
+
+<div>
+	<button class="link-hover link link-primary" onclick={() => goto(backUrl)}>&larr; Go back</button>
+</div>
