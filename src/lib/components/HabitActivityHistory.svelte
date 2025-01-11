@@ -1,40 +1,28 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import ActivityBubble from './ActivityBubble.svelte';
+	import dayjs from 'dayjs';
+	import isoWeek from 'dayjs/plugin/isoWeek';
+
+	dayjs.extend(isoWeek);
 
 	let { dates, showWeeks } = $props();
 	const activeDateSet = $derived(new Set(dates));
 
-	const days: Date[] = $state([]);
+	const days: dayjs.Dayjs[] = $state([]);
 
-	const months = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec'
-	];
-
-	const today = new Date();
-	const startDate = new Date(today);
-	startDate.setDate(today.getDate() - today.getDay() - (7 * showWeeks - 1));
+	const today = dayjs();
+	const startDate = today.startOf('isoWeek').subtract(showWeeks, 'weeks');
 
 	onMount(() => {
-		let current = new Date(startDate);
-		while (current <= today) {
-			days.push(new Date(current));
-			current.setDate(current.getDate() + 1);
+		let current = startDate.clone();
+		while (current.isBefore(today.add(1, 'day'), 'day')) {
+			days.push(current.clone());
+			current = current.add(1, 'day');
 		}
 	});
 
-	const formatDate = (date: Date) => date.toISOString().split('T')[0];
+	const formatDate = (date: dayjs.Dayjs) => date.format('YYYY-MM-DD');
 </script>
 
 <div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-[0.5rem]">
@@ -47,9 +35,9 @@
 	<div></div>
 	<div class="sticky left-0 pr-1">Sun</div>
 	{#each days as day, i}
-		{#if i % 7 === 0 && day.getDate() <= 7}
+		{#if i % 7 === 0 && day.date() <= 7}
 			<div class="-mr-2">
-				{months[days[i + 6]?.getMonth()]}
+				{days[i + 6]?.format('MMM')}
 			</div>
 		{:else if i % 7 === 0}
 			<div></div>

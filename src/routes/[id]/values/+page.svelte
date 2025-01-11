@@ -20,11 +20,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each data.habit?.dates as date}
+			{#each data.habit.dates as date}
 				<tr>
 					<td>{date}</td>
 					<td>
-						<form method="POST" action="?/delete">
+						<form method="POST" action="?/delete" use:enhance>
 							<input type="hidden" name="date" value={date} />
 							<button class="btn btn-outline btn-error btn-xs">Delete</button>
 						</form>
