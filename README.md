@@ -3,6 +3,8 @@
 
 # HabitKit
 
+[![Build & Publish](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml/badge.svg?branch=main)](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml)
+
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
 ![image](https://github.com/user-attachments/assets/1fcd0733-f82f-474f-a1b5-844f9167aae8)

@@ -1,12 +1,19 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from './prisma';
 
 export const getHabitForUser = async (id: string, userId: string) => {
-	return await prisma.habit.findUnique({
+	let habit = await prisma.habit.findUnique({
 		where: {
 			id: id,
 			userId: userId
 		}
 	});
+
+	if (!habit) return null;
+
+	habit = { ...habit, dates: (habit.dates as Prisma.JsonArray).sort().reverse() };
+
+	return habit;
 };
 
 export const getUserHabits = async (userId: string) => {
