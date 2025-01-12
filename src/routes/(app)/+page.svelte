@@ -13,12 +13,11 @@
 	</div>
 
 	<div class="my-6">
-		<h3 class="mb-3 text-xl">Last 30 Days</h3>
+		<h3 class="mb-2 text-xl">Last 30 Days</h3>
 		<LastXDays summary={data.summary} />
 	</div>
 
 	<div class="my-6">
-		<h3 class="mb-3 text-xl">Overview</h3>
 		<div class="flex flex-row flex-wrap justify-start gap-6">
 			{#each data.habits as habit}
 				<HabitOverviewItem {habit} />
