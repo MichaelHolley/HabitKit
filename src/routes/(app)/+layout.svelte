@@ -14,7 +14,7 @@
 			<span class="text-xs">
 				Logged in as <span class="text-primary">{data.user?.username ?? 'UNDEFINED'}</span>
 			</span>
-			<form method="post" action="?/logout" use:enhance>
+			<form method="POST" action="/?/logout" use:enhance>
 				<button class="text-md btn btn-link link-accent btn-xs px-0">Sign out</button>
 			</form>
 		</div>

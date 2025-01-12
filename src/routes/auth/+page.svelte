@@ -10,7 +10,7 @@
 		<h1 class="pb-2 text-2xl text-primary">Welcome to HabitKit</h1>
 		<p>Keep track of your habits and goals</p>
 	</div>
-	<form method="post" action="?/login" use:enhance class="flex flex-col gap-3">
+	<form method="POST" action="?/login" use:enhance class="flex flex-col gap-3">
 		<label class="flex flex-col gap-1 text-sm">
 			Username
 			<input name="username" class="input input-bordered" />

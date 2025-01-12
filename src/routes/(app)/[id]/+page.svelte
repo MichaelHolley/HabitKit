@@ -35,7 +35,7 @@
 	</div>
 
 	<form
-		method="post"
+		method="POST"
 		action="?/addDate"
 		use:enhance
 		class="flex max-w-md grow flex-col items-end gap-3"
@@ -58,7 +58,7 @@
 		<p class="py-4">Are you sure you want to delete this habit?</p>
 		<p>This action cannot be undone.</p>
 		<div class="modal-action">
-			<form method="post" action="?/delete" use:enhance>
+			<form method="POST" action="?/delete" use:enhance>
 				<button class="btn btn-error">Delete</button>
 			</form>
 		</div>

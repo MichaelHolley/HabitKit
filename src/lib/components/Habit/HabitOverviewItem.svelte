@@ -14,8 +14,7 @@
 				{habit.name} <span class="text-accent">&rsaquo;</span>
 			</span></a
 		>
-		<form method="post" action="?/addToday" use:enhance>
-			<input type="hidden" name="habitId" value={habit.id} />
+		<form method="POST" action="{habit.id}?/addToday" use:enhance>
 			<button
 				class="btn btn-outline btn-accent btn-xs"
 				title="Add Today"
