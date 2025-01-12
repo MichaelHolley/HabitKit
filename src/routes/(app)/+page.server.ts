@@ -1,9 +1,9 @@
 import * as auth from '$lib/server/auth';
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
 import { getUserHabits } from '$lib/server/habit';
 import { Prisma } from '@prisma/client';
 import dayjs from 'dayjs';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (!event.locals.user) {
