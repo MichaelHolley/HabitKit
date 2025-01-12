@@ -25,7 +25,7 @@
 </div>
 
 <div class="my-6 flex flex-row gap-3">
-	<a href="/{data.habit.id}/values" class="btn btn-outline btn-error btn-xs">Show Values</a>
+	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 

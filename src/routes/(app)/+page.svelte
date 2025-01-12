@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import ActivityBubble from '$lib/components/ActivityBubble.svelte';
 	import HabitActivityHistory from '$lib/components/HabitActivityHistory.svelte';
+	import { Prisma } from '@prisma/client';
 	import dayjs from 'dayjs';
 	import type { PageServerData } from './$types';
 
@@ -61,12 +62,28 @@
 			<h2 class="mb-3 text-2xl">Overview</h2>
 			<div class="flex flex-row flex-wrap justify-start gap-6">
 				{#each data.habits as habit}
-					<a href="/{habit.id}" class="flex flex-col gap-1">
-						<span class="link-hover link link-primary text-xl">{habit.name}</span>
-						<div class="rounded-lg bg-base-200 p-4">
-							<HabitActivityHistory dates={habit.dates} showWeeks={12} />
+					<div class="flex flex-col gap-1">
+						<div class="flex flex-row justify-between">
+							<a href="/{habit.id}">
+								<span class="link-hover link text-xl decoration-accent">
+									{habit.name} <span class="text-accent">&rsaquo;</span>
+								</span></a
+							>
+							<form method="post" action="?/addToday" use:enhance>
+								<input type="hidden" name="habitId" value={habit.id} />
+								<button
+									class="btn btn-outline btn-accent btn-xs"
+									title="Add Today"
+									disabled={(habit.dates as Prisma.JsonArray).includes(
+										dayjs().format('YYYY-MM-DD')
+									)}>+</button
+								>
+							</form>
 						</div>
-					</a>
+						<a href="/{habit.id}" class="rounded-lg bg-base-200 p-4">
+							<HabitActivityHistory dates={habit.dates} showWeeks={12} />
+						</a>
+					</div>
 				{/each}
 			</div>
 		</div>
