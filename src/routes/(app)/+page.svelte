@@ -1,24 +1,10 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import ActivityBubble from '$lib/components/ActivityBubble.svelte';
-	import HabitActivityHistory from '$lib/components/HabitActivityHistory.svelte';
-	import { Prisma } from '@prisma/client';
-	import dayjs from 'dayjs';
+	import HabitOverviewItem from '$lib/components/Habit/HabitOverviewItem.svelte';
+	import LastXDays from '$lib/components/Habit/HabitSummaryComponent.svelte';
 	import type { PageServerData } from './$types';
 
 	let { data }: { data: PageServerData } = $props();
-	const thirtyDaysAgo = dayjs().subtract(30, 'days');
 </script>
-
-<div class="mb-7 flex flex-row items-center justify-between">
-	<p class="text-xl">Welcome back, <span class="text-primary">{data.user.username}</span>!</p>
-	<div class="flex flex-row items-center gap-3">
-		<p>Not you?</p>
-		<form method="post" action="?/logout" use:enhance>
-			<button class="btn btn-link px-0">Sign out</button>
-		</form>
-	</div>
-</div>
 
 <section class="my-6">
 	<div class="flex flex-row items-center gap-4">
@@ -28,70 +14,15 @@
 
 	<div class="my-6">
 		<h3 class="mb-3 text-xl">Last 30 Days</h3>
-		<div class="flex flex-shrink">
-			<div class="overflow-hidden rounded-lg bg-base-200 p-4">
-				<div class="relative grid items-center gap-1 overflow-x-scroll pb-4 text-[0.5rem]">
-					<div class="col-span-1"></div>
-					<div class="col-span-5">{thirtyDaysAgo.add(1, 'day').format('DD-MMM')}</div>
-					<div class="col-span-5">{thirtyDaysAgo.add(6, 'day').format('DD-MMM')}</div>
-					<div class="col-span-5">{thirtyDaysAgo.add(11, 'day').format('DD-MMM')}</div>
-					<div class="col-span-5">{thirtyDaysAgo.add(16, 'day').format('DD-MMM')}</div>
-					<div class="col-span-5">{thirtyDaysAgo.add(21, 'day').format('DD-MMM')}</div>
-					<div class="col-span-4">{thirtyDaysAgo.add(26, 'day').format('DD-MMM')}</div>
-					<div class="col-span-1">{thirtyDaysAgo.add(30, 'day').format('DD-MMM')}</div>
+		<LastXDays summary={data.summary} />
+	</div>
 
-					{#each data.summary as summaryItem}
-						<a
-							class="link-hover link link-primary sticky left-0 mr-2 text-sm"
-							href="/{summaryItem.id}">{summaryItem.name}</a
-						>
-						{#each { length: 30 } as _, i}
-							<ActivityBubble
-								active={summaryItem.dates.includes(
-									thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')
-								)}
-								title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
-							/>
-						{/each}
-					{/each}
-				</div>
-			</div>
-		</div>
-
-		<div class="my-6">
-			<h2 class="mb-3 text-2xl">Overview</h2>
-			<div class="flex flex-row flex-wrap justify-start gap-6">
-				{#each data.habits as habit}
-					<div class="flex flex-col gap-1">
-						<div class="flex flex-row justify-between">
-							<a href="/{habit.id}">
-								<span class="link-hover link text-xl decoration-accent">
-									{habit.name} <span class="text-accent">&rsaquo;</span>
-								</span></a
-							>
-							<form method="post" action="?/addToday" use:enhance>
-								<input type="hidden" name="habitId" value={habit.id} />
-								<button
-									class="btn btn-outline btn-accent btn-xs"
-									title="Add Today"
-									disabled={(habit.dates as Prisma.JsonArray).includes(
-										dayjs().format('YYYY-MM-DD')
-									)}>+</button
-								>
-							</form>
-						</div>
-						<a href="/{habit.id}" class="rounded-lg bg-base-200 p-4">
-							<HabitActivityHistory dates={habit.dates} showWeeks={12} />
-						</a>
-					</div>
-				{/each}
-			</div>
+	<div class="my-6">
+		<h3 class="mb-3 text-xl">Overview</h3>
+		<div class="flex flex-row flex-wrap justify-start gap-6">
+			{#each data.habits as habit}
+				<HabitOverviewItem {habit} />
+			{/each}
 		</div>
 	</div>
 </section>
-
-<style>
-	.grid {
-		grid-template-columns: repeat(31, auto);
-	}
-</style>

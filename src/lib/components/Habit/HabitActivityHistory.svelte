@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import ActivityBubble from './ActivityBubble.svelte';
 	import dayjs from 'dayjs';
 	import isoWeek from 'dayjs/plugin/isoWeek';
+	import { onMount } from 'svelte';
+	import ActivityBubble from './ActivityBubble.svelte';
 
 	dayjs.extend(isoWeek);
 

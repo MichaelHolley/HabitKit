@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import HabitActivityHistory from '$lib/components/HabitActivityHistory.svelte';
+	import HabitActivityHistory from '$lib/components/Habit/HabitActivityHistory.svelte';
 	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
 	import type { PageData } from './$types';
 

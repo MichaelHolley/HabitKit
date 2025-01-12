@@ -26,11 +26,11 @@ export const load: PageServerLoad = async (event) => {
 		return {
 			id: habit.id,
 			name: habit.name,
-			dates: dates
+			dates: dates as string[]
 		};
 	});
 
-	return { user: event.locals.user, habits: habits, summary: summary };
+	return { habits: habits, summary: summary };
 };
 
 export const actions: Actions = {
