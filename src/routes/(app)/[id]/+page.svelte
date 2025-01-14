@@ -13,8 +13,11 @@
 	<NavigateBackButton backUrl="/" />
 </div>
 
-<h2 class="mb-3 text-3xl">{data.habit?.name}</h2>
-<div class="grid gap-x-3 text-start text-xs text-neutral-400">
+<div class="mb-3">
+	<h2 class="text-3xl">{data.habit?.name}</h2>
+	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
+</div>
+<div class="grid gap-x-3 text-xs text-neutral-400">
 	<p>Created:</p>
 	<p>
 		{dayjs(data.habit?.createdAt).format('DD MMM YYYY - HH:mm')}
@@ -41,8 +44,10 @@
 		use:enhance
 		class="flex max-w-md grow flex-col items-end gap-3"
 	>
-		<label class="flex w-full flex-col gap-1 text-sm">
-			Date
+		<label class="form-control w-full text-sm">
+			<div class="label">
+				<span class="label-text">Date</span>
+			</div>
 			<input name="date" type="date" class="input input-bordered" required />
 		</label>
 
