@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import HabitActivityHistory from '$lib/components/Habit/HabitActivityHistory.svelte';
 	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
+	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -12,15 +13,18 @@
 	<NavigateBackButton backUrl="/" />
 </div>
 
-<h2 class="mb-3 text-3xl">{data.habit?.name}</h2>
-<div class="grid gap-x-3 text-start text-xs">
-	<p class="text-neutral-400">Created:</p>
-	<p class="text-neutral-400">
-		{data.habit?.createdAt.toLocaleString('de', { dateStyle: 'medium', timeStyle: 'short' })}
+<div class="mb-3">
+	<h2 class="text-3xl">{data.habit?.name}</h2>
+	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
+</div>
+<div class="grid gap-x-3 text-xs text-neutral-400">
+	<p>Created:</p>
+	<p>
+		{dayjs(data.habit?.createdAt).format('DD MMM YYYY - HH:mm')}
 	</p>
-	<p class="text-neutral-400">Updated:</p>
-	<p class="text-neutral-400">
-		{data.habit?.updatedAt.toLocaleString('de', { dateStyle: 'medium', timeStyle: 'short' })}
+	<p>Updated:</p>
+	<p>
+		{dayjs(data.habit?.updatedAt).format('DD MMM YYYY - HH:mm')}
 	</p>
 </div>
 
@@ -40,8 +44,10 @@
 		use:enhance
 		class="flex max-w-md grow flex-col items-end gap-3"
 	>
-		<label class="flex w-full flex-col gap-1 text-sm">
-			Date
+		<label class="form-control w-full text-sm">
+			<div class="label">
+				<span class="label-text">Date</span>
+			</div>
 			<input name="date" type="date" class="input input-bordered" required />
 		</label>
 
