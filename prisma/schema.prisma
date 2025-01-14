@@ -30,12 +30,13 @@ model Session {
 }
 
 model Habit {
-  id        String   @id @default(uuid())
-  name      String
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  dates     Json
+  id          String   @id @default(uuid())
+  name        String
+  description String?  @db.VarChar(255)
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  dates       Json
 
   user User @relation(fields: [userId], references: [id])
 }

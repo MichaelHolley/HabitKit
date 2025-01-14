@@ -35,10 +35,11 @@ export const updateDates = async (id: string, userId: string, dates: string[]) =
 	});
 };
 
-export const createHabit = async (name: string, userId: string) => {
+export const createHabit = async (name: string, userId: string, description?: string) => {
 	return await prisma.habit.create({
 		data: {
-			name: name as string,
+			name: name,
+			description: description,
 			userId: userId,
 			dates: []
 		}
