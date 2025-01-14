@@ -9,13 +9,14 @@
 
 <div class="container mx-auto px-3 py-8">
 	<div class="mb-7 flex flex-row items-center justify-between">
-		<span class="text-4xl font-bold text-primary">Habit<span class="text-accent">Kit</span></span>
+		<span class="text-4xl font-bold text-primary">Habit<span class="text-secondary">Kit</span></span
+		>
 		<div class="text-right">
 			<span class="text-xs">
-				Logged in as <span class="text-primary">{data.user?.username ?? 'UNDEFINED'}</span>
+				Logged in as <span class="font-extrabold">{data.user?.username ?? 'UNDEFINED'}</span>
 			</span>
 			<form method="POST" action="/?/logout" use:enhance>
-				<button class="text-md btn btn-link link-accent btn-xs px-0">Sign out</button>
+				<button class="text-md btn btn-link link-secondary btn-xs px-0">Sign out</button>
 			</form>
 		</div>
 	</div>
