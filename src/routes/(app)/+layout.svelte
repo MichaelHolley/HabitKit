@@ -7,7 +7,12 @@
 	let { children, data }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
-<div class="container mx-auto px-3 py-8">
+<div class="py-8">
+	<noscript>
+		<div role="alert" class="alert alert-warning mb-4">
+			<span>Warning: JavaScript is required to have flawless experience within the app!</span>
+		</div>
+	</noscript>
 	<div class="mb-7 flex flex-row items-center justify-between">
 		<span class="text-4xl font-bold text-primary">Habit<span class="text-secondary">Kit</span></span
 		>
