@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client';
 import { prisma } from './prisma';
 
 export const getHabitForUser = async (id: string, userId: string) => {
-	let habit = await prisma.habit.findUnique({
+	const habit = await prisma.habit.findUnique({
 		where: {
 			id: id,
 			userId: userId
@@ -11,9 +11,7 @@ export const getHabitForUser = async (id: string, userId: string) => {
 
 	if (!habit) return null;
 
-	habit = { ...habit, dates: (habit.dates as Prisma.JsonArray).sort().reverse() };
-
-	return habit;
+	return { ...habit, dates: (habit.dates as Prisma.JsonArray).sort().reverse() };
 };
 
 export const getUserHabits = async (userId: string) => {

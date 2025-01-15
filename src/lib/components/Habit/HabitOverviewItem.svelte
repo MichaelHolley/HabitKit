@@ -10,13 +10,11 @@
 <div class="flex flex-col gap-1">
 	<div class="flex flex-row justify-between">
 		<a href="/{habit.id}">
-			<span class="link-hover link text-lg decoration-accent">
-				{habit.name} <span class="text-accent">&rsaquo;</span>
-			</span></a
+			<span class="link-hover link text-lg decoration-secondary">{habit.name}</span></a
 		>
 		<form method="POST" action="{habit.id}?/addToday" use:enhance>
 			<button
-				class="btn btn-outline btn-accent btn-xs"
+				class="btn btn-outline btn-secondary btn-xs"
 				title="Add Today"
 				disabled={(habit.dates as Prisma.JsonArray).includes(dayjs().format('YYYY-MM-DD'))}
 				>+</button

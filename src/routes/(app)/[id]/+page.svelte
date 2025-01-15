@@ -4,6 +4,7 @@
 	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import { Prisma } from '@prisma/client';
 
 	let { data }: { data: PageData } = $props();
 	let deleteModal: HTMLDialogElement;
@@ -20,15 +21,23 @@
 <div class="grid gap-x-3 text-xs text-neutral-400">
 	<p>Created:</p>
 	<p>
-		{dayjs(data.habit?.createdAt).format('DD MMM YYYY - HH:mm')}
+		{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
 	</p>
 	<p>Updated:</p>
 	<p>
-		{dayjs(data.habit?.updatedAt).format('DD MMM YYYY - HH:mm')}
+		{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
 	</p>
 </div>
 
 <div class="my-6 flex flex-row gap-3">
+	<form method="POST" action="?/addToday" use:enhance>
+		<button
+			class="btn btn-outline btn-secondary btn-xs"
+			title="Add Today"
+			disabled={(data.habit.dates as Prisma.JsonArray).includes(dayjs().format('YYYY-MM-DD'))}
+			>+ Today</button
+		>
+	</form>
 	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
