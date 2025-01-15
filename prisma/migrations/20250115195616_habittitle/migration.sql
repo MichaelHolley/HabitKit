@@ -1,0 +1,1 @@
+ALTER TABLE `Habit` CHANGE `name` `title`VARCHAR(191) NOT NULL;

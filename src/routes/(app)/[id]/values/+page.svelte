@@ -10,7 +10,7 @@
 	<NavigateBackButton backUrl="/{data.habit.id}" />
 </div>
 
-<h2 class="mb-3 text-3xl">{data.habit?.name}</h2>
+<h2 class="mb-3 text-3xl">{data.habit?.title}</h2>
 <div class="max-w-lg overflow-x-auto">
 	<table class="table table-xs">
 		<thead>

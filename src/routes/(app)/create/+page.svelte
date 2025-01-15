@@ -7,9 +7,9 @@
 	<form method="POST" action="?/createHabit" use:enhance class="flex flex-col items-end gap-3">
 		<label class="form-control w-full text-sm">
 			<div class="label">
-				<span class="label-text">Name</span>
+				<span class="label-text">Title</span>
 			</div>
-			<input name="name" class="input input-bordered" required />
+			<input name="title" class="input input-bordered" required />
 		</label>
 		<label class="form-control w-full text-sm">
 			<div class="label">

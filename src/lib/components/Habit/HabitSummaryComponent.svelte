@@ -2,7 +2,7 @@
 	import dayjs from 'dayjs';
 	import ActivityBubble from './ActivityBubble.svelte';
 
-	let { summary }: { summary: { id: string; name: string; dates: string[] }[] } = $props();
+	let { summary }: { summary: { id: string; title: string; dates: string[] }[] } = $props();
 
 	const thirtyDaysAgo = dayjs().subtract(30, 'days');
 </script>
@@ -13,7 +13,7 @@
 			{#each summary as summaryItem}
 				<a
 					class="link-hover link sticky left-0 mr-2 bg-base-200 pr-1 text-sm"
-					href="/{summaryItem.id}">{summaryItem.name}</a
+					href="/{summaryItem.id}">{summaryItem.title}</a
 				>
 				{#each { length: 30 } as _, i}
 					<ActivityBubble
