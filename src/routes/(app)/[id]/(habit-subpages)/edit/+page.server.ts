@@ -1,8 +1,7 @@
+import { getHabitForUser, updateHabit } from '$lib/server/habit';
 import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from '../../$types';
 import type { Actions } from './$types';
-import { createHabit } from '$lib/server/habit';
-import type { PageServerLoad } from '../$types';
-import { getHabitForUser } from '$lib/server/habit';
 
 export const load: PageServerLoad = async (event) => {
 	if (!event.locals.user) {
@@ -28,7 +27,12 @@ export const actions: Actions = {
 			return redirect(302, '/');
 		}
 
-		const habit = await createHabit(title as string, event.locals.user.id, description as string);
+		const habit = await updateHabit(
+			event.params.id,
+			event.locals.user.id,
+			title as string,
+			description as string
+		);
 
 		return redirect(302, `/${habit.id}`);
 	}

@@ -1,13 +1,8 @@
 <script>
 	import { enhance } from '$app/forms';
-	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
 
 	const { data } = $props();
 </script>
-
-<div class="mb-3">
-	<NavigateBackButton backUrl="/{data.habit.id}" />
-</div>
 
 <div class="max-w-md">
 	<h3 class="pb-4 text-3xl">Update Habit</h3>

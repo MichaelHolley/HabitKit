@@ -1,7 +1,7 @@
 import { getHabitForUser, updateDates } from '$lib/server/habit';
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Actions } from '../$types';
+import type { Actions } from '../../$types';
 import { Prisma } from '@prisma/client';
 
 export const load: PageServerLoad = async (event) => {
