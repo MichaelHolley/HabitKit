@@ -43,6 +43,20 @@ export const createHabit = async (title: string, userId: string, description?: s
 		}
 	});
 };
+export const updateHabit = async (
+	id: string,
+	userId: string,
+	title: string,
+	description?: string
+) => {
+	return await prisma.habit.update({
+		where: { userId: userId, id: id },
+		data: {
+			title: title,
+			description: description
+		}
+	});
+};
 
 export const deleteHabit = async (id: string, userId: string) => {
 	await prisma.habit.delete({

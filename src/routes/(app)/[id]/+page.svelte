@@ -39,6 +39,7 @@
 		>
 	</form>
 	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
+	<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 
