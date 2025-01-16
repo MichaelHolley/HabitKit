@@ -10,7 +10,7 @@
 <div class="flex flex-col gap-1">
 	<div class="flex flex-row justify-between">
 		<a href="/{habit.id}">
-			<span class="link-hover link text-lg decoration-secondary">{habit.name}</span></a
+			<span class="link-hover link text-lg decoration-secondary">{habit.title}</span></a
 		>
 		<form method="POST" action="{habit.id}?/addToday" use:enhance>
 			<button

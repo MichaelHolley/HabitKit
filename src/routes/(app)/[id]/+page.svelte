@@ -15,7 +15,7 @@
 </div>
 
 <div class="mb-3">
-	<h2 class="text-3xl">{data.habit?.name}</h2>
+	<h2 class="text-3xl">{data.habit?.title}</h2>
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
 </div>
 <div class="grid gap-x-3 text-xs text-neutral-400">
@@ -39,6 +39,7 @@
 		>
 	</form>
 	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
+	<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 

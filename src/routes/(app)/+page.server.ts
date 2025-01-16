@@ -25,7 +25,7 @@ export const load: PageServerLoad = async (event) => {
 
 		return {
 			id: habit.id,
-			name: habit.name,
+			title: habit.title,
 			dates: dates as string[]
 		};
 	});
