@@ -6,6 +6,6 @@
 
 <style>
 	.active {
-		@apply bg-primary;
+		@apply bg-base-content;
 	}
 </style>

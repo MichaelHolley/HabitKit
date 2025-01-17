@@ -17,7 +17,12 @@
 			<div class="label">
 				<span class="label-text">Description (optional)</span>
 			</div>
-			<input name="description" class="input input-bordered" value={data.habit.description} />
+			<input
+				name="description"
+				class="input input-bordered"
+				maxlength="255"
+				value={data.habit.description}
+			/>
 		</label>
 		<button class="btn btn-primary w-fit">Update</button>
 	</form>
