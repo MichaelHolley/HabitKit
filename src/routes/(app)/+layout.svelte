@@ -14,8 +14,9 @@
 		</div>
 	</noscript>
 	<div class="mb-7 flex flex-row items-center justify-between">
-		<span class="text-4xl font-bold text-primary">Habit<span class="text-secondary">Kit</span></span
-		>
+		<a href="/" class="text-4xl font-bold text-primary">
+			Habit<span class="text-secondary">Kit</span>
+		</a>
 		<div class="text-right">
 			<span class="text-xs">
 				Logged in as <span class="font-extrabold">{data.user?.username ?? 'UNDEFINED'}</span>

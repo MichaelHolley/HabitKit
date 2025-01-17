@@ -7,7 +7,7 @@
 </script>
 
 <section class="my-6">
-	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
+	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
 		<h2 class="text-3xl">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm">+ Track New</a>
 	</div>
@@ -20,10 +20,16 @@
 	{/if}
 
 	<div class="my-6">
-		<div class="flex flex-row flex-wrap justify-start gap-6">
+		<div class="habit-overview-grid grid flex-wrap justify-start gap-3">
 			{#each data.habits as habit}
 				<HabitOverviewItem {habit} />
 			{/each}
 		</div>
 	</div>
 </section>
+
+<style>
+	.habit-overview-grid {
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	}
+</style>

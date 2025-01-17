@@ -7,7 +7,7 @@
 	let { habit } = $props();
 </script>
 
-<div class="flex flex-col gap-1">
+<div class="flex flex-col gap-1 rounded-lg bg-base-200 p-4">
 	<div class="flex flex-row justify-between">
 		<a href="/{habit.id}">
 			<span class="link-hover link text-lg decoration-secondary">{habit.title}</span></a
@@ -21,7 +21,7 @@
 			>
 		</form>
 	</div>
-	<a href="/{habit.id}" class="rounded-lg bg-base-200 p-4">
+	<a href="/{habit.id}">
 		<HabitActivityHistory dates={habit.dates} showWeeks={12} />
 	</a>
 </div>

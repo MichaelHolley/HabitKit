@@ -18,7 +18,7 @@
 	<h2 class="text-3xl">{data.habit?.title}</h2>
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
 </div>
-<div class="grid gap-x-3 text-xs text-neutral-400">
+<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
 	<p>Created:</p>
 	<p>
 		{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
@@ -43,7 +43,7 @@
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 
-<div class="my-6 flex flex-row flex-wrap items-start gap-8">
+<div class="my-6 flex flex-row flex-wrap items-center gap-8">
 	<div class="flex overflow-x-scroll pb-4">
 		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
 	</div>
@@ -55,9 +55,6 @@
 		class="flex max-w-md grow flex-col items-end gap-3"
 	>
 		<label class="form-control w-full text-sm">
-			<div class="label">
-				<span class="label-text">Date</span>
-			</div>
 			<input name="date" type="date" class="input input-bordered" required />
 		</label>
 
@@ -85,7 +82,7 @@
 </dialog>
 
 <style>
-	.grid {
+	.timestamp-grid {
 		grid-template-columns: auto 1fr;
 	}
 </style>
