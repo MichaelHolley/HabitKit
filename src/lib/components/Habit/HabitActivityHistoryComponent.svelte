@@ -25,7 +25,7 @@
 	const formatDate = (date: dayjs.Dayjs) => date.format('YYYY-MM-DD');
 </script>
 
-<div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-[0.5rem]">
+<div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-2xs">
 	<div></div>
 	<div class="sticky left-0 pr-1">Mon</div>
 	<div></div>
