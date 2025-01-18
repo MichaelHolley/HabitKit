@@ -7,6 +7,9 @@ export default {
 		extend: {
 			screens: {
 				xs: '480px'
+			},
+			fontSize: {
+				'2xs': '.5rem'
 			}
 		}
 	},

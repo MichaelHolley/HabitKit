@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/state';
-	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
+	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	let { children } = $props();
 </script>
 

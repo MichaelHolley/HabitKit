@@ -2,7 +2,7 @@
 	import dayjs from 'dayjs';
 	import isoWeek from 'dayjs/plugin/isoWeek';
 	import { onMount } from 'svelte';
-	import ActivityBubble from './ActivityBubble.svelte';
+	import ActivityBubble from './ActivityBubbleComponent.svelte';
 
 	dayjs.extend(isoWeek);
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HabitOverviewItem from '$lib/components/Habit/HabitOverviewItem.svelte';
+	import HabitOverviewItem from '$lib/components/Habit/HabitOverviewItemComponent.svelte';
 	import LastXDays from '$lib/components/Habit/HabitSummaryComponent.svelte';
 	import type { PageServerData } from './$types';
 

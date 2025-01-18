@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import HabitActivityHistory from '$lib/components/Habit/HabitActivityHistory.svelte';
-	import NavigateBackButton from '$lib/components/NavigateBackButton.svelte';
+	import HabitActivityHistory from '$lib/components/Habit/HabitActivityHistoryComponent.svelte';
+	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 	import { Prisma } from '@prisma/client';
