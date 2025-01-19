@@ -7,7 +7,7 @@
 	let { children, data }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
-<div class="py-8">
+<div class="py-3 md:py-8">
 	<noscript>
 		<div role="alert" class="alert alert-warning mb-4">
 			<span>Warning: JavaScript is required to have flawless experience within the app!</span>
