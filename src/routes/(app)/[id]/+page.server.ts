@@ -75,8 +75,9 @@ const getSummaryForHabit = (habit: Habit) => {
 
 	const longestStreak = getLongestDateStreak(dates);
 	const currentStreak = getCurrentDateStreak(dates);
+	const completionRate = getCompletionRate(dates);
 
-	return { longestStreak, currentStreak };
+	return { longestStreak, currentStreak, completionRate };
 };
 
 const getLongestDateStreak = (dates: string[]) => {
@@ -121,4 +122,17 @@ const getCurrentDateStreak = (dates: string[]) => {
 	}
 
 	return currentStreak.map((date) => date.format('YYYY-MM-DD'));
+};
+
+const getCompletionRate = (dates: string[]) => {
+	const sortedDates = [...new Set(dates)]
+		.map((date) => dayjs(date))
+		.sort((a, b) => a.valueOf() - b.valueOf());
+
+	if (sortedDates.length === 0) return 0;
+
+	const daysSinceFirstDate = dayjs().diff(sortedDates[0], 'day') + 1;
+	console.log(daysSinceFirstDate);
+
+	return sortedDates.length / daysSinceFirstDate;
 };

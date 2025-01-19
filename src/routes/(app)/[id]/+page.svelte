@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="flex w-full flex-row justify-center xs:w-fit xs:justify-end">
-		<SummaryComponent longest={data.summary.longestStreak} current={data.summary.currentStreak} />
+		<SummaryComponent summary={data.summary} />
 	</div>
 </div>
 
