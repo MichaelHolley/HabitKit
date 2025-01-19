@@ -13,9 +13,9 @@
 		<a
 			href="https://github.com/MichaelHolley/HabitKit/issues"
 			target="_blank"
-			class="group link-hover link flex flex-row items-center justify-center gap-3 transition-all"
+			class="group link-hover link flex flex-row items-center justify-center gap-3 text-sm transition-all"
 		>
-			<GitHubIconComponent class="h-8 w-8 group-hover:scale-105" />
+			<GitHubIconComponent class="h-6 w-6 group-hover:scale-105" />
 			Report issues on GitHub
 		</a>
 	</div>
