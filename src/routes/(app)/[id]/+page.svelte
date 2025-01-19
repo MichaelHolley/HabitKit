@@ -1,32 +1,38 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import HabitActivityHistory from '$lib/components/Habit/HabitActivityHistoryComponent.svelte';
+	import HabitActivityHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 	import { Prisma } from '@prisma/client';
+	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
 
 	let { data }: { data: PageData } = $props();
 	let deleteModal: HTMLDialogElement;
 </script>
 
-<div class="mb-3">
-	<NavigateBackButton backUrl="/" />
-</div>
+<div class="flex flex-row flex-wrap items-center justify-between gap-4">
+	<div>
+		<div class="mb-3">
+			<NavigateBackButton backUrl="/" />
+		</div>
+		<h2 class="text-3xl">{data.habit?.title}</h2>
+		<p class="text-xs text-neutral-400">{data.habit?.description}</p>
+		<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
+			<p>Created:</p>
+			<p>
+				{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
+			</p>
+			<p>Updated:</p>
+			<p>
+				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
+			</p>
+		</div>
+	</div>
 
-<div class="mb-3">
-	<h2 class="text-3xl">{data.habit?.title}</h2>
-	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
-</div>
-<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
-	<p>Created:</p>
-	<p>
-		{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
-	</p>
-	<p>Updated:</p>
-	<p>
-		{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
-	</p>
+	<div class="flex w-full flex-row justify-center xs:w-fit xs:justify-end">
+		<SummaryComponent longest={data.summary.longestStreak} current={data.summary.currentStreak} />
+	</div>
 </div>
 
 <div class="my-6 flex flex-row gap-3">

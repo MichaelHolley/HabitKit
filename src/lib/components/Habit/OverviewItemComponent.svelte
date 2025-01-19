@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { Prisma } from '@prisma/client';
 	import dayjs from 'dayjs';
-	import HabitActivityHistory from './HabitActivityHistoryComponent.svelte';
+	import HabitActivityHistory from './HistoryComponent.svelte';
 
 	let { habit } = $props();
 </script>
