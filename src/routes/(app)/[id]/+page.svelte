@@ -11,27 +11,21 @@
 	let deleteModal: HTMLDialogElement;
 </script>
 
-<div class="flex flex-row flex-wrap items-center justify-between gap-4">
-	<div>
-		<div class="mb-3">
-			<NavigateBackButton backUrl="/" />
-		</div>
-		<h2 class="text-3xl">{data.habit?.title}</h2>
-		<p class="text-xs text-neutral-400">{data.habit?.description}</p>
-		<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
-			<p>Created:</p>
-			<p>
-				{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
-			</p>
-			<p>Updated:</p>
-			<p>
-				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
-			</p>
-		</div>
+<div>
+	<div class="mb-3">
+		<NavigateBackButton backUrl="/" />
 	</div>
-
-	<div class="flex w-full flex-row justify-center xs:w-fit xs:justify-end">
-		<SummaryComponent summary={data.summary} />
+	<h2 class="text-3xl">{data.habit?.title}</h2>
+	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
+	<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
+		<p>Created:</p>
+		<p>
+			{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
+		</p>
+		<p>Updated:</p>
+		<p>
+			{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
+		</p>
 	</div>
 </div>
 
@@ -67,6 +61,8 @@
 		<button class="btn btn-primary w-fit">+ Add Date</button>
 	</form>
 </div>
+
+<SummaryComponent summary={data.summary} />
 
 <dialog id="delete_modal" bind:this={deleteModal} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box">
