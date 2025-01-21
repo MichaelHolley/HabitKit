@@ -7,10 +7,10 @@
 	<div>
 		<div class="stat place-items-center">
 			<div class="stat-title">Longest Streak</div>
-			<div class="stat-value">{summary.longestStreak.length}</div>
-			{#if summary.longestStreak.length > 0}
+			<div class="stat-value">{summary.longest.length}</div>
+			{#if summary.longest.length > 0}
 				<div class="stat-desc">
-					Starting from {dayjs(summary.longestStreak[0]).format('DD MMM YYYY')}
+					Starting from {dayjs(summary.longest[0]).format('DD MMM YYYY')}
 				</div>
 			{/if}
 		</div>
@@ -18,10 +18,10 @@
 	<div>
 		<div class="stat place-items-center">
 			<div class="stat-title">Current Streak</div>
-			<div class="stat-value">{summary.currentStreak.length}</div>
-			{#if summary.currentStreak.length > 0}
+			<div class="stat-value">{summary.current.length}</div>
+			{#if summary.current.length > 0}
 				<div class="stat-desc">
-					Starting from {dayjs(summary.currentStreak[0]).format('DD MMM YYYY')}
+					Starting from {dayjs(summary.current[0]).format('DD MMM YYYY')}
 				</div>
 			{/if}
 		</div>

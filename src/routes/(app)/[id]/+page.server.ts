@@ -73,19 +73,16 @@ export const actions: Actions = {
 const getSummaryForHabit = (habit: Habit) => {
 	const dates = habit.dates as Prisma.JsonArray as string[];
 
-	const longestStreak = getLongestDateStreak(dates);
-	const currentStreak = getCurrentDateStreak(dates);
-	const completionRate = getCompletionRate(dates);
-
-	return { longestStreak, currentStreak, completionRate };
+	const { longest, current, completionRate } = getDatesData(dates);
+	return { longest, current, completionRate };
 };
 
-const getLongestDateStreak = (dates: string[]) => {
+const getDatesData = (dates: string[]) => {
 	const sortedDates = [...new Set(dates)]
 		.map((date) => dayjs(date))
 		.sort((a, b) => a.valueOf() - b.valueOf());
 
-	if (sortedDates.length === 0) return [];
+	if (sortedDates.length === 0) return { longest: [], current: [], completionRate: 0 };
 
 	let currentStreak = [sortedDates[0]];
 	let maxStreak = [sortedDates[0]];
@@ -101,38 +98,11 @@ const getLongestDateStreak = (dates: string[]) => {
 		}
 	}
 
-	return maxStreak.map((date) => date.format('YYYY-MM-DD'));
-};
-
-const getCurrentDateStreak = (dates: string[]) => {
-	const sortedDates = [...new Set(dates)]
-		.map((date) => dayjs(date))
-		.sort((a, b) => a.valueOf() - b.valueOf());
-
-	if (sortedDates.length === 0) return [];
-
-	let currentStreak = [sortedDates[0]];
-
-	for (let i = 1; i < sortedDates.length; i++) {
-		if (sortedDates[i].diff(sortedDates[i - 1], 'day') === 1) {
-			currentStreak.push(sortedDates[i]);
-		} else {
-			currentStreak = [sortedDates[i]];
-		}
-	}
-
-	return currentStreak.map((date) => date.format('YYYY-MM-DD'));
-};
-
-const getCompletionRate = (dates: string[]) => {
-	const sortedDates = [...new Set(dates)]
-		.map((date) => dayjs(date))
-		.sort((a, b) => a.valueOf() - b.valueOf());
-
-	if (sortedDates.length === 0) return 0;
-
 	const daysSinceFirstDate = dayjs().diff(sortedDates[0], 'day') + 1;
-	console.log(daysSinceFirstDate);
 
-	return sortedDates.length / daysSinceFirstDate;
+	return {
+		longest: maxStreak.map((date) => date.format('YYYY-MM-DD')),
+		current: currentStreak.map((date) => date.format('YYYY-MM-DD')),
+		completionRate: sortedDates.length / daysSinceFirstDate
+	};
 };
