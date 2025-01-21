@@ -1,6 +1,6 @@
 <script lang="ts">
-	import HabitOverviewItem from '$lib/components/Habit/HabitOverviewItemComponent.svelte';
-	import LastXDays from '$lib/components/Habit/HabitSummaryComponent.svelte';
+	import HabitOverviewItem from '$lib/components/Habit/OverviewItemComponent.svelte';
+	import LastXDays from '$lib/components/Habit/LastDaysOverviewComponent.svelte';
 	import type { PageServerData } from './$types';
 
 	let { data }: { data: PageServerData } = $props();
