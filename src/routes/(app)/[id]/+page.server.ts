@@ -72,22 +72,40 @@ export const actions: Actions = {
 
 const getSummaryForHabit = (habit: Habit) => {
 	const dates = habit.dates as Prisma.JsonArray as string[];
-
-	const { longest, current, completionRate } = getDatesData(dates);
-	return { longest, current, completionRate };
+	return getDatesData(dates);
 };
 
-const getDatesData = (dates: string[]) => {
+const getDatesData = (
+	dates: string[]
+): {
+	longest: string[];
+	current: string[];
+	completionRate: number;
+	mostActive: { day: string; count: number } | undefined;
+} => {
 	const sortedDates = [...new Set(dates)]
 		.map((date) => dayjs(date))
 		.sort((a, b) => a.valueOf() - b.valueOf());
 
-	if (sortedDates.length === 0) return { longest: [], current: [], completionRate: 0 };
+	const weekdayMap = new Map<string, number>();
+
+	if (sortedDates.length === 0)
+		return {
+			longest: [],
+			current: [],
+			completionRate: 0,
+			mostActive: undefined
+		};
 
 	let currentStreak = [sortedDates[0]];
 	let maxStreak = [sortedDates[0]];
 
-	for (let i = 1; i < sortedDates.length; i++) {
+	for (let i = 0; i < sortedDates.length; i++) {
+		const weekday = sortedDates[i].format('dddd');
+		weekdayMap.set(weekday, (weekdayMap.get(weekday) || 0) + 1);
+
+		if (i === 0) continue;
+
 		if (sortedDates[i].diff(sortedDates[i - 1], 'day') === 1) {
 			currentStreak.push(sortedDates[i]);
 			if (currentStreak.length > maxStreak.length) {
@@ -100,9 +118,13 @@ const getDatesData = (dates: string[]) => {
 
 	const daysSinceFirstDate = dayjs().diff(sortedDates[0], 'day') + 1;
 
+	const weekdayMapArray = Array.from(weekdayMap.entries());
+	weekdayMapArray.sort((a, b) => b[1] - a[1]);
+
 	return {
 		longest: maxStreak.map((date) => date.format('YYYY-MM-DD')),
 		current: currentStreak.map((date) => date.format('YYYY-MM-DD')),
-		completionRate: sortedDates.length / daysSinceFirstDate
+		completionRate: sortedDates.length / daysSinceFirstDate,
+		mostActive: { day: weekdayMapArray[0][0], count: weekdayMapArray[0][1] }
 	};
 };
