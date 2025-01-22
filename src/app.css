@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+html {
+	@apply bg-base-300 !important;
+}
+
+body {
+	@apply bg-base-100 !important;
+}
