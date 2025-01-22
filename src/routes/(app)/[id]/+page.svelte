@@ -12,24 +12,25 @@
 </script>
 
 <div>
-	<div class="mb-3">
+	<div class="mb-3 flex flex-row items-center justify-between">
 		<NavigateBackButton backUrl="/" />
+
+		<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-500">
+			<p>Created:</p>
+			<p>
+				{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
+			</p>
+			<p>Updated:</p>
+			<p>
+				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
+			</p>
+		</div>
 	</div>
 	<h2 class="text-3xl">{data.habit?.title}</h2>
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
-	<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-400">
-		<p>Created:</p>
-		<p>
-			{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
-		</p>
-		<p>Updated:</p>
-		<p>
-			{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
-		</p>
-	</div>
 </div>
 
-<div class="my-6 flex flex-row gap-3">
+<div class="my-3 flex flex-row gap-3">
 	<form method="POST" action="?/addToday" use:enhance>
 		<button
 			class="btn btn-outline btn-secondary btn-xs"
@@ -85,6 +86,7 @@
 
 <style>
 	.timestamp-grid {
-		grid-template-columns: auto 1fr;
+		grid-template-columns: 1fr auto;
+		text-align: right;
 	}
 </style>
