@@ -19,7 +19,7 @@
 			<div class="stat-value">{summary.longest.length}</div>
 			{#if summary.longest.length > 0}
 				<div class="stat-desc">
-					Starting from {dayjs(summary.longest[0]).format('DD MMM YYYY')}
+					Starting {dayjs(summary.longest[0]).format('DD MMM YYYY')}
 				</div>
 			{/if}
 		</div>
@@ -30,7 +30,7 @@
 			<div class="stat-value">{summary.current.length}</div>
 			{#if summary.current.length > 0}
 				<div class="stat-desc">
-					Starting from {dayjs(summary.current[0]).format('DD MMM YYYY')}
+					Starting {dayjs(summary.current[0]).format('DD MMM YYYY')}
 				</div>
 			{/if}
 		</div>
