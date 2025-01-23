@@ -12,21 +12,18 @@
 </script>
 
 <div>
-	<div class="mb-3 flex flex-row items-center justify-between">
-		<NavigateBackButton backUrl="/" />
-
-		<div class="timestamp-grid grid gap-x-3 text-xs text-neutral-500">
-			<p>Created:</p>
-			<p>
-				{dayjs(data.habit.createdAt).format('DD MMM YYYY - HH:mm')}
-			</p>
+	<NavigateBackButton backUrl="/" />
+	<div class="mb-3 grid grid-cols-2">
+		<div>
+			<h2 class="text-3xl">{data.habit?.title}</h2>
+		</div>
+		<div class="timestamp-grid grid items-center gap-x-3 text-xs text-neutral-500">
 			<p>Updated:</p>
 			<p>
 				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
 			</p>
 		</div>
 	</div>
-	<h2 class="text-3xl">{data.habit?.title}</h2>
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
 </div>
 
