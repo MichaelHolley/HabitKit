@@ -17,8 +17,8 @@
 		<div>
 			<h2 class="text-3xl">{data.habit?.title}</h2>
 		</div>
-		<div class="timestamp-grid grid items-center gap-x-3 text-xs text-neutral-500">
-			<p>Updated:</p>
+		<div class="items-center gap-x-3 text-right text-xs">
+			<p class="text-2xs text-neutral-400 sm:text-xs">Modified at</p>
 			<p>
 				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
 			</p>
