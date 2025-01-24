@@ -80,10 +80,3 @@
 		<button>close</button>
 	</form>
 </dialog>
-
-<style>
-	.timestamp-grid {
-		grid-template-columns: 1fr auto;
-		text-align: right;
-	}
-</style>
