@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
+import tailwindcssMotion from 'tailwindcss-motion';
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -16,5 +17,5 @@ export default {
 	daisyui: {
 		themes: ['dim']
 	},
-	plugins: [daisyui]
+	plugins: [daisyui, tailwindcssMotion]
 } satisfies Config;
