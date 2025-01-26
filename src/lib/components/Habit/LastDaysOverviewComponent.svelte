@@ -12,7 +12,7 @@
 		<div class="relative grid items-center gap-1 overflow-x-scroll py-2 text-2xs">
 			{#each summary as summaryItem}
 				<a
-					class="link-hover link link-primary sticky left-0 mr-2 bg-base-200 pr-1 text-sm"
+					class="link-hover link link-primary sticky left-0 z-10 mr-2 bg-base-200 pr-1 text-sm"
 					href="/{summaryItem.id}">{summaryItem.title}</a
 				>
 				{#each { length: 30 } as _, i}
