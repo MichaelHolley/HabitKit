@@ -10,7 +10,7 @@
 <div class="max-w-lg overflow-x-auto">
 	<table class="table table-pin-rows table-xs">
 		{#each data.habit.dates as date, i}
-			{#if i === 0 || !dayjs(date as string).isSame(dayjs(data.habit.dates[i + 1] as string), 'month')}
+			{#if i === 0 || !dayjs(date as string).isSame(dayjs(data.habit.dates[i - 1] as string), 'month')}
 				<thead>
 					<tr>
 						<th colspan="2" class="text-neutral-500">{dayjs(date as string).format('MMM YYYY')}</th>
