@@ -52,7 +52,13 @@
 		class="flex max-w-md grow flex-col items-end gap-3"
 	>
 		<label class="form-control w-full text-sm">
-			<input name="date" type="date" class="input input-bordered" required />
+			<input
+				name="date"
+				type="date"
+				class="input input-bordered"
+				placeholder="Select a date"
+				required
+			/>
 		</label>
 
 		<button class="btn btn-primary w-fit">+ Add Date</button>

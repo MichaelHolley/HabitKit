@@ -11,7 +11,13 @@
 			<div class="label">
 				<span class="label-text">Title</span>
 			</div>
-			<input name="title" class="input input-bordered" required value={data.habit.title} />
+			<input
+				name="title"
+				class="input input-bordered"
+				placeholder="Enter title..."
+				required
+				value={data.habit.title}
+			/>
 		</label>
 		<label class="form-control w-full text-sm">
 			<div class="label">
@@ -20,6 +26,7 @@
 			<input
 				name="description"
 				class="input input-bordered"
+				placeholder="Enter description..."
 				maxlength="255"
 				value={data.habit.description}
 			/>

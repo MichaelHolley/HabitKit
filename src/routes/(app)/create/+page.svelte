@@ -35,13 +35,24 @@
 			<div class="label">
 				<span class="label-text">Title</span>
 			</div>
-			<input name="title" class="input input-bordered" bind:value={title} required />
+			<input
+				name="title"
+				class="input input-bordered"
+				placeholder="Enter title..."
+				bind:value={title}
+				required
+			/>
 		</label>
 		<label class="form-control w-full text-sm">
 			<div class="label">
 				<span class="label-text">Description (optional)</span>
 			</div>
-			<input name="description" class="input input-bordered" bind:value={description} />
+			<input
+				name="description"
+				class="input input-bordered"
+				placeholder="Enter description...	"
+				bind:value={description}
+			/>
 		</label>
 		<button class="btn btn-primary w-fit">+ Create</button>
 	</form>

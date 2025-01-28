@@ -45,7 +45,7 @@
 		<ActivityBubble
 			active={activeDateSet.has(formatDate(day))}
 			title={formatDate(day)}
-			delay={dates.indexOf(day.format('YYYY-MM-DD')) * 30}
+			delay={dates.indexOf(day.format('YYYY-MM-DD')) * 20}
 		/>
 	{/each}
 </div>

@@ -15,13 +15,19 @@
 			<div class="label">
 				<span class="label-text">Username</span>
 			</div>
-			<input name="username" class="input input-bordered" required />
+			<input name="username" placeholder="Username" class="input input-bordered" required />
 		</label>
 		<label class="form-control w-full text-sm">
 			<div class="label">
 				<span class="label-text">Password</span>
 			</div>
-			<input type="password" name="password" class="input input-bordered" required />
+			<input
+				type="password"
+				placeholder="Password"
+				name="password"
+				class="input input-bordered"
+				required
+			/>
 		</label>
 		<button class="btn btn-primary">Login</button>
 		<button class="btn btn-outline btn-primary" formaction="?/register">Register</button>
