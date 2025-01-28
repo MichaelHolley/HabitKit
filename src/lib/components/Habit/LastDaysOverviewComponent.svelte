@@ -22,7 +22,7 @@
 						)}
 						title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
 						delay={summaryItem.dates.indexOf(thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')) *
-							30}
+							50}
 					/>
 				{/each}
 			{/each}
