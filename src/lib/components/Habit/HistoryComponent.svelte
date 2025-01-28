@@ -6,7 +6,7 @@
 
 	dayjs.extend(isoWeek);
 
-	let { dates, showWeeks } = $props();
+	let { dates, showWeeks }: { dates: string[]; showWeeks: number } = $props();
 	const activeDateSet = $derived(new Set(dates));
 
 	const days: dayjs.Dayjs[] = $state([]);
@@ -42,6 +42,10 @@
 		{:else if i % 7 === 0}
 			<div></div>
 		{/if}
-		<ActivityBubble active={activeDateSet.has(formatDate(day))} title={formatDate(day)} />
+		<ActivityBubble
+			active={activeDateSet.has(formatDate(day))}
+			title={formatDate(day)}
+			delay={dates.indexOf(day.format('YYYY-MM-DD')) * 30}
+		/>
 	{/each}
 </div>

@@ -1,7 +1,6 @@
 import { getHabitForUser, updateDates } from '$lib/server/habit';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { Prisma } from '@prisma/client';
 
 export const load: PageServerLoad = async (event) => {
 	if (!event.locals.user) {
@@ -14,7 +13,7 @@ export const load: PageServerLoad = async (event) => {
 		return redirect(302, '/');
 	}
 
-	return { habit: habit };
+	return { habit: { ...habit, dates: habit.dates.reverse() } };
 };
 
 export const actions: Actions = {
@@ -37,12 +36,12 @@ export const actions: Actions = {
 		}
 
 		if (habit && habit.dates && typeof habit.dates === 'object' && Array.isArray(habit.dates)) {
-			const dates = habit.dates as Prisma.JsonArray;
+			const dates = habit.dates;
 			const indexOfDate = dates.indexOf(date);
 
 			if (indexOfDate !== -1) {
 				dates.splice(indexOfDate, 1);
-				habit = await updateDates(event.params.id, event.locals.user.id, dates as string[]);
+				habit = await updateDates(event.params.id, event.locals.user.id, dates);
 			}
 		}
 
