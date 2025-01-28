@@ -16,8 +16,7 @@
 			<button
 				class="btn btn-outline btn-secondary btn-xs"
 				title="Add Today"
-				disabled={(habit.dates as Prisma.JsonArray).includes(dayjs().format('YYYY-MM-DD'))}
-				>+</button
+				disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+</button
 			>
 		</form>
 	</div>

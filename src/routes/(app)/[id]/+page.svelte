@@ -32,8 +32,7 @@
 		<button
 			class="btn btn-outline btn-secondary btn-xs"
 			title="Add Today"
-			disabled={(data.habit.dates as Prisma.JsonArray).includes(dayjs().format('YYYY-MM-DD'))}
-			>+ Today</button
+			disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+ Today</button
 		>
 	</form>
 	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
@@ -41,7 +40,7 @@
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 
-<div class="my-6 flex flex-row flex-wrap items-center gap-8">
+<div class="my-6 flex flex-row flex-wrap items-center justify-between gap-8">
 	<div class="flex overflow-x-scroll pb-4">
 		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
 	</div>

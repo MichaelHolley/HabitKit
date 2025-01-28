@@ -1,5 +1,4 @@
-import { deleteHabit, getHabitForUser, updateDates } from '$lib/server/habit';
-import { Prisma, type Habit } from '@prisma/client';
+import { deleteHabit, getHabitForUser, updateDates, type Habit } from '$lib/server/habit';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import dayjs from 'dayjs';
@@ -32,13 +31,12 @@ export const actions: Actions = {
 		const habit = await getHabitForUser(event.params.id, event.locals.user.id);
 
 		if (habit && habit.dates && typeof habit.dates === 'object' && Array.isArray(habit.dates)) {
-			const dates = habit.dates as Prisma.JsonArray;
-
+			const dates = habit.dates;
 			if (!dates.includes(date)) {
 				dates.push(date);
 			}
 
-			await updateDates(event.params.id, event.locals.user.id, dates as string[]);
+			await updateDates(event.params.id, event.locals.user.id, dates);
 		}
 	},
 	delete: async (event) => {
@@ -59,20 +57,19 @@ export const actions: Actions = {
 		const habit = await getHabitForUser(event.params.id, event.locals.user.id);
 
 		if (habit && habit.dates && typeof habit.dates === 'object' && Array.isArray(habit.dates)) {
-			const dates = habit.dates as Prisma.JsonArray;
+			const dates = habit.dates;
 
 			if (!dates.includes(today.format('YYYY-MM-DD'))) {
 				dates.push(today.format('YYYY-MM-DD'));
 			}
 
-			await updateDates(event.params.id, event.locals.user.id, dates as string[]);
+			await updateDates(event.params.id, event.locals.user.id, dates);
 		}
 	}
 };
 
 const getSummaryForHabit = (habit: Habit) => {
-	const dates = habit.dates as Prisma.JsonArray as string[];
-	return getDatesData(dates);
+	return getDatesData(habit.dates);
 };
 
 const getDatesData = (
