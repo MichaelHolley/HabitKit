@@ -14,7 +14,7 @@ export const load: PageServerLoad = async (event) => {
 		return redirect(302, '/');
 	}
 
-	return { habit: habit };
+	return { habit: { ...habit, dates: habit.dates.reverse() } };
 };
 
 export const actions: Actions = {

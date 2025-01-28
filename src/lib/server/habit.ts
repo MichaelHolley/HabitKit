@@ -11,7 +11,7 @@ export const getHabitForUser = async (id: string, userId: string) => {
 
 	if (!habit) return null;
 
-	return { ...habit, dates: (habit.dates as Prisma.JsonArray).sort().reverse() };
+	return { ...habit, dates: (habit.dates as Prisma.JsonArray).sort() };
 };
 
 export const getUserHabits = async (userId: string) => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { title, active } = $props();
+	let { title, active, delay = 0 } = $props();
 </script>
 
 <div
@@ -7,6 +7,7 @@
 	class:active
 	class:motion-preset-pop={active}
 	{title}
+	style="animation-delay: {delay}ms"
 ></div>
 
 <style>
