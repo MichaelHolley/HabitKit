@@ -2,36 +2,35 @@
 	import dayjs from 'dayjs';
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 
-	let { summary }: { summary: { id: string; title: string; dates: string[] }[] } = $props();
+	let { habits } = $props();
 
-	const thirtyDaysAgo = dayjs().subtract(30, 'days');
+	let containerWidth = $state(0);
+	let visibleDays = $derived(Math.ceil((containerWidth - 92) / 16) - 1);
+
+	const today = dayjs();
 </script>
 
-<div class="flex flex-shrink">
-	<div class="overflow-hidden rounded-lg bg-base-200 p-4">
-		<div class="relative grid items-center gap-1 overflow-x-scroll py-2 text-2xs">
-			{#each summary as summaryItem}
+<div class="rounded-lg bg-base-200 p-4 pt-3">
+	<div bind:clientWidth={containerWidth}>
+		<h4 class="mb-1 text-right text-xs">Last {visibleDays} Days</h4>
+		<div
+			class="grid items-center gap-1 text-2xs"
+			style="grid-template-columns: 1fr repeat({visibleDays}, auto) !important;"
+		>
+			{#each habits as habit}
 				<a
 					class="link-hover link link-primary sticky left-0 z-10 mr-2 bg-base-200 pr-1 text-sm"
-					href="/{summaryItem.id}">{summaryItem.title}</a
+					href="/{habit.id}">{habit.title}</a
 				>
-				{#each { length: 30 } as _, i}
+				{#each { length: visibleDays } as _, i}
 					<ActivityBubble
-						active={summaryItem.dates.includes(
-							thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')
+						active={habit.dates.includes(
+							today.subtract(visibleDays - i - 1, 'days').format('YYYY-MM-DD')
 						)}
-						title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
-						delay={summaryItem.dates.indexOf(thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')) *
-							20}
+						title={today.subtract(visibleDays - i - 1, 'days').format('YYYY-MM-DD')}
 					/>
 				{/each}
 			{/each}
 		</div>
 	</div>
 </div>
-
-<style>
-	.grid {
-		grid-template-columns: repeat(31, auto);
-	}
-</style>

@@ -3,11 +3,13 @@
 	import isoWeek from 'dayjs/plugin/isoWeek';
 	import { onMount } from 'svelte';
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
-
 	dayjs.extend(isoWeek);
-	const maxShowWeeks = 52;
 
+	let { dates }: { dates: string[] } = $props();
 	let containerWidth = $state(0);
+	const days: dayjs.Dayjs[] = $state([]);
+
+	const activeDateSet = $derived(new Set(dates));
 
 	let visibleWeeks = $derived.by(() => {
 		const calc = Math.ceil((containerWidth - 22) / 16) - 2;
@@ -15,11 +17,7 @@
 		else return calc;
 	});
 
-	let { dates }: { dates: string[] } = $props();
-	const activeDateSet = $derived(new Set(dates));
-
-	const days: dayjs.Dayjs[] = $state([]);
-
+	const maxShowWeeks = 52;
 	const today = dayjs();
 	const startDate = today.startOf('isoWeek').subtract(maxShowWeeks, 'weeks');
 	onMount(() => {
