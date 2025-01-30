@@ -12,7 +12,7 @@
 
 <div>
 	<NavigateBackButton backUrl="/" />
-	<div class="mb-3 grid grid-cols-2">
+	<div class="mb-1 grid grid-cols-2">
 		<div>
 			<h2 class="text-3xl">{data.habit?.title}</h2>
 		</div>
@@ -26,17 +26,21 @@
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
 </div>
 
-<div class="my-3 flex flex-row gap-3">
-	<form method="POST" action="?/addToday" use:enhance>
-		<button
-			class="btn btn-outline btn-secondary btn-xs"
-			title="Add Today"
-			disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+ Today</button
-		>
-	</form>
-	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
-	<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
-	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
+<div class="mb-4 mt-6 flex flex-row flex-wrap justify-between gap-2">
+	<div class="flex flex-row gap-2">
+		<form method="POST" action="?/addToday" use:enhance>
+			<button
+				class="btn btn-outline btn-secondary btn-xs"
+				title="Add Today"
+				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+ Today</button
+			>
+		</form>
+		<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
+	</div>
+	<div class="flex flex-row gap-2">
+		<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
+		<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
+	</div>
 </div>
 
 <HabitHistory dates={data.habit?.dates} />

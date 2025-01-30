@@ -7,11 +7,10 @@
 	dayjs.extend(isoWeek);
 	const maxShowWeeks = 52;
 
-	let w = $state(0);
-	let h = $state(0);
+	let containerWidth = $state(0);
 
 	let visibleWeeks = $derived.by(() => {
-		const calc = Math.ceil((w - 22) / 16) - 2;
+		const calc = Math.ceil((containerWidth - 22) / 16) - 2;
 		if (calc > maxShowWeeks) return maxShowWeeks;
 		else return calc;
 	});
@@ -23,7 +22,6 @@
 
 	const today = dayjs();
 	const startDate = today.startOf('isoWeek').subtract(maxShowWeeks, 'weeks');
-
 	onMount(() => {
 		let current = startDate.clone();
 		while (current.isBefore(today.add(1, 'day'), 'day')) {
@@ -35,7 +33,7 @@
 	const formatDate = (date: dayjs.Dayjs) => date.format('YYYY-MM-DD');
 </script>
 
-<div bind:clientWidth={w} bind:clientHeight={h} class="flex-start flex justify-start">
+<div bind:clientWidth={containerWidth} class="flex-start justify-startg flex">
 	<div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-2xs">
 		<div></div>
 		<div class="sticky left-0 pr-1">Mon</div>
@@ -45,7 +43,7 @@
 		<div class="sticky left-0 pr-1">Fri</div>
 		<div></div>
 		<div class="sticky left-0 pr-1">Sun</div>
-		{#each days.slice(days.length - visibleWeeks * 7 - dayjs().day()) as day, i}
+		{#each days.slice(days.length - visibleWeeks * 7 - today.day()) as day, i}
 			{#if i % 7 === 0 && day.date() <= 7}
 				<div class="-mr-2">
 					{day.add(6, 'days')?.format('MMM')}
