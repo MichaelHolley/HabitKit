@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import HabitActivityHistory from '$lib/components/Habit/HistoryComponent.svelte';
+	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { Prisma } from '@prisma/client';
 	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -40,16 +39,14 @@
 	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
 </div>
 
-<div class="my-6 flex flex-row flex-wrap items-center justify-between gap-8">
-	<div class="flex overflow-x-scroll pb-4">
-		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
-	</div>
+<HabitHistory dates={data.habit?.dates} />
 
+<div class="my-6 flex flex-row flex-wrap items-center justify-end gap-8">
 	<form
 		method="POST"
 		action="?/addDate"
 		use:enhance
-		class="flex max-w-md grow flex-col items-end gap-3"
+		class="flex max-w-full grow flex-col items-end gap-3 sm:max-w-md"
 	>
 		<label class="form-control w-full text-sm">
 			<input
