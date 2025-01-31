@@ -10,7 +10,7 @@
 	const today = dayjs();
 </script>
 
-<div class="rounded-lg bg-base-200 p-4 pt-3">
+<div class="rounded-lg bg-base-200 p-4 pt-2">
 	<h4 class="mb-1 text-right text-xs">Last {visibleDays} Days</h4>
 	<div class="flex flex-row justify-between gap-3">
 		<div class="flex flex-col justify-between">
