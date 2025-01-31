@@ -26,12 +26,12 @@
 			<div bind:clientWidth={containerWidth} class="flex h-full flex-col justify-between">
 				{#each habits as habit}
 					<div class="flex flex-row justify-end gap-1">
-						{#each { length: visibleDays } as _, i}
+						{#each { length: visibleDays }, i}
 							<ActivityBubble
 								active={habit.dates.includes(
-									today.subtract(visibleDays - i - 1, 'days').format('YYYY-MM-DD')
+									today.subtract(visibleDays - (i + 1), 'days').format('YYYY-MM-DD')
 								)}
-								title={today.subtract(visibleDays - i - 1, 'days').format('ddd YYYY-MM-DD')}
+								title={today.subtract(visibleDays - (i + 1), 'days').format('ddd YYYY-MM-DD')}
 								delay={i * 10}
 							/>
 						{/each}
