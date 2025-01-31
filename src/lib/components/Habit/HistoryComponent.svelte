@@ -17,7 +17,7 @@
 		today.subtract(showDays - (i + 1), 'days').format('YYYY-MM-DD');
 </script>
 
-<div bind:clientWidth={containerWidth} class="flex-start justify-startg flex">
+<div bind:clientWidth={containerWidth} class="flex flex-row justify-end">
 	<div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-2xs">
 		<div></div>
 		<div class="sticky left-0 pr-1">Mon</div>
