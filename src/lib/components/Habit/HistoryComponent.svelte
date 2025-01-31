@@ -41,7 +41,7 @@
 			<ActivityBubble
 				active={activeDateSet.has(activityDate(i))}
 				title={activityDate(i)}
-				delay={dates.indexOf(activityDate(i)) * 20}
+				delay={dates.indexOf(activityDate(i)) * 10}
 			/>
 		{/each}
 	</div>
