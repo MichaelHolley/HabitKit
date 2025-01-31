@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import HabitActivityHistory from '$lib/components/Habit/HistoryComponent.svelte';
+	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { Prisma } from '@prisma/client';
 	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -13,7 +12,7 @@
 
 <div>
 	<NavigateBackButton backUrl="/" />
-	<div class="mb-3 grid grid-cols-2">
+	<div class="mb-1 grid grid-cols-2">
 		<div>
 			<h2 class="text-3xl">{data.habit?.title}</h2>
 		</div>
@@ -27,29 +26,31 @@
 	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
 </div>
 
-<div class="my-3 flex flex-row gap-3">
-	<form method="POST" action="?/addToday" use:enhance>
-		<button
-			class="btn btn-outline btn-secondary btn-xs"
-			title="Add Today"
-			disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+ Today</button
-		>
-	</form>
-	<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
-	<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
-	<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
+<div class="mb-4 mt-6 flex flex-row flex-wrap justify-between gap-2">
+	<div class="flex flex-row gap-2">
+		<form method="POST" action="?/addToday" use:enhance class="flex flex-col justify-start">
+			<button
+				class="btn btn-outline btn-secondary btn-xs"
+				title="Add Today"
+				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+ Today</button
+			>
+		</form>
+		<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs">Show Values</a>
+	</div>
+	<div class="flex flex-row gap-2">
+		<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs">Edit</a>
+		<button class="btn btn-error btn-xs" onclick={() => deleteModal.showModal()}>Delete</button>
+	</div>
 </div>
 
-<div class="my-6 flex flex-row flex-wrap items-center justify-between gap-8">
-	<div class="flex overflow-x-scroll pb-4">
-		<HabitActivityHistory dates={data.habit?.dates} showWeeks={52} />
-	</div>
+<HabitHistory dates={data.habit?.dates} />
 
+<div class="my-6 flex flex-row flex-wrap items-center justify-end gap-8">
 	<form
 		method="POST"
 		action="?/addDate"
 		use:enhance
-		class="flex max-w-md grow flex-col items-end gap-3"
+		class="flex max-w-full grow flex-col items-end gap-3 sm:max-w-md"
 	>
 		<label class="form-control w-full text-sm">
 			<input
@@ -65,7 +66,9 @@
 	</form>
 </div>
 
-<SummaryComponent summary={data.summary} />
+{#if !!data.summary}
+	<SummaryComponent summary={data.summary} />
+{/if}
 
 <dialog id="delete_modal" bind:this={deleteModal} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box">

@@ -14,7 +14,10 @@ export const load: PageServerLoad = async (event) => {
 		return redirect(302, '/');
 	}
 
-	const summary = getSummaryForHabit(habit);
+	let summary = undefined;
+	if (!!habit.dates && habit.dates.length > 0) {
+		summary = getSummaryForHabit(habit);
+	}
 
 	return { habit: habit, summary: summary };
 };

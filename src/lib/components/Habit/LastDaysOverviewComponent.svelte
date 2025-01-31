@@ -2,36 +2,42 @@
 	import dayjs from 'dayjs';
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 
-	let { summary }: { summary: { id: string; title: string; dates: string[] }[] } = $props();
+	let { habits } = $props();
 
-	const thirtyDaysAgo = dayjs().subtract(30, 'days');
+	let containerWidth = $state(0);
+	let visibleDays = $derived(Math.ceil(containerWidth / 16) - 1);
+
+	const today = dayjs();
 </script>
 
-<div class="flex flex-shrink">
-	<div class="overflow-hidden rounded-lg bg-base-200 p-4">
-		<div class="relative grid items-center gap-1 overflow-x-scroll py-2 text-2xs">
-			{#each summary as summaryItem}
+<div class="rounded-lg bg-base-200 p-4 pt-2">
+	<h4 class="mb-1 text-right text-xs">Last {visibleDays} Days</h4>
+	<div class="flex flex-row justify-between gap-3">
+		<div class="flex flex-col justify-between">
+			{#each habits as habit}
 				<a
-					class="link-hover link link-primary sticky left-0 z-10 mr-2 bg-base-200 pr-1 text-sm"
-					href="/{summaryItem.id}">{summaryItem.title}</a
+					class="link-hover link link-primary sticky left-0 z-10 bg-base-200 text-sm"
+					href="/{habit.id}">{habit.title}</a
 				>
-				{#each { length: 30 } as _, i}
-					<ActivityBubble
-						active={summaryItem.dates.includes(
-							thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')
-						)}
-						title={thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')}
-						delay={summaryItem.dates.indexOf(thirtyDaysAgo.add(i + 1, 'day').format('YYYY-MM-DD')) *
-							20}
-					/>
-				{/each}
 			{/each}
+		</div>
+
+		<div class="my-1 flex flex-grow flex-col">
+			<div bind:clientWidth={containerWidth} class="flex h-full flex-col justify-between">
+				{#each habits as habit}
+					<div class="flex flex-row justify-end gap-1">
+						{#each { length: visibleDays }, i}
+							<ActivityBubble
+								active={habit.dates.includes(
+									today.subtract(visibleDays - (i + 1), 'days').format('YYYY-MM-DD')
+								)}
+								title={today.subtract(visibleDays - (i + 1), 'days').format('ddd YYYY-MM-DD')}
+								delay={i * 10}
+							/>
+						{/each}
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>
-
-<style>
-	.grid {
-		grid-template-columns: repeat(31, auto);
-	}
-</style>
