@@ -28,7 +28,7 @@
 
 <div class="mb-4 mt-6 flex flex-row flex-wrap justify-between gap-2">
 	<div class="flex flex-row gap-2">
-		<form method="POST" action="?/addToday" use:enhance>
+		<form method="POST" action="?/addToday" use:enhance class="flex flex-col justify-start">
 			<button
 				class="btn btn-outline btn-secondary btn-xs"
 				title="Add Today"
@@ -66,7 +66,9 @@
 	</form>
 </div>
 
-<SummaryComponent summary={data.summary} />
+{#if !!data.summary}
+	<SummaryComponent summary={data.summary} />
+{/if}
 
 <dialog id="delete_modal" bind:this={deleteModal} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box">
