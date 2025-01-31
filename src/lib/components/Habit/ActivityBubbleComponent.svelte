@@ -1,13 +1,14 @@
-<script lang="ts">
+<script>
+	import { scale } from 'svelte/transition';
+
 	let { title, active, delay = 0 } = $props();
 </script>
 
 <div
 	class="h-3 w-3 rounded-sm bg-neutral"
 	class:active
-	class:motion-preset-pop={active}
+	in:scale={{ duration: active ? 200 : 0, delay }}
 	{title}
-	style="animation-delay: {delay}ms"
 ></div>
 
 <style>
