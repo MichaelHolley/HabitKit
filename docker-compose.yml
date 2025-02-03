@@ -1,3 +1,6 @@
+# ! Warning !
+# This file is used for local development only
+
 services:
   db:
     image: mysql
