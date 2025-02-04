@@ -4,7 +4,7 @@
 	import HabitActivityHistory from './HistoryComponent.svelte';
 	import CardComponent from '../CardComponent.svelte';
 
-	let { habit } = $props();
+	const { habit } = $props();
 </script>
 
 <CardComponent>

@@ -3,10 +3,10 @@
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 	import CardComponent from '../CardComponent.svelte';
 
-	let { habits } = $props();
+	const { habits } = $props();
 
 	let containerWidth = $state(0);
-	let visibleDays = $derived(Math.ceil(containerWidth / 16) - 1);
+	const visibleDays = $derived(Math.ceil(containerWidth / 16) - 1);
 
 	const today = dayjs();
 </script>

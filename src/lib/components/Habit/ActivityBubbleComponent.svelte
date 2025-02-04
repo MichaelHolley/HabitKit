@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { scale } from 'svelte/transition';
 
-	let { title, active, delay = 0 } = $props();
+	const { title, active, delay = 0 } = $props<{ title: string; active: boolean; delay?: number }>();
 </script>
 
 <div

@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
-	let { children } = $props();
+	import type { Snippet } from 'svelte';
+
+	const { children } = $props<{ children: Snippet }>();
 </script>
 
 <div class="mb-3">

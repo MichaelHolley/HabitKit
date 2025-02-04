@@ -4,14 +4,14 @@
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 	dayjs.extend(isoWeek);
 
-	let { dates }: { dates: string[] } = $props();
+	const { dates } = $props<{ dates: string[] }>();
 	let containerWidth = $state(0);
 
 	const activeDateSet = $derived(new Set(dates));
 
 	const today = dayjs();
-	let visibleWeeks = $derived(Math.floor((containerWidth - 22) / 16) - 1);
-	let showDays = $derived(visibleWeeks * 7 + today.day());
+	const visibleWeeks = $derived(Math.floor((containerWidth - 22) / 16) - 1);
+	const showDays = $derived(visibleWeeks * 7 + today.day());
 
 	const activityDate = (i: number) =>
 		today.subtract(showDays - (i + 1), 'days').format('YYYY-MM-DD');
