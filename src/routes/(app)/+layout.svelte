@@ -4,7 +4,7 @@
 	import '../../app.css';
 	import type { LayoutData } from './$types';
 
-	let { children, data }: { data: LayoutData; children: Snippet } = $props();
+	const { children, data } = $props<{ data: LayoutData; children: Snippet }>();
 </script>
 
 <div class="py-3 md:py-8">

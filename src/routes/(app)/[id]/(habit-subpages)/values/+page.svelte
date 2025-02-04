@@ -3,7 +3,7 @@
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 
-	let { data }: { data: PageData } = $props();
+	const { data } = $props<{ data: PageData }>();
 </script>
 
 <h2 class="mb-3 text-3xl">{data.habit?.title}</h2>

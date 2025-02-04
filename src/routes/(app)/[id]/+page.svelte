@@ -6,7 +6,7 @@
 	import type { PageData } from './$types';
 	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
 
-	let { data }: { data: PageData } = $props();
+	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
 </script>
 

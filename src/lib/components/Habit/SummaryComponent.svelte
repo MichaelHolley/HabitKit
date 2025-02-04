@@ -1,15 +1,13 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
-	const {
-		summary
-	}: {
+	const { summary } = $props<{
 		summary: {
 			longest: string[];
 			current: string[];
 			completionRate: number;
 			mostActive: { day: string; count: number } | undefined;
 		};
-	} = $props();
+	}>();
 </script>
 
 <div class="flex flex-row flex-wrap items-center justify-center gap-4 rounded-lg bg-base-200 p-4">

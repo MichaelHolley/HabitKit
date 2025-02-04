@@ -1,5 +1,5 @@
-<script>
-	const { backUrl } = $props();
+<script lang="ts">
+	const { backUrl } = $props<{ backUrl: string }>();
 </script>
 
 <a class="link-hover link decoration-secondary" href={backUrl}>

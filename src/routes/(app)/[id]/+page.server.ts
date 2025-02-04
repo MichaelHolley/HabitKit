@@ -1,4 +1,4 @@
-import { deleteHabit, getHabitForUser, updateDates, type Habit } from '$lib/server/habit';
+import { deleteHabit, getHabitForUser, updateDates, type HabitDTO } from '$lib/server/habit';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import dayjs from 'dayjs';
@@ -71,7 +71,7 @@ export const actions: Actions = {
 	}
 };
 
-const getSummaryForHabit = (habit: Habit) => {
+const getSummaryForHabit = (habit: HabitDTO) => {
 	return getDatesData(habit.dates);
 };
 

@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Prisma } from '@prisma/client';
 	import dayjs from 'dayjs';
 	import HabitActivityHistory from './HistoryComponent.svelte';
 
-	let { habit } = $props();
+	const { habit } = $props();
 </script>
 
 <div class="flex flex-col gap-1 rounded-lg bg-base-200 p-4">
@@ -21,6 +20,6 @@
 		</form>
 	</div>
 	<a href="/{habit.id}">
-		<HabitActivityHistory dates={habit.dates} showWeeks={12} />
+		<HabitActivityHistory dates={habit.dates} />
 	</a>
 </div>
