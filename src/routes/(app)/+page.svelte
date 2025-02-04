@@ -3,7 +3,7 @@
 	import LastXDays from '$lib/components/Habit/LastDaysOverviewComponent.svelte';
 	import type { PageServerData } from './$types';
 
-	let { data }: { data: PageServerData } = $props();
+	const { data } = $props<{ data: PageServerData }>();
 </script>
 
 <section class="my-6">

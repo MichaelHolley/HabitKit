@@ -3,7 +3,7 @@
 	import dayjs from 'dayjs';
 	import HabitActivityHistory from './HistoryComponent.svelte';
 
-	let { habit } = $props();
+	const { habit } = $props();
 </script>
 
 <div class="flex flex-col gap-1 rounded-lg bg-base-200 p-4">

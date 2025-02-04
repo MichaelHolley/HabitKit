@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import GitHubIconComponent from '$lib/components/Icons/GitHubIconComponent.svelte';
+	import type { Snippet } from 'svelte';
 	import '../app.css';
-	let { children } = $props();
+	const { children } = $props<{ children: Snippet }>();
 </script>
 
 <main class="container mx-auto min-h-screen px-3">
