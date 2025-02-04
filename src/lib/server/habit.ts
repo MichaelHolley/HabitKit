@@ -1,5 +1,6 @@
-import { prisma } from './prisma';
 import { type Habit as PrismaClientHabit } from '@prisma/client';
+import dayjs from 'dayjs';
+import { prisma } from './prisma';
 
 export const getHabitForUser = async (id: string, userId: string) => {
 	const habit = await prisma.habit.findUnique({
@@ -21,7 +22,22 @@ export const getUserHabits = async (userId: string) => {
 		}
 	});
 
-	return habits.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()).map(mapToSimpleModel);
+	return habits
+		.sort((a, b) => {
+			const today = dayjs().startOf('day');
+			const twoWeeksAgo = today.clone();
+			twoWeeksAgo.subtract(14, 'day');
+
+			const countActiveDays = (habit: PrismaClientHabit) => {
+				return (habit.dates as string[]).filter((date) => {
+					const dateObj = dayjs(date);
+					return dateObj.isAfter(twoWeeksAgo) && dateObj.isBefore(today);
+				}).length;
+			};
+
+			return countActiveDays(b) - countActiveDays(a);
+		})
+		.map(mapToSimpleModel);
 };
 
 export const updateDates = async (id: string, userId: string, dates: string[]) => {
