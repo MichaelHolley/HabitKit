@@ -5,7 +5,7 @@ nixPkgs = ['nodejs', 'pnpm']
 cmds = ['pnpm install --frozen-lockfile']
 
 [phases.build]
-cmds = ['pnpm run prisma:generate', 'pnpm build']
+cmds = ['pnpm prisma generate', 'pnpm build']
 
 [start]
-cmd = 'pnpm run prisma:migrate-prod && node build/index.js'
+cmd = 'pnpm prisma migrate deploy && node build/index.js'
