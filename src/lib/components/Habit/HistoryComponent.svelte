@@ -4,7 +4,7 @@
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 	dayjs.extend(isoWeek);
 
-	let { dates }: { dates: string[] } = $props();
+	let { dates } = $props<{ dates: string[] }>();
 	let containerWidth = $state(0);
 
 	const activeDateSet = $derived(new Set(dates));

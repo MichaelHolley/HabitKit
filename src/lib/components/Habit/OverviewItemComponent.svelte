@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Prisma } from '@prisma/client';
 	import dayjs from 'dayjs';
 	import HabitActivityHistory from './HistoryComponent.svelte';
 
@@ -21,6 +20,6 @@
 		</form>
 	</div>
 	<a href="/{habit.id}">
-		<HabitActivityHistory dates={habit.dates} showWeeks={12} />
+		<HabitActivityHistory dates={habit.dates} />
 	</a>
 </div>

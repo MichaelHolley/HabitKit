@@ -1,4 +1,4 @@
-import { type Habit as PrismaClientHabit } from '@prisma/client';
+import { type Habit } from '@prisma/client';
 import dayjs from 'dayjs';
 import { prisma } from './prisma';
 
@@ -22,22 +22,7 @@ export const getUserHabits = async (userId: string) => {
 		}
 	});
 
-	return habits
-		.sort((a, b) => {
-			const today = dayjs().startOf('day');
-			const twoWeeksAgo = today.clone();
-			twoWeeksAgo.subtract(14, 'day');
-
-			const countActiveDays = (habit: PrismaClientHabit) => {
-				return (habit.dates as string[]).filter((date) => {
-					const dateObj = dayjs(date);
-					return dateObj.isAfter(twoWeeksAgo) && dateObj.isBefore(today);
-				}).length;
-			};
-
-			return countActiveDays(b) - countActiveDays(a);
-		})
-		.map(mapToSimpleModel);
+	return habits.map(mapToSimpleModel).sort((a, b) => sortByRecentActivity(a, b));
 };
 
 export const updateDates = async (id: string, userId: string, dates: string[]) => {
@@ -90,7 +75,7 @@ export const deleteHabit = async (id: string, userId: string) => {
 	});
 };
 
-const mapToSimpleModel = (habit: PrismaClientHabit): Habit => {
+const mapToSimpleModel = (habit: Habit): HabitDTO => {
 	return {
 		id: habit.id,
 		title: habit.title,
@@ -101,7 +86,7 @@ const mapToSimpleModel = (habit: PrismaClientHabit): Habit => {
 	};
 };
 
-export interface Habit {
+export interface HabitDTO {
 	id: string;
 	title: string;
 	description: string | null;
@@ -109,3 +94,18 @@ export interface Habit {
 	updatedAt: Date;
 	dates: string[];
 }
+
+const sortByRecentActivity = (a: HabitDTO, b: HabitDTO): number => {
+	const today = dayjs().startOf('day');
+	const twoWeeksAgo = today.clone();
+	twoWeeksAgo.subtract(14, 'day');
+
+	const countActiveDays = (habit: HabitDTO) => {
+		return habit.dates.filter((date) => {
+			const dateObj = dayjs(date);
+			return dateObj.isAfter(twoWeeksAgo) && dateObj.isBefore(today);
+		}).length;
+	};
+
+	return countActiveDays(b) - countActiveDays(a);
+};
