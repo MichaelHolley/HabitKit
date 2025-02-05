@@ -25,8 +25,8 @@ export const getUserGoals = async (userId: string) => {
 
 export const createGoal = async (
 	title: string,
-	userId: string,
 	target: number,
+	userId: string,
 	description?: string
 ) => {
 	const goal = await prisma.goal.create({

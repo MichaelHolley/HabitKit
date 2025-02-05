@@ -9,7 +9,7 @@
 <section class="my-6">
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
 		<h2 class="text-3xl">Goals</h2>
-		<a href="/goals/create" class="btn btn-outline btn-primary btn-sm">+ Add</a>
+		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm">+ Add</a>
 	</div>
 </section>
 
