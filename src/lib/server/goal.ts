@@ -20,7 +20,7 @@ export const getUserGoals = async (userId: string) => {
 		}
 	});
 
-	return goals.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+	return goals;
 };
 
 export const createGoal = async (

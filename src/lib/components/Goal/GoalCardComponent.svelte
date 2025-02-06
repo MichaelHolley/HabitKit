@@ -1,12 +1,22 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { cubicOut } from 'svelte/easing';
 	import { Tween } from 'svelte/motion';
 	import CardComponent from '../CardComponent.svelte';
-	import { cubicOut } from 'svelte/easing';
+	import CheckIconComponent from '../Icons/CheckIconComponent.svelte';
 
 	const { goal } = $props();
 
-	const value = $derived(Math.floor(goal.stage / goal.target) * 100); // tween values
+	const progress = new Tween(0, {
+		duration: 800,
+		easing: cubicOut
+	});
+
+	$effect(() => {
+		progress.set(Math.ceil((goal.stage / goal.target) * 100));
+	});
+
+	const progressValue = $derived(progress.current);
 </script>
 
 <CardComponent class="group h-full">
@@ -29,10 +39,14 @@
 				<div class="mt-4 flex flex-row justify-center">
 					<div
 						class="radial-progress border-4 border-base-300 bg-base-300 text-primary"
-						style="--value:{value}"
+						style="--value:{progressValue}"
 						role="progressbar"
 					>
-						{goal.stage}/{goal.target}
+						{#if goal.stage < goal.target}
+							{goal.stage}/{goal.target}
+						{:else}
+							<CheckIconComponent />
+						{/if}
 					</div>
 				</div>
 			</div>

@@ -2,18 +2,30 @@
 	import dayjs from 'dayjs';
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 	import CardComponent from '../CardComponent.svelte';
+	import { Tween } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
 
 	const { habits } = $props();
+	const today = dayjs();
 
 	let containerWidth = $state(0);
 	const visibleDays = $derived(Math.ceil(containerWidth / 16) - 1);
 
-	const today = dayjs();
+	const daysProgress = new Tween(0, {
+		duration: 600,
+		easing: cubicOut
+	});
+
+	$effect(() => {
+		daysProgress.set(visibleDays);
+	});
+
+	const showDaysValue = $derived(Math.ceil(daysProgress.current));
 </script>
 
 <CardComponent>
 	<div class="p-4 pt-2">
-		<h4 class="mb-1 text-right text-xs">Last {visibleDays} Days</h4>
+		<h4 class="mb-1 text-right text-xs">Last {showDaysValue} Days</h4>
 		<div class="flex flex-row justify-between gap-3">
 			<div class="flex flex-col justify-between">
 				{#each habits as habit}
