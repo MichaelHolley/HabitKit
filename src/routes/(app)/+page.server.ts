@@ -1,5 +1,5 @@
 import * as auth from '$lib/server/auth';
-import { getUserGoals } from '$lib/server/goals';
+import { getUserGoals } from '$lib/server/goal';
 import { getUserHabits } from '$lib/server/habit';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';

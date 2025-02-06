@@ -59,24 +59,19 @@ export const updateGoal = async (
 };
 
 export const nextStage = async (id: string, userId: string) => {
+	const currentGoal = await prisma.goal.findUnique({
+		where: { id, userId }
+	});
+
+	if (!currentGoal || currentGoal.stage >= currentGoal.target) {
+		return currentGoal;
+	}
+
 	const goal = await prisma.goal.update({
-		where: { userId: userId, id: id },
+		where: { userId, id },
 		data: {
 			stage: {
 				increment: 1
-			}
-		}
-	});
-
-	return goal;
-};
-
-export const prevStage = async (id: string, userId: string) => {
-	const goal = await prisma.goal.update({
-		where: { userId: userId, id: id },
-		data: {
-			stage: {
-				decrement: 1
 			}
 		}
 	});

@@ -15,9 +15,7 @@
 
 	<div class="my-3 flex flex-row flex-wrap gap-3">
 		{#each data.goals as goal}
-			<a href="/goal/{goal.id}">
-				<GoalCardComponent {goal} />
-			</a>
+			<GoalCardComponent {goal} />
 		{/each}
 	</div>
 </section>

@@ -1,4 +1,4 @@
-import { createGoal } from '$lib/server/goals';
+import { createGoal } from '$lib/server/goal';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
