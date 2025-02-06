@@ -17,7 +17,9 @@
 		<div class="flex flex-row justify-between gap-3">
 			<div class="flex flex-col justify-between">
 				{#each habits as habit}
-					<a class="link-hover link link-primary text-sm" href="/{habit.id}">{habit.title}</a>
+					<a class="link-hover link text-sm" href="/{habit.id}">
+						{habit.title}
+					</a>
 				{/each}
 			</div>
 

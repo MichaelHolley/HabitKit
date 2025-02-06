@@ -7,11 +7,11 @@
 	const { habit } = $props();
 </script>
 
-<CardComponent>
+<CardComponent class="group">
 	<div class="flex flex-col gap-1 p-4">
 		<div class="flex flex-row justify-between">
 			<a href="/{habit.id}">
-				<span class="link-hover link text-lg text-primary">{habit.title}</span></a
+				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span></a
 			>
 			<form method="POST" action="{habit.id}?/addToday" use:enhance>
 				<button

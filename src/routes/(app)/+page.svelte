@@ -1,6 +1,7 @@
 <script lang="ts">
-	import HabitOverviewItem from '$lib/components/Habit/OverviewItemComponent.svelte';
+	import GoalCardComponent from '$lib/components/Goal/GoalCardComponent.svelte';
 	import LastXDays from '$lib/components/Habit/LastDaysOverviewComponent.svelte';
+	import HabitOverviewItem from '$lib/components/Habit/OverviewItemComponent.svelte';
 	import type { PageServerData } from './$types';
 
 	const { data } = $props<{ data: PageServerData }>();
@@ -10,6 +11,14 @@
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
 		<h2 class="text-3xl">Goals</h2>
 		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm">+ Add</a>
+	</div>
+
+	<div class="my-3 flex flex-row flex-wrap gap-3">
+		{#each data.goals as goal}
+			<a href="/goal/{goal.id}">
+				<GoalCardComponent {goal} />
+			</a>
+		{/each}
 	</div>
 </section>
 
