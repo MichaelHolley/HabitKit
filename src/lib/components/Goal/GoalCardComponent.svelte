@@ -51,5 +51,10 @@
 				</div>
 			</div>
 		</a>
+		<div class="flex flex-row justify-end">
+			<button class="btn btn-ghost btn-xs invisible text-neutral-500 group-hover:visible"
+				>•••</button
+			>
+		</div>
 	</div>
 </CardComponent>
