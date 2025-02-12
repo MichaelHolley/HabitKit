@@ -1,11 +1,13 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
+	import LineChartComponent from '../Charts/LineChartComponent.svelte';
 	const { summary } = $props<{
 		summary: {
 			longest: string[];
 			current: string[];
 			completionRate: number;
 			mostActive: { day: string; count: number } | undefined;
+			completionRateByWeek: { week: string; count: number }[];
 		};
 	}>();
 </script>
@@ -46,5 +48,11 @@
 			<div class="stat-value">{summary.mostActive?.day}</div>
 			<div class="stat-desc">with {summary.mostActive?.count} days</div>
 		</div>
+	</div>
+	<div>
+		<LineChartComponent
+			series={[{ data: [...summary.completionRateByWeek.map((r) => Math.ceil(r.count * 100))] }]}
+			xaxis={{ categories: summary.completionRateByWeek.map((r) => r.week) }}
+		/>
 	</div>
 </div>

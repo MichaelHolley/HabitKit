@@ -82,6 +82,7 @@ const getDatesData = (
 	current: string[];
 	completionRate: number;
 	mostActive: { day: string; count: number } | undefined;
+	completionRateByWeek: { week: string; count: number }[];
 } => {
 	const sortedDates = [...new Set(dates)]
 		.map((date) => dayjs(date))
@@ -94,7 +95,8 @@ const getDatesData = (
 			longest: [],
 			current: [],
 			completionRate: 0,
-			mostActive: undefined
+			mostActive: undefined,
+			completionRateByWeek: []
 		};
 
 	let currentStreak = [sortedDates[0]];
@@ -121,10 +123,41 @@ const getDatesData = (
 	const weekdayMapArray = Array.from(weekdayMap.entries());
 	weekdayMapArray.sort((a, b) => b[1] - a[1]);
 
+	// Group dates by week
+	const weekMap = new Map<string, { completed: number; total: number }>();
+
+	// Get start and end dates
+	const firstDate = sortedDates[0];
+	const lastDate = dayjs();
+	let currentWeek = firstDate.startOf('week');
+
+	// Initialize weeks
+	while (currentWeek.isBefore(lastDate) || currentWeek.isSame(lastDate, 'week')) {
+		const weekKey = currentWeek.format('YYYY-[W]WW');
+		weekMap.set(weekKey, { completed: 0, total: 7 });
+		currentWeek = currentWeek.add(1, 'week');
+	}
+
+	// Count completed days per week
+	sortedDates.forEach((date) => {
+		const weekKey = date.startOf('week').format('YYYY-[W]WW');
+		const week = weekMap.get(weekKey);
+		if (week) {
+			week.completed++;
+		}
+	});
+	const completionRateByWeek = Array.from(weekMap.entries()).map(([week, data]) => ({
+		week,
+		count: data.completed / data.total
+	}));
+
+	console.log(completionRateByWeek);
+
 	return {
 		longest: maxStreak.map((date) => date.format('YYYY-MM-DD')),
 		current: currentStreak.map((date) => date.format('YYYY-MM-DD')),
 		completionRate: sortedDates.length / daysSinceFirstDate,
-		mostActive: { day: weekdayMapArray[0][0], count: weekdayMapArray[0][1] }
+		mostActive: { day: weekdayMapArray[0][0], count: weekdayMapArray[0][1] },
+		completionRateByWeek
 	};
 };
