@@ -13,7 +13,7 @@
 		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm">+ Add</a>
 	</div>
 
-	<div class="my-3 flex flex-row flex-wrap gap-3">
+	<div class="goal-overview-grid my-3 grid flex-wrap justify-start gap-3">
 		{#each data.goals as goal}
 			<GoalCardComponent {goal} />
 		{/each}
@@ -43,6 +43,10 @@
 
 <style>
 	.habit-overview-grid {
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	}
+
+	.goal-overview-grid {
 		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	}
 </style>
