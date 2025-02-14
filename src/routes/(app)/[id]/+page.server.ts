@@ -125,14 +125,17 @@ const getDatesData = (
 
 	const weekMap = new Map<string, number>();
 	for (let i = 0; i < sortedDates.length; i++) {
-		const week = sortedDates[i].startOf('isoWeek').format('YYYY-MMM');
+		const week = sortedDates[i].startOf('isoWeek').format('YYYY-MM');
 		weekMap.set(week, (weekMap.get(week) || 0) + 1);
 	}
 
 	// may leave some motnhs out, due to not have any entry
 	const completionRateByMonths: { week: string; count: number }[] = [];
 	for (const [key, value] of weekMap) {
-		completionRateByMonths.push({ week: key, count: value ?? 0 });
+		const monthEnd = dayjs(key, 'YYYY-MM').endOf('month');
+		console.log(monthEnd, monthEnd.date());
+
+		completionRateByMonths.push({ week: key, count: (value ?? 0) / monthEnd.date() });
 	}
 
 	return {
