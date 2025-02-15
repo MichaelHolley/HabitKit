@@ -51,8 +51,15 @@
 	</div>
 	<div>
 		<LineChartComponent
-			series={[{ data: [...summary.completionRateByWeeks.map((r) => Math.ceil(r.count * 100))] }]}
+			series={[
+				{
+					data: [...summary.completionRateByWeeks.map((r) => Math.ceil(r.count * 100))],
+					name: 'Completion Rate',
+					type: 'line'
+				}
+			]}
 			xaxis={{ categories: summary.completionRateByWeeks.map((r) => r.week) }}
+			yaxis={{ title: { text: 'Completion Rate in %' } }}
 		/>
 	</div>
 </div>

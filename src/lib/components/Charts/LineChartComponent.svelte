@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { defaultOptions } from './options';
 
 	const {
 		series,
@@ -19,25 +20,20 @@
 	let chartElement: HTMLDivElement;
 	let chart: ApexCharts | undefined = $state(undefined);
 
+	// why does merging have to be this complicated? Resolve
 	const options = {
+		...defaultOptions,
 		chart: {
+			...defaultOptions.chart,
 			type: 'line',
 			toolbar: {
-				show: showToolbar,
-				tools: {
-					download: false,
-					selection: true,
-					zoom: true,
-					zoomin: false,
-					zoomout: false,
-					pan: false,
-					reset: true
-				}
+				...defaultOptions.chart.toolbar,
+				show: showToolbar
 			}
 		},
 		series: series,
-		xaxis: xaxis,
-		yaxis: yaxis
+		xaxis: { ...defaultOptions.xaxis, ...xaxis },
+		yaxis: { ...defaultOptions.yaxis, ...yaxis }
 	};
 
 	onMount(async () => {
