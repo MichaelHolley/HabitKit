@@ -1,6 +1,3 @@
-> [!WARNING]  
-> WIP - This repo is still work in progress. Issues during app-usage may occur.
-
 # HabitKit
 
 [![Build & Publish](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml/badge.svg?branch=main)](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml)
