@@ -7,8 +7,8 @@
 	const { habit } = $props();
 </script>
 
-<CardComponent class="group">
-	<div class="flex flex-col gap-1 p-4">
+<CardComponent class="group p-4">
+	<div class="flex flex-col gap-1">
 		<div class="flex flex-row justify-between">
 			<a href="/{habit.id}">
 				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span></a
