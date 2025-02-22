@@ -49,6 +49,7 @@ model Goal {
   target      Int
   stage       Int      @default(0)
   userId      String
+  complete    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

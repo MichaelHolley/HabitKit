@@ -1,4 +1,4 @@
-import { deleteGoal, nextStage, previousStage } from '$lib/server/goal';
+import { completeGoal, deleteGoal, nextStage, previousStage } from '$lib/server/goal';
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -27,6 +27,15 @@ export const actions: Actions = {
 		}
 
 		await deleteGoal(event.params.id, event.locals.user.id);
+
+		return redirect(302, `/`);
+	},
+	complete: async (event) => {
+		if (!event.locals.user) {
+			return redirect(302, '/');
+		}
+
+		await completeGoal(event.params.id, event.locals.user.id);
 
 		return redirect(302, `/`);
 	}

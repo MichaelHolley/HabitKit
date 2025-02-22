@@ -83,6 +83,11 @@
 					</li>
 					<div class="divider my-0"></div>
 					<li>
+						<form method="POST" action="/goal/{goal.id}?/complete" use:enhance class="p-0">
+							<button title="Delete" class="btn btn-ghost btn-xs btn-block"> Complete </button>
+						</form>
+					</li>
+					<li>
 						<form method="POST" action="/goal/{goal.id}?/delete" use:enhance class="p-0">
 							<button title="Delete" class="btn btn-ghost btn-xs btn-block"> Delete </button>
 						</form>

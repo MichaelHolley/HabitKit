@@ -2,9 +2,11 @@
 	import GoalCardComponent from '$lib/components/Goal/GoalCardComponent.svelte';
 	import LastXDays from '$lib/components/Habit/LastDaysOverviewComponent.svelte';
 	import HabitOverviewItem from '$lib/components/Habit/OverviewItemComponent.svelte';
+	import type { Goal } from '@prisma/client';
 	import type { PageServerData } from './$types';
 
 	const { data } = $props<{ data: PageServerData }>();
+	const visibleGoals = $derived(data.goals.filter((g: Goal) => !g.complete));
 </script>
 
 <section class="my-6">
@@ -14,7 +16,7 @@
 	</div>
 
 	<div class="goal-overview-grid my-3 grid flex-wrap justify-start gap-3">
-		{#each data.goals as goal}
+		{#each visibleGoals as goal}
 			<GoalCardComponent {goal} />
 		{/each}
 	</div>
