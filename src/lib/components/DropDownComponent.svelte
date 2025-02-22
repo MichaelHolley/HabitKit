@@ -1,7 +1,9 @@
 <script lang="ts">
+	const { children } = $props();
+
 	let isOpen = $state(false);
 	let trigger: HTMLElement;
-	let dropdown: HTMLElement;
+	let dropdown: HTMLElement | undefined = $state(undefined);
 	let direction = $state('down');
 
 	function toggleDropdown() {
@@ -19,31 +21,29 @@
 		if (
 			isOpen &&
 			!trigger.contains(event.target as Node) &&
-			!dropdown.contains(event.target as Node)
+			!dropdown?.contains(event.target as Node)
 		) {
 			isOpen = false;
 		}
 	}
-
-	// - missing click outside handler
 </script>
 
+<svelte:window on:click={handleClickOutside} />
+
 <div class="dropdown-container">
-	<button
-		class="btn btn-ghost btn-xs"
-		aria-label="Options"
-		bind:this={trigger}
-		onclick={toggleDropdown}>...</button
-	>
+	<div bind:this={trigger}>
+		<button class="btn btn-ghost btn-xs" aria-label="Options" onclick={toggleDropdown}>
+			...
+		</button>
+	</div>
+
 	{#if isOpen}
-		<div
+		<ul
 			bind:this={dropdown}
-			class="dropdown absolute right-0 z-50 max-h-40 min-w-48 rounded-md border border-base-100 bg-base-300 {direction}"
+			class="menu dropdown menu-sm absolute right-0 z-50 w-56 rounded-box bg-base-100 {direction}"
 		>
-			<div class="dropdown-item">Item 1</div>
-			<div class="dropdown-item">Item 2</div>
-			<div class="dropdown-item">Item 3</div>
-		</div>
+			{@render children()}
+		</ul>
 	{/if}
 </div>
 
@@ -55,14 +55,6 @@
 
 	.dropdown {
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	}
-
-	.dropdown > .dropdown-item {
-		@apply p-1;
-	}
-
-	.dropdown-item:hover {
-		@apply bg-base-100;
 	}
 
 	.dropdown.down {

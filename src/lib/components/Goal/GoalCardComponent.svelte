@@ -31,8 +31,10 @@
 					<button
 						class="btn btn-outline btn-secondary btn-xs"
 						title="Next"
-						disabled={goal.stage === goal.target}>+</button
+						disabled={goal.stage === goal.target}
 					>
+						+
+					</button>
 				</form>
 			</div>
 			<a href="/goal/{goal.id}">
@@ -59,7 +61,24 @@
 				</div>
 			</a>
 			<div class="-mb-2 -mr-2 flex flex-row justify-end">
-				<DropDownComponent />
+				<DropDownComponent>
+					<li>
+						<form method="POST" action="goal/{goal.id}?/nextStage" use:enhance>
+							<button title="Next Stage">+ Next</button>
+						</form>
+					</li>
+					<li>
+						<form method="POST" action="goal/{goal.id}?/previousStage" use:enhance>
+							<button title="Previous Stage" type="submit">- Previous</button>
+						</form>
+					</li>
+					<div class="divider my-0"></div>
+					<li>
+						<form method="POST" action="goal/{goal.id}?/delete" use:enhance>
+							<button title="Delete">Delete</button>
+						</form>
+					</li>
+				</DropDownComponent>
 			</div>
 		</div>
 	</div>
