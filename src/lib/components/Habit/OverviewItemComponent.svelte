@@ -13,7 +13,7 @@
 			<a href="/{habit.id}">
 				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span></a
 			>
-			<form method="POST" action="{habit.id}?/addToday" use:enhance>
+			<form method="POST" action="/{habit.id}?/addToday" use:enhance>
 				<button
 					class="btn btn-outline btn-secondary btn-xs"
 					title="Add Today"

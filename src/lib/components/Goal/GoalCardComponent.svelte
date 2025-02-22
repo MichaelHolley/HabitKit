@@ -5,8 +5,9 @@
 	import CardComponent from '../CardComponent.svelte';
 	import CheckIconComponent from '../Icons/CheckIconComponent.svelte';
 	import DropDownComponent from '../DropDownComponent.svelte';
+	import type { Goal } from '@prisma/client';
 
-	const { goal } = $props();
+	const { goal } = $props<{ goal: Goal }>();
 
 	const progress = new Tween(0, {
 		duration: 800,
@@ -27,7 +28,7 @@
 				<a href="/goal/{goal.id}">
 					<span class="link-hover link text-lg group-hover:text-primary">{goal.title}</span>
 				</a>
-				<form method="POST" action="goal/{goal.id}?/nextStage" use:enhance>
+				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
 						class="btn btn-outline btn-secondary btn-xs"
 						title="Next"
@@ -63,19 +64,27 @@
 			<div class="-mb-2 -mr-2 flex flex-row justify-end">
 				<DropDownComponent>
 					<li>
-						<form method="POST" action="goal/{goal.id}?/nextStage" use:enhance>
-							<button title="Next Stage">+ Next</button>
+						<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance class="p-0">
+							<button
+								title="Next Stage"
+								disabled={goal.stage === goal.target}
+								class="w-full px-3 py-1"
+							>
+								+ Next
+							</button>
 						</form>
 					</li>
 					<li>
-						<form method="POST" action="goal/{goal.id}?/previousStage" use:enhance>
-							<button title="Previous Stage" type="submit">- Previous</button>
+						<form method="POST" action="/goal/{goal.id}?/previousStage" use:enhance class="p-0">
+							<button title="Previous Stage" disabled={goal.stage === 0} class="w-full px-3 py-1">
+								- Previous
+							</button>
 						</form>
 					</li>
 					<div class="divider my-0"></div>
 					<li>
-						<form method="POST" action="goal/{goal.id}?/delete" use:enhance>
-							<button title="Delete">Delete</button>
+						<form method="POST" action="/goal/{goal.id}?/delete" use:enhance class="p-0">
+							<button title="Delete" class="btn btn-ghost btn-xs btn-block"> Delete </button>
 						</form>
 					</li>
 				</DropDownComponent>
