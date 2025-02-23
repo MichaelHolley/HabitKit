@@ -11,24 +11,14 @@
 		<p>Keep track of your habits and goals</p>
 	</div>
 	<form method="POST" action="?/login" use:enhance class="flex flex-col gap-3">
-		<label class="form-control w-full text-sm">
-			<div class="label">
-				<span class="label-text">Username</span>
-			</div>
-			<input name="username" placeholder="Username" class="input input-bordered" required />
-		</label>
-		<label class="form-control w-full text-sm">
-			<div class="label">
-				<span class="label-text">Password</span>
-			</div>
-			<input
-				type="password"
-				placeholder="Password"
-				name="password"
-				class="input input-bordered"
-				required
-			/>
-		</label>
+		<input name="username" placeholder="Username" class="input input-bordered" required />
+		<input
+			type="password"
+			placeholder="Password"
+			name="password"
+			class="input input-bordered"
+			required
+		/>
 		<button class="btn btn-primary">Login</button>
 		<button class="btn btn-outline btn-primary" formaction="?/register">Register</button>
 	</form>

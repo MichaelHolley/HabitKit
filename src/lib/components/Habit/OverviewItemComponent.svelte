@@ -7,18 +7,20 @@
 	const { habit } = $props();
 </script>
 
-<CardComponent class="p-4">
+<CardComponent class="group p-4">
 	<div class="flex flex-col gap-1">
 		<div class="flex flex-row justify-between">
 			<a href="/{habit.id}">
-				<span class="link-hover link text-lg text-primary">{habit.title}</span></a
+				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span></a
 			>
-			<form method="POST" action="{habit.id}?/addToday" use:enhance>
+			<form method="POST" action="/{habit.id}?/addToday" use:enhance>
 				<button
 					class="btn btn-outline btn-secondary btn-xs"
 					title="Add Today"
-					disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}>+</button
+					disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 				>
+					+
+				</button>
 			</form>
 		</div>
 		<a href="/{habit.id}">

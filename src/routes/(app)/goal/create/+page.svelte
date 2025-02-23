@@ -6,10 +6,12 @@
 
 	let title = $state('');
 	let description = $state('');
+	let target = $state(0);
 	let presetModal: HTMLDialogElement;
 
-	function selectPreset(preset: { title: string; description?: string }) {
+	function selectPreset(preset: { title: string; description?: string; target: number }) {
 		title = preset.title;
+		target = preset.target;
 
 		if (preset.description) {
 			description = preset.description;
@@ -21,7 +23,7 @@
 
 <div class="max-w-md">
 	<div class="mb-4 flex flex-row items-end justify-between gap-3">
-		<h3 class="text-3xl">Create Habit</h3>
+		<h3 class="text-3xl">Create Goal</h3>
 		<p>
 			or <button
 				class="link link-primary"
@@ -31,7 +33,7 @@
 			>
 		</p>
 	</div>
-	<form method="POST" action="?/createHabit" use:enhance class="flex flex-col items-end gap-3">
+	<form method="POST" action="?/createGoal" use:enhance class="flex flex-col items-end gap-3">
 		<label class="form-control w-full text-sm">
 			<div class="label">
 				<span class="label-text">Title</span>
@@ -51,8 +53,20 @@
 			<input
 				name="description"
 				class="input input-bordered"
-				placeholder="Enter description...	"
+				placeholder="Enter description..."
 				bind:value={description}
+			/>
+		</label>
+		<label class="form-control w-full text-sm">
+			<div class="label">
+				<span class="label-text">Target</span>
+			</div>
+			<input
+				name="target"
+				type="number"
+				class="input input-bordered"
+				placeholder="Target Value"
+				bind:value={target}
 			/>
 		</label>
 		<button class="btn btn-primary w-fit">+ Create</button>
