@@ -68,22 +68,6 @@
 					<li>
 						<form
 							method="POST"
-							action="/goal/{goal.id}?/nextStage"
-							use:enhance
-							class="flex flex-row p-0"
-						>
-							<button
-								title="Next Stage"
-								disabled={goal.stage === goal.target}
-								class="btn btn-ghost btn-xs btn-block"
-							>
-								<div class="w-full text-start">+ Next</div>
-							</button>
-						</form>
-					</li>
-					<li>
-						<form
-							method="POST"
 							action="/goal/{goal.id}?/previousStage"
 							use:enhance
 							class="flex flex-row p-0"
@@ -91,7 +75,7 @@
 							<button
 								title="Previous Stage"
 								disabled={goal.stage === 0}
-								class="btn btn-ghost btn-xs btn-block"
+								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="w-full text-start">- Previous</div>
 							</button>
@@ -106,8 +90,8 @@
 							class="flex flex-row p-0"
 						>
 							<button
-								title="Complete"
-								class="btn btn-ghost btn-xs btn-block"
+								title="Complete Goal"
+								class="btn btn-ghost btn-sm btn-block"
 								disabled={goal.stage !== goal.target}
 							>
 								<div class="flex w-full flex-row gap-1 text-start">
@@ -120,9 +104,9 @@
 					<li>
 						<div class="flex flex-row p-0">
 							<button
-								title="Delete"
+								title="Delete Goal"
 								onclick={() => deleteModal.showModal()}
-								class="btn btn-ghost btn-xs btn-block"
+								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row gap-1 text-start">
 									<TashIconComponent class="h-3 w-3" />
