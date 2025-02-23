@@ -94,7 +94,7 @@
 								class="btn btn-ghost btn-sm btn-block"
 								disabled={goal.stage !== goal.target}
 							>
-								<div class="flex w-full flex-row gap-1 text-start">
+								<div class="flex w-full flex-row items-center gap-1 text-start">
 									<CheckIconComponent class="h-3 w-3" />
 									Complete
 								</div>
@@ -108,7 +108,7 @@
 								onclick={() => deleteModal.showModal()}
 								class="btn btn-ghost btn-sm btn-block"
 							>
-								<div class="flex w-full flex-row gap-1 text-start">
+								<div class="flex w-full flex-row items-center gap-1 text-start">
 									<TashIconComponent class="h-3 w-3" />
 									Delete
 								</div>
