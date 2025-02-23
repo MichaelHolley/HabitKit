@@ -9,6 +9,7 @@
 	import TashIconComponent from '../Icons/TashIconComponent.svelte';
 
 	const { goal } = $props<{ goal: Goal }>();
+	let deleteModal: HTMLDialogElement;
 
 	const progress = new Tween(0, {
 		duration: 800,
@@ -117,22 +118,42 @@
 						</form>
 					</li>
 					<li>
-						<form
-							method="POST"
-							action="/goal/{goal.id}?/delete"
-							use:enhance
-							class="flex flex-row p-0"
-						>
-							<button title="Delete" class="btn btn-ghost btn-xs btn-block">
+						<div class="flex flex-row p-0">
+							<button
+								title="Delete"
+								onclick={() => deleteModal.showModal()}
+								class="btn btn-ghost btn-xs btn-block"
+							>
 								<div class="flex w-full flex-row gap-1 text-start">
 									<TashIconComponent class="h-3 w-3" />
 									Delete
 								</div>
 							</button>
-						</form>
+						</div>
 					</li>
 				</DropDownComponent>
 			</div>
 		</div>
 	</div>
 </CardComponent>
+
+<dialog id="delete_modal" bind:this={deleteModal} class="modal modal-bottom sm:modal-middle">
+	<div class="modal-box">
+		<form method="dialog">
+			<button class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">✕</button>
+		</form>
+		<h3 class="text-lg font-bold">Confirmation</h3>
+		<p class="py-4">
+			Are you sure you want to delete the goal <span class="italic">{goal.title}</span>?
+		</p>
+		<p>This action can not be undone.</p>
+		<div class="modal-action">
+			<form method="POST" action="/goal/{goal.id}?/delete" use:enhance>
+				<button class="btn btn-error">Delete</button>
+			</form>
+		</div>
+	</div>
+	<form method="dialog" class="modal-backdrop">
+		<button>close</button>
+	</form>
+</dialog>
