@@ -4,8 +4,6 @@ import type { Actions } from './$types';
 
 export const actions: Actions = {
 	nextStage: async (event) => {
-		console.log('NEXT');
-
 		if (!event.locals.user) {
 			return redirect(302, '/');
 		}
@@ -13,8 +11,6 @@ export const actions: Actions = {
 		await nextStage(event.params.id, event.locals.user.id);
 	},
 	previousStage: async (event) => {
-		console.log('PREV');
-
 		if (!event.locals.user) {
 			return redirect(302, '/');
 		}
