@@ -40,7 +40,7 @@
 	{#if isOpen}
 		<ul
 			bind:this={dropdown}
-			class="menu dropdown menu-sm absolute right-0 z-50 w-56 rounded-box bg-base-100 {direction}"
+			class="menu dropdown menu-sm absolute right-0 z-50 w-56 gap-1 rounded-box bg-base-100 {direction}"
 		>
 			{@render children()}
 		</ul>
