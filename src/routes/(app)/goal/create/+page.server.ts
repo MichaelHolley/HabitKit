@@ -1,6 +1,7 @@
 import { createGoal } from '$lib/server/goal';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import dayjs from 'dayjs';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -19,6 +20,11 @@ export const load: PageServerLoad = async () => {
 				title: 'Run a marathon',
 				description: 'Run a marathon in a year',
 				target: 1
+			},
+			{
+				title: `Weekly Chores - ${dayjs().format('YYYY')}`,
+				description: 'Finish your weekly chores',
+				target: 52
 			}
 		]
 	};
