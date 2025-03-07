@@ -23,7 +23,7 @@
 				</button>
 			</form>
 		</div>
-		<a href="/{habit.id}" class="mb-2">
+		<a href="/{habit.id}" class="mb-1">
 			<p class="line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
 		</a>
 		<a href="/{habit.id}">

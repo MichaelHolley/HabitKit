@@ -11,7 +11,7 @@
 
 <section class="my-6">
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
-		<h2 class="text-3xl">Habits</h2>
+		<h2 class="text-3xl font-extralight tracking-widest">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm">+ Track New</a>
 	</div>
 
@@ -30,9 +30,9 @@
 	</div>
 </section>
 
-<section class="my-6">
+<section class="my-6 mt-10">
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
-		<h2 class="text-3xl">Goals</h2>
+		<h2 class="text-3xl font-extralight tracking-widest">Goals</h2>
 		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm">+ Add</a>
 	</div>
 
