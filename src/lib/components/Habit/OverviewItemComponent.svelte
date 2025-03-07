@@ -11,8 +11,8 @@
 	<div class="flex flex-col gap-1">
 		<div class="flex flex-row justify-between">
 			<a href="/{habit.id}">
-				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span></a
-			>
+				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span>
+			</a>
 			<form method="POST" action="/{habit.id}?/addToday" use:enhance>
 				<button
 					class="btn btn-outline btn-secondary btn-xs"
@@ -23,6 +23,9 @@
 				</button>
 			</form>
 		</div>
+		<a href="/{habit.id}" class="mb-2">
+			<p class="line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
+		</a>
 		<a href="/{habit.id}">
 			<HabitActivityHistory dates={habit.dates} />
 		</a>

@@ -27,9 +27,7 @@
 	<div class="flex h-full flex-col justify-between p-4 pt-2">
 		<div>
 			<div class="flex flex-row justify-between gap-1">
-				<a href="/goal/{goal.id}">
-					<span class="link-hover link text-lg group-hover:text-primary">{goal.title}</span>
-				</a>
+				<span class="text-lg group-hover:text-primary">{goal.title}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
 						class="btn btn-outline btn-secondary btn-xs"
@@ -40,29 +38,25 @@
 					</button>
 				</form>
 			</div>
-			<a href="/goal/{goal.id}">
-				<p class="text-xs text-neutral-400">{goal.description}</p>
-			</a>
+			<p class="line-clamp-2 text-xs text-neutral-400">{goal.description}</p>
 		</div>
 
 		<div>
-			<a href="/goal/{goal.id}">
-				<div class="flex flex-col">
-					<div class="mt-4 flex flex-row justify-center">
-						<div
-							class="radial-progress border-4 border-base-300 bg-base-300 text-primary"
-							style="--value:{progressValue}"
-							role="progressbar"
-						>
-							{#if goal.stage < goal.target}
-								{goal.stage}/{goal.target}
-							{:else}
-								<CheckIconComponent />
-							{/if}
-						</div>
+			<div class="flex flex-col">
+				<div class="mt-4 flex flex-row justify-center">
+					<div
+						class="radial-progress border-4 border-base-300 bg-base-300 text-primary"
+						style="--value:{progressValue}"
+						role="progressbar"
+					>
+						{#if goal.stage < goal.target}
+							{goal.stage}/{goal.target}
+						{:else}
+							<CheckIconComponent />
+						{/if}
 					</div>
 				</div>
-			</a>
+			</div>
 			<div class="-mb-2 -mr-2 flex flex-row justify-end">
 				<DropDownComponent>
 					<li>
