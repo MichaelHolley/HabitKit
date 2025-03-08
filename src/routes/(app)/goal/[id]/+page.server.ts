@@ -1,4 +1,4 @@
-import { completeGoal, deleteGoal, nextStage, previousStage } from '$lib/server/goal';
+import { completeGoal, deleteGoal, nextStage, previousStage, updateGoal } from '$lib/server/goal';
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -32,6 +32,26 @@ export const actions: Actions = {
 		}
 
 		await completeGoal(event.params.id, event.locals.user.id);
+
+		return redirect(302, `/`);
+	},
+	update: async (event) => {
+		const formData = await event.request.formData();
+		const title = formData.get('title');
+		const description = formData.get('description');
+		const target = parseInt(formData.get('target') as string);
+
+		if (!event.locals.user) {
+			return redirect(302, '/');
+		}
+
+		await updateGoal(
+			event.params.id,
+			event.locals.user.id,
+			title as string,
+			description as string,
+			target
+		);
 
 		return redirect(302, `/`);
 	}

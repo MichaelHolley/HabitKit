@@ -46,13 +46,15 @@ export const updateGoal = async (
 	id: string,
 	userId: string,
 	title: string,
-	description?: string
+	description?: string,
+	target?: number
 ) => {
 	const goal = await prisma.goal.update({
 		where: { userId: userId, id: id },
 		data: {
 			title,
-			description
+			description,
+			target
 		}
 	});
 
