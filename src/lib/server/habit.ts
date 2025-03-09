@@ -6,7 +6,8 @@ export const getHabitForUser = async (id: string, userId: string) => {
 	const habit = await prisma.habit.findUnique({
 		where: {
 			id: id,
-			userId: userId
+			userId: userId,
+			deletedAt: null
 		}
 	});
 
@@ -18,7 +19,8 @@ export const getHabitForUser = async (id: string, userId: string) => {
 export const getUserHabits = async (userId: string) => {
 	const habits = await prisma.habit.findMany({
 		where: {
-			userId: userId
+			userId: userId,
+			deletedAt: null
 		}
 	});
 
@@ -27,7 +29,7 @@ export const getUserHabits = async (userId: string) => {
 
 export const updateDates = async (id: string, userId: string, dates: string[]) => {
 	const habit = await prisma.habit.update({
-		where: { id: id, userId: userId },
+		where: { id: id, userId: userId, deletedAt: null },
 		data: {
 			dates
 		}
@@ -56,7 +58,7 @@ export const updateHabit = async (
 	description?: string
 ) => {
 	const habit = await prisma.habit.update({
-		where: { userId: userId, id: id },
+		where: { userId: userId, id: id, deletedAt: null },
 		data: {
 			title: title,
 			description: description
@@ -67,10 +69,10 @@ export const updateHabit = async (
 };
 
 export const deleteHabit = async (id: string, userId: string) => {
-	await prisma.habit.delete({
-		where: {
-			id: id,
-			userId: userId
+	await prisma.habit.update({
+		where: { userId: userId, id: id },
+		data: {
+			deletedAt: new Date()
 		}
 	});
 };

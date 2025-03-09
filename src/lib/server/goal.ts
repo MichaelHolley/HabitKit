@@ -4,7 +4,8 @@ export const getGoalForUser = async (id: string, userId: string) => {
 	const goal = await prisma.goal.findUnique({
 		where: {
 			id,
-			userId
+			userId,
+			deletedAt: null
 		}
 	});
 
@@ -16,7 +17,8 @@ export const getGoalForUser = async (id: string, userId: string) => {
 export const getUserGoals = async (userId: string) => {
 	const goals = await prisma.goal.findMany({
 		where: {
-			userId
+			userId,
+			deletedAt: null
 		}
 	});
 
@@ -49,7 +51,7 @@ export const updateGoal = async (
 	target?: number
 ) => {
 	const goal = await prisma.goal.update({
-		where: { userId: userId, id: id },
+		where: { userId: userId, id: id, deletedAt: null },
 		data: {
 			title,
 			description,
@@ -62,7 +64,7 @@ export const updateGoal = async (
 
 export const nextStage = async (id: string, userId: string) => {
 	const currentGoal = await prisma.goal.findUnique({
-		where: { id, userId }
+		where: { id, userId, deletedAt: null }
 	});
 
 	if (!currentGoal || currentGoal.stage >= currentGoal.target) {
@@ -83,7 +85,7 @@ export const nextStage = async (id: string, userId: string) => {
 
 export const previousStage = async (id: string, userId: string) => {
 	const currentGoal = await prisma.goal.findUnique({
-		where: { id, userId }
+		where: { id, userId, deletedAt: null }
 	});
 
 	if (!currentGoal || currentGoal.stage <= 0) {
@@ -103,17 +105,17 @@ export const previousStage = async (id: string, userId: string) => {
 };
 
 export const deleteGoal = async (id: string, userId: string) => {
-	await prisma.goal.delete({
-		where: {
-			id: id,
-			userId: userId
+	await prisma.goal.update({
+		where: { userId: userId, id: id },
+		data: {
+			deletedAt: new Date()
 		}
 	});
 };
 
 export const completeGoal = async (id: string, userId: string) => {
 	return await prisma.goal.update({
-		where: { userId, id },
+		where: { userId, id, deletedAt: null },
 		data: {
 			complete: true
 		}

@@ -31,27 +31,29 @@ model Session {
 }
 
 model Habit {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   title       String
-  description String?  @db.VarChar(255)
+  description String?   @db.VarChar(255)
   userId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   dates       Json
+  deletedAt   DateTime?
 
   user User @relation(fields: [userId], references: [id])
 }
 
 model Goal {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   title       String
-  description String?  @db.VarChar(255)
-  target      Int      @default(1)
-  stage       Int      @default(0)
+  description String?   @db.VarChar(255)
+  target      Int       @default(1)
+  stage       Int       @default(0)
   userId      String
-  complete    Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  complete    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
 
   user User @relation(fields: [userId], references: [id])
 }

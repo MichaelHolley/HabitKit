@@ -33,7 +33,7 @@
 <div class="dropdown-container">
 	<div bind:this={trigger}>
 		<button class="btn btn-ghost btn-xs" aria-label="Options" onclick={toggleDropdown}>
-			...
+			⋅⋅⋅
 		</button>
 	</div>
 
