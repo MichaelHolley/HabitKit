@@ -7,8 +7,10 @@
 	import DropDownComponent from '../DropDownComponent.svelte';
 	import CheckIconComponent from '../Icons/CheckIconComponent.svelte';
 	import TashIconComponent from '../Icons/TashIconComponent.svelte';
+	import type { SubmitFunction } from '@sveltejs/kit';
 
 	const { goal } = $props<{ goal: Goal }>();
+	let loading = $state(false);
 	let deleteModal: HTMLDialogElement;
 	let editModal: HTMLDialogElement;
 
@@ -28,6 +30,20 @@
 	const openEditModal = () => {
 		editGoal = structuredClone(goal);
 		editModal.showModal();
+	};
+
+	const handleUpdateSubmit: SubmitFunction = async () => {
+		loading = true;
+
+		return async ({ result, update }) => {
+			loading = false;
+			update();
+
+			if (result.type === 'success') {
+				editModal.close();
+				return result;
+			}
+		};
 	};
 </script>
 
@@ -164,7 +180,7 @@
 		<form
 			method="POST"
 			action="/goal/{goal.id}?/update"
-			use:enhance
+			use:enhance={handleUpdateSubmit}
 			class="flex flex-col items-end gap-3"
 		>
 			<label class="form-control w-full text-sm">
@@ -199,11 +215,12 @@
 					type="number"
 					class="input input-bordered"
 					placeholder="Target Value"
+					required
 					bind:value={editGoal.target}
 				/>
 			</label>
 			<div class="modal-action">
-				<button class="btn btn-primary w-fit">Update</button>
+				<button class="btn btn-primary w-fit" disabled={loading}>Update</button>
 			</div>
 		</form>
 	</div>

@@ -1,4 +1,3 @@
-import { redirect } from '@sveltejs/kit';
 import { prisma } from './prisma';
 
 export const getGoalForUser = async (id: string, userId: string) => {
@@ -113,12 +112,10 @@ export const deleteGoal = async (id: string, userId: string) => {
 };
 
 export const completeGoal = async (id: string, userId: string) => {
-	await prisma.goal.update({
+	return await prisma.goal.update({
 		where: { userId, id },
 		data: {
 			complete: true
 		}
 	});
-
-	redirect(302, `/${userId}`);
 };

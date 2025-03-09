@@ -46,7 +46,7 @@ model Goal {
   id          String   @id @default(uuid())
   title       String
   description String?  @db.VarChar(255)
-  target      Int
+  target      Int      @default(1)
   stage       Int      @default(0)
   userId      String
   complete    Boolean  @default(false)

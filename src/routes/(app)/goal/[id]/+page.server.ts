@@ -23,8 +23,6 @@ export const actions: Actions = {
 		}
 
 		await deleteGoal(event.params.id, event.locals.user.id);
-
-		return redirect(302, `/`);
 	},
 	complete: async (event) => {
 		if (!event.locals.user) {
@@ -32,8 +30,6 @@ export const actions: Actions = {
 		}
 
 		await completeGoal(event.params.id, event.locals.user.id);
-
-		return redirect(302, `/`);
 	},
 	update: async (event) => {
 		const formData = await event.request.formData();
@@ -45,14 +41,12 @@ export const actions: Actions = {
 			return redirect(302, '/');
 		}
 
-		await updateGoal(
+		return await updateGoal(
 			event.params.id,
 			event.locals.user.id,
 			title as string,
 			description as string,
 			target
 		);
-
-		return redirect(302, `/`);
 	}
 };

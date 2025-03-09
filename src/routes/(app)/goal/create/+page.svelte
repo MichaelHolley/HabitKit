@@ -66,6 +66,7 @@
 				type="number"
 				class="input input-bordered"
 				placeholder="Target Value"
+				required
 				bind:value={target}
 			/>
 		</label>
