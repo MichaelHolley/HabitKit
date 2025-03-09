@@ -13,7 +13,7 @@ export const load: PageServerLoad = async () => {
 			},
 			{
 				title: 'Write 6 Blog Posts',
-				description: 'Write at least 12 blog posts in a year',
+				description: 'Write at least 6 blog posts in a year',
 				target: 6
 			},
 			{
