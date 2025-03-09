@@ -25,6 +25,31 @@ export const load: PageServerLoad = async () => {
 				title: `Weekly Chores - ${dayjs().format('YYYY')}`,
 				description: 'Finish your weekly chores',
 				target: 52
+			},
+			{
+				title: 'Meditate 100 Times',
+				description: 'Meditate at least 100 times this year',
+				target: 100
+			},
+			{
+				title: 'Cook 50 New Recipes',
+				description: 'Try cooking 50 new recipes',
+				target: 50
+			},
+			{
+				title: 'Complete 12 Online Courses',
+				description: 'Finish at least 12 online courses in a year',
+				target: 12
+			},
+			{
+				title: 'Do 365 Workouts',
+				description: 'Exercise every day for a year',
+				target: 365
+			},
+			{
+				title: 'Write 200 Journal Entries',
+				description: 'Write in your journal 200 times this year',
+				target: 200
 			}
 		]
 	};
