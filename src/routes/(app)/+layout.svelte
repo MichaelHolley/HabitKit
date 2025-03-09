@@ -14,8 +14,10 @@
 		</div>
 	</noscript>
 	<div class="mb-7 flex flex-row items-center justify-between">
-		<a href="/" class="text-4xl font-bold text-primary">
-			Habit<span class="text-secondary">Kit</span>
+		<a href="/" class="flex flex-row gap-1 text-4xl font-bold text-primary">
+			<img src="/habitkit-icon.svg" alt="Logo" width="38" />Habit<span class="text-secondary"
+				>Kit</span
+			>
 		</a>
 		<div class="text-right">
 			<span class="text-xs">

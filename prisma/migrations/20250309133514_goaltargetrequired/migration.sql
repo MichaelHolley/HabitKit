@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Goal` MODIFY `target` INTEGER NOT NULL DEFAULT 1;

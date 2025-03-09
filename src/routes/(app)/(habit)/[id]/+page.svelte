@@ -76,8 +76,10 @@
 			<button class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">✕</button>
 		</form>
 		<h3 class="text-lg font-bold">Confirmation</h3>
-		<p class="py-4">Are you sure you want to delete this habit?</p>
-		<p>This action cannot be undone.</p>
+		<p class="py-4">
+			Are you sure you want to delete the habit <span class="italic">{data.habit.title}</span>?
+		</p>
+		<p>This action can not be undone.</p>
 		<div class="modal-action">
 			<form method="POST" action="?/delete" use:enhance>
 				<button class="btn btn-error">Delete</button>

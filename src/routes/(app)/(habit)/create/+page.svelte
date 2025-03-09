@@ -51,7 +51,7 @@
 			<input
 				name="description"
 				class="input input-bordered"
-				placeholder="Enter description...	"
+				placeholder="Enter description..."
 				bind:value={description}
 			/>
 		</label>

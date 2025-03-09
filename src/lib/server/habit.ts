@@ -97,8 +97,7 @@ export interface HabitDTO {
 
 const sortByRecentActivity = (a: HabitDTO, b: HabitDTO): number => {
 	const today = dayjs().startOf('day');
-	const twoWeeksAgo = today.clone();
-	twoWeeksAgo.subtract(14, 'day');
+	const twoWeeksAgo = today.clone().subtract(14, 'day');
 
 	const countActiveDays = (habit: HabitDTO) => {
 		return habit.dates.filter((date) => {
