@@ -8,7 +8,7 @@
 </script>
 
 <CardComponent class="group p-4">
-	<div class="flex flex-col gap-1">
+	<div class="flex flex-col">
 		<div class="flex flex-row justify-between">
 			<a href="/{habit.id}">
 				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span>
@@ -23,10 +23,8 @@
 				</button>
 			</form>
 		</div>
-		<a href="/{habit.id}" class="mb-1">
-			<p class="line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
-		</a>
 		<a href="/{habit.id}">
+			<p class="line-clamp-2 text-xs text-neutral-400 mb-1">{habit.description}</p>
 			<HabitActivityHistory dates={habit.dates} />
 		</a>
 	</div>
