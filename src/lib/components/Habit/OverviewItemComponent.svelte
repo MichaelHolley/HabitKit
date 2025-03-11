@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
-	import HabitActivityHistory from './HistoryComponent.svelte';
 	import CardComponent from '../CardComponent.svelte';
+	import { ICON_MAP } from '../icons';
+	import HabitActivityHistory from './HistoryComponent.svelte';
 
 	const { habit } = $props();
 </script>
@@ -14,11 +16,11 @@
 		</a>
 		<form method="POST" action="/{habit.id}?/addToday" use:enhance>
 			<button
-				class="btn btn-outline btn-secondary btn-xs"
+				class="btn btn-outline btn-secondary btn-xs px-0.5"
 				title="Add Today"
 				disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
-				+
+				<Icon icon={ICON_MAP.plus} class="text-lg" />
 			</button>
 		</form>
 	</div>
