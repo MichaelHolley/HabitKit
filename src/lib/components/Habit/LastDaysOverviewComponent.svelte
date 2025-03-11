@@ -35,7 +35,7 @@
 				{/each}
 			</div>
 
-			<div class="my-1 flex flex-grow flex-col">
+			<div class="my-1 flex grow flex-col">
 				<div bind:clientWidth={containerWidth} class="flex h-full flex-col justify-between">
 					{#each habits as habit}
 						<div class="flex flex-row justify-end gap-1">

@@ -66,7 +66,7 @@
 		</form>
 		<h3 class="text-lg font-bold">Select a Preset</h3>
 		<p class="mb-3 py-1">Choose a preset to get started quickly and customize later.</p>
-		<div class="-mr-4 flex max-h-80 flex-grow flex-col gap-1 self-stretch overflow-y-scroll pr-4">
+		<div class="-mr-4 flex max-h-80 grow flex-col gap-1 self-stretch overflow-y-scroll pr-4">
 			{#each data.presetOptions as preset}
 				<button
 					class="rounded-md border border-base-300 bg-base-200 px-4 py-2 text-left hover:bg-base-300"
