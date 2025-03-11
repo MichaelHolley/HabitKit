@@ -6,6 +6,7 @@
 	import { Tween } from 'svelte/motion';
 	import CardComponent from '../CardComponent.svelte';
 	import DropDownComponent from '../DropDownComponent.svelte';
+	import { ICON_MAP } from '../icons';
 	import GoalDeleteModal from './GoalDeleteModal.svelte';
 	import GoalEditModal from './GoalEditModal.svelte';
 
@@ -37,7 +38,7 @@
 						title="Next"
 						disabled={goal.stage === goal.target}
 					>
-						<Icon icon="ic:baseline-add" class="text-lg" />
+						<Icon icon={ICON_MAP.plus} class="text-lg" />
 					</button>
 				</form>
 			</div>
@@ -55,7 +56,7 @@
 						{#if goal.stage < goal.target}
 							{goal.stage}/{goal.target}
 						{:else}
-							<Icon icon="ic:baseline-check" class="text-xl" />
+							<Icon icon={ICON_MAP.check} class="text-xl" />
 						{/if}
 					</div>
 				</div>
@@ -75,7 +76,7 @@
 								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<Icon icon="ic:baseline-minus" class="text-lg" />
+									<Icon icon={ICON_MAP.minus} class="text-lg" />
 									Previous
 								</div>
 							</button>
@@ -94,7 +95,7 @@
 								disabled={goal.stage !== goal.target}
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<Icon icon="ic:baseline-check" class="text-lg" />
+									<Icon icon={ICON_MAP.check} class="text-lg" />
 									Complete
 								</div>
 							</button>
@@ -109,7 +110,7 @@
 								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<Icon icon="ic:baseline-edit" class="text-lg" />
+									<Icon icon={ICON_MAP.edit} class="text-lg" />
 									Edit
 								</div>
 							</button>
@@ -123,7 +124,7 @@
 								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<Icon icon="ic:baseline-delete-outline" class="text-lg" />
+									<Icon icon={ICON_MAP.delete} class="text-lg" />
 									Delete
 								</div>
 							</button>

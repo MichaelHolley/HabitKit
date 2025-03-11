@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { ICON_MAP } from './icons';
 
 	const { children } = $props();
 
@@ -35,7 +36,7 @@
 <div class="dropdown-container">
 	<div bind:this={trigger}>
 		<button class="btn btn-ghost btn-xs px-1" aria-label="Options" onclick={toggleDropdown}>
-			<Icon icon="ic:baseline-more-horiz" />
+			<Icon icon={ICON_MAP.more} />
 		</button>
 	</div>
 

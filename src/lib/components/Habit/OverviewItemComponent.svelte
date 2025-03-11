@@ -3,6 +3,7 @@
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import CardComponent from '../CardComponent.svelte';
+	import { ICON_MAP } from '../icons';
 	import HabitActivityHistory from './HistoryComponent.svelte';
 
 	const { habit } = $props();
@@ -19,7 +20,7 @@
 				title="Add Today"
 				disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
-				<Icon icon="ic:baseline-add" class="text-lg" />
+				<Icon icon={ICON_MAP.plus} class="text-lg" />
 			</button>
 		</form>
 	</div>

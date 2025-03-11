@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { ICON_MAP } from '$lib/components/icons';
 	import Icon from '@iconify/svelte';
 	import type { Snippet } from 'svelte';
 	import '../../app.css';
@@ -26,7 +27,7 @@
 			</span>
 			<form method="POST" action="/?/logout" use:enhance>
 				<button class="text-md btn btn-link link-secondary btn-xs gap-1 px-0">
-					<Icon icon="ic:baseline-logout" />
+					<Icon icon={ICON_MAP.logout} />
 					Sign out
 				</button>
 			</form>

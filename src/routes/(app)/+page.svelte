@@ -2,9 +2,10 @@
 	import GoalCardComponent from '$lib/components/Goal/GoalCardComponent.svelte';
 	import LastXDays from '$lib/components/Habit/LastDaysOverviewComponent.svelte';
 	import HabitOverviewItem from '$lib/components/Habit/OverviewItemComponent.svelte';
+	import { ICON_MAP } from '$lib/components/icons';
+	import Icon from '@iconify/svelte';
 	import type { Goal } from '@prisma/client';
 	import type { PageServerData } from './$types';
-	import Icon from '@iconify/svelte';
 
 	const { data } = $props<{ data: PageServerData }>();
 	const visibleGoals = $derived(data.goals.filter((g: Goal) => !g.complete));
@@ -14,7 +15,7 @@
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
 		<h2 class="text-3xl font-semibold">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm gap-0">
-			<Icon icon="ic:baseline-add" class="text-lg" />
+			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Track New
 		</a>
 	</div>
@@ -38,7 +39,7 @@
 	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
 		<h2 class="text-3xl font-semibold">Goals</h2>
 		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm gap-0">
-			<Icon icon="ic:baseline-add" class="text-lg" />
+			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Add
 		</a>
 	</div>

@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
+	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
+	import { ICON_MAP } from '$lib/components/icons';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
+	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
-	import Icon from '@iconify/svelte';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -35,22 +36,22 @@
 				title="Add Today"
 				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
-				<Icon icon="ic:baseline-add" class="text-base" />
+				<Icon icon={ICON_MAP.plus} class="text-base" />
 				Today
 			</button>
 		</form>
 		<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs gap-1">
-			<Icon icon="ic:outline-remove-red-eye" class="text-base" />
+			<Icon icon={ICON_MAP.eye} class="text-base" />
 			Show Values
 		</a>
 	</div>
 	<div class="flex flex-row gap-2">
 		<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs gap-1">
-			<Icon icon="ic:baseline-edit" class="text-base" />
+			<Icon icon={ICON_MAP.edit} class="text-base" />
 			Edit
 		</a>
 		<button class="btn btn-error btn-xs gap-0" onclick={() => deleteModal?.showModal()}>
-			<Icon icon="ic:baseline-delete-outline" class="text-base" />
+			<Icon icon={ICON_MAP.delete} class="text-base" />
 			Delete
 		</button>
 	</div>
@@ -76,7 +77,7 @@
 		</label>
 
 		<button class="btn btn-primary w-fit gap-1">
-			<Icon icon="ic:baseline-add" class="text-lg" />
+			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Add Date
 		</button>
 	</form>
