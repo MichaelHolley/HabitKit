@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
+
 	const { children } = $props();
 
 	let isOpen = $state(false);
@@ -32,8 +34,8 @@
 
 <div class="dropdown-container">
 	<div bind:this={trigger}>
-		<button class="btn btn-ghost btn-xs" aria-label="Options" onclick={toggleDropdown}>
-			...
+		<button class="btn btn-ghost btn-xs px-1" aria-label="Options" onclick={toggleDropdown}>
+			<Icon icon="ic:baseline-more-horiz" />
 		</button>
 	</div>
 

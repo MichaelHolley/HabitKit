@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Icon from '@iconify/svelte';
 	import type { Snippet } from 'svelte';
 	import '../../app.css';
 	import type { LayoutData } from './$types';
@@ -24,7 +25,10 @@
 				Logged in as <span class="font-extrabold">{data.user?.username ?? 'UNDEFINED'}</span>
 			</span>
 			<form method="POST" action="/?/logout" use:enhance>
-				<button class="text-md btn btn-link link-secondary btn-xs px-0">Sign out</button>
+				<button class="text-md btn btn-link link-secondary btn-xs gap-1 px-0">
+					<Icon icon="ic:baseline-logout" />
+					Sign out
+				</button>
 			</form>
 		</div>
 	</div>
