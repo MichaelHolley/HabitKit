@@ -7,27 +7,23 @@
 	const { habit } = $props();
 </script>
 
-<CardComponent class="group p-4">
-	<div class="flex flex-col gap-1">
-		<div class="flex flex-row justify-between">
-			<a href="/{habit.id}">
-				<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span>
-			</a>
-			<form method="POST" action="/{habit.id}?/addToday" use:enhance>
-				<button
-					class="btn btn-outline btn-secondary btn-xs"
-					title="Add Today"
-					disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
-				>
-					+
-				</button>
-			</form>
-		</div>
-		<a href="/{habit.id}" class="mb-1">
-			<p class="line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
-		</a>
+<CardComponent class="group flex flex-col p-4">
+	<div class="flex flex-row justify-between">
 		<a href="/{habit.id}">
-			<HabitActivityHistory dates={habit.dates} />
+			<span class="link-hover link text-lg group-hover:text-primary">{habit.title}</span>
 		</a>
+		<form method="POST" action="/{habit.id}?/addToday" use:enhance>
+			<button
+				class="btn btn-outline btn-secondary btn-xs"
+				title="Add Today"
+				disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
+			>
+				+
+			</button>
+		</form>
 	</div>
+	<a href="/{habit.id}">
+		<p class="mb-1 line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
+		<HabitActivityHistory dates={habit.dates} />
+	</a>
 </CardComponent>
