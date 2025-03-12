@@ -5,14 +5,7 @@
 </script>
 
 <div
-	class="h-3 w-3 rounded-sm bg-neutral"
-	class:active
+	class="h-3 w-3 rounded-xs {active ? 'bg-base-content' : 'bg-neutral'}"
 	in:scale={{ duration: active ? 200 : 0, delay }}
 	{title}
 ></div>
-
-<style>
-	.active {
-		@apply bg-base-content;
-	}
-</style>
