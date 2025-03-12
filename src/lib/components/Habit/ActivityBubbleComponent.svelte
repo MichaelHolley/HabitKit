@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="h-3 w-3 rounded-xs {active ? 'bg-base-content' : 'bg-neutral'}"
+	class="size-3 rounded-xs {active ? 'bg-base-content' : 'bg-neutral'}"
 	in:scale={{ duration: active ? 200 : 0, delay }}
 	{title}
 ></div>

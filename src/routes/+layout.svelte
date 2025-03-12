@@ -18,7 +18,7 @@
 			target="_blank"
 			class="group link-hover link flex flex-row items-center justify-center gap-3 text-sm transition-all"
 		>
-			<Icon icon={ICON_MAP.github} class="h-8 w-8 group-hover:scale-105" />
+			<Icon icon={ICON_MAP.github} class="size-8 group-hover:scale-105" />
 			Report issues on GitHub
 		</a>
 	</div>
