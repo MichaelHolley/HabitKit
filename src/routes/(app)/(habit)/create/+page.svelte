@@ -62,14 +62,14 @@
 <dialog id="preset_modal" bind:this={presetModal} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box">
 		<form method="dialog">
-			<button class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">✕</button>
+			<button class="btn btn-circle btn-ghost btn-sm absolute top-2 right-2">✕</button>
 		</form>
 		<h3 class="text-lg font-bold">Select a Preset</h3>
 		<p class="mb-3 py-1">Choose a preset to get started quickly and customize later.</p>
 		<div class="-mr-4 flex max-h-80 grow flex-col gap-1 self-stretch overflow-y-scroll pr-4">
 			{#each data.presetOptions as preset}
 				<button
-					class="rounded-md border border-base-300 bg-base-200 px-4 py-2 text-left hover:bg-base-300"
+					class="border-base-300 bg-base-200 hover:bg-base-300 rounded-md border px-4 py-2 text-left"
 					onclick={() => selectPreset(preset)}
 				>
 					<div>{preset.title}</div>

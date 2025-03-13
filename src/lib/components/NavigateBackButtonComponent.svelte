@@ -5,6 +5,6 @@
 	const { backUrl } = $props<{ backUrl: string }>();
 </script>
 
-<a class="link-hover link flex flex-row items-center gap-1 decoration-secondary" href={backUrl}>
+<a class="link-hover link decoration-secondary flex items-center space-x-1" href={backUrl}>
 	<Icon icon={ICON_MAP.arrowLeft} class="text-secondary" />Go back
 </a>
