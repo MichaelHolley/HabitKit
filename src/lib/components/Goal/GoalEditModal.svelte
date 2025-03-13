@@ -45,7 +45,6 @@
 					name="title"
 					bind:value={editGoal.title}
 					required
-					class="grow"
 					placeholder="Enter title..."
 				/>
 			</label>
@@ -55,7 +54,6 @@
 					type="text"
 					name="description"
 					bind:value={editGoal.description}
-					class="grow"
 					placeholder="Enter description..."
 				/>
 				<span class="badge badge-neutral badge-xs">Optional</span>
@@ -67,7 +65,6 @@
 					name="target"
 					bind:value={editGoal.target}
 					required
-					class="grow"
 					placeholder="Enter Target value..."
 				/>
 			</label>
