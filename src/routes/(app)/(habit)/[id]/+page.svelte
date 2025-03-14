@@ -59,7 +59,7 @@
 
 <HabitHistory dates={data.habit?.dates} />
 
-<div class="my-6 flex flex-row flex-wrap items-center justify-end gap-8">
+<div class="my-6 mt-3 flex flex-row flex-wrap items-center justify-end gap-8">
 	<form method="POST" action="?/addDate" use:enhance class="flex flex-row items-end gap-2">
 		<label class="input input-sm w-full">
 			<span>Date</span>
