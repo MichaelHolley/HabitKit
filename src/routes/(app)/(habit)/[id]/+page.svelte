@@ -60,14 +60,14 @@
 <HabitHistory dates={data.habit?.dates} />
 
 <div class="my-6 flex flex-row flex-wrap items-center justify-end gap-8">
-	<form method="POST" action="?/addDate" use:enhance class="flex flex-col items-end gap-2">
-		<label class="input w-full">
+	<form method="POST" action="?/addDate" use:enhance class="flex flex-row items-end gap-2">
+		<label class="input input-sm w-full">
 			<span>Date</span>
 			<input type="date" name="date" required placeholder="Select a date" />
 		</label>
-		<button class="btn btn-primary w-fit gap-1">
-			<Icon icon={ICON_MAP.plus} class="text-lg" />
-			Add Date
+		<button class="btn btn-sm btn-primary gap-0">
+			<Icon icon={ICON_MAP.plus} class="text-base" />
+			Date
 		</button>
 	</form>
 </div>
