@@ -1,7 +1,9 @@
 <script lang="ts">
-	import GitHubIconComponent from '$lib/components/Icons/GitHubIconComponent.svelte';
+	import { ICON_MAP } from '$lib/components/icons';
+	import Icon from '@iconify/svelte';
 	import type { Snippet } from 'svelte';
 	import '../app.css';
+
 	const { children } = $props<{ children: Snippet }>();
 </script>
 
@@ -16,7 +18,7 @@
 			target="_blank"
 			class="group link-hover link flex flex-row items-center justify-center gap-3 text-sm transition-all"
 		>
-			<GitHubIconComponent class="h-6 w-6 group-hover:scale-105" />
+			<Icon icon={ICON_MAP.github} class="size-8 group-hover:scale-105" />
 			Report issues on GitHub
 		</a>
 	</div>

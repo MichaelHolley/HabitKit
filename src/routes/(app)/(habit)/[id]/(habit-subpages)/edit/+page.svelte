@@ -8,29 +8,25 @@
 <div class="max-w-md">
 	<h3 class="pb-4 text-3xl">Update Habit</h3>
 	<form method="POST" action="?/updateHabit" use:enhance class="flex flex-col items-end gap-3">
-		<label class="form-control w-full text-sm">
-			<div class="label">
-				<span class="label-text">Title</span>
-			</div>
+		<label class="input w-full">
+			<span>Title</span>
 			<input
+				type="text"
 				name="title"
-				class="input input-bordered"
-				placeholder="Enter title..."
+				bind:value={data.habit.title}
 				required
-				value={data.habit.title}
+				placeholder="Enter title..."
 			/>
 		</label>
-		<label class="form-control w-full text-sm">
-			<div class="label">
-				<span class="label-text">Description (optional)</span>
-			</div>
+		<label class="input w-full">
+			<span>Description</span>
 			<input
+				type="text"
 				name="description"
-				class="input input-bordered"
+				bind:value={data.habit.description}
 				placeholder="Enter description..."
-				maxlength="255"
-				value={data.habit.description}
 			/>
+			<span class="badge badge-neutral badge-xs">Optional</span>
 		</label>
 		<button class="btn btn-primary w-fit">Update</button>
 	</form>
