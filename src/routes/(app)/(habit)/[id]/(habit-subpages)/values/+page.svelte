@@ -8,7 +8,7 @@
 
 <h2 class="mb-3 text-3xl">{data.habit?.title}</h2>
 <div class="max-w-lg overflow-x-auto">
-	<table class="table table-pin-rows table-xs">
+	<table class="table-pin-rows table-xs table">
 		{#each data.habit.dates as date, i}
 			{#if i === 0 || !dayjs(date as string).isSame(dayjs(data.habit.dates[i - 1] as string), 'month')}
 				<thead>

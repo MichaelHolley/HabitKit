@@ -9,7 +9,7 @@
 	}>();
 
 	let loading = $state(false);
-	let editGoal: Goal = $state(structuredClone(goal));
+	let editGoal: Goal = $derived(structuredClone(goal));
 
 	const handleSubmit: SubmitFunction = async () => {
 		loading = true;
@@ -20,7 +20,6 @@
 
 			if (result.type === 'success') {
 				editModal.close();
-				return result;
 			}
 		};
 	};

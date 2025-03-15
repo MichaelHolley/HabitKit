@@ -18,7 +18,7 @@
 </script>
 
 <div bind:clientWidth={containerWidth} class="flex flex-row justify-end">
-	<div class="grid grid-flow-col grid-rows-8 items-center justify-center gap-1 text-2xs">
+	<div class="text-2xs grid grid-flow-col grid-rows-8 items-center justify-center gap-1">
 		<div></div>
 		<div class="sticky left-0 pr-1">Mon</div>
 		<div></div>

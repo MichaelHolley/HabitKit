@@ -12,7 +12,7 @@
 </script>
 
 <section class="my-6">
-	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
+	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
 		<h2 class="text-3xl font-semibold">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
@@ -36,7 +36,7 @@
 </section>
 
 <section class="my-6 mt-8">
-	<div class="flex flex-row items-center justify-between gap-4 xs:justify-start">
+	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
 		<h2 class="text-3xl font-semibold">Goals</h2>
 		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
