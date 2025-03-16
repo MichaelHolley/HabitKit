@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Icon from '@iconify/svelte';
 	import type { Goal } from '@prisma/client';
 	import { cubicOut } from 'svelte/easing';
 	import { Tween } from 'svelte/motion';
 	import CardComponent from '../CardComponent.svelte';
 	import DropDownComponent from '../DropDownComponent.svelte';
-	import CheckIconComponent from '../Icons/CheckIconComponent.svelte';
-	import TashIconComponent from '../Icons/TashIconComponent.svelte';
+	import { ICON_MAP } from '../icons';
 	import GoalDeleteModal from './GoalDeleteModal.svelte';
 	import GoalEditModal from './GoalEditModal.svelte';
 
@@ -28,17 +28,17 @@
 </script>
 
 <CardComponent class="group">
-	<div class="flex h-full flex-col justify-between p-4 pt-2">
+	<div class="flex h-full flex-col justify-between p-4">
 		<div>
 			<div class="flex flex-row justify-between gap-1">
-				<span class="text-lg group-hover:text-primary">{goal.title}</span>
+				<span class="group-hover:text-primary text-lg">{goal.title}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
-						class="btn btn-outline btn-secondary btn-xs"
+						class="btn btn-outline btn-secondary btn-xs px-0.5"
 						title="Next"
 						disabled={goal.stage === goal.target}
 					>
-						+
+						<Icon icon={ICON_MAP.plus} class="text-lg" />
 					</button>
 				</form>
 			</div>
@@ -49,19 +49,19 @@
 			<div class="flex flex-col">
 				<div class="mt-4 flex flex-row justify-center">
 					<div
-						class="radial-progress border-4 border-base-300 bg-base-300 text-primary"
+						class="radial-progress border-base-300 bg-base-300 text-primary border-4"
 						style="--value:{progressValue}"
 						role="progressbar"
 					>
 						{#if goal.stage < goal.target}
 							{goal.stage}/{goal.target}
 						{:else}
-							<CheckIconComponent />
+							<Icon icon={ICON_MAP.check} class="text-xl" />
 						{/if}
 					</div>
 				</div>
 			</div>
-			<div class="-mb-2 -mr-2 flex flex-row justify-end">
+			<div class="-mb-2 flex flex-row justify-end">
 				<DropDownComponent>
 					<li>
 						<form
@@ -75,7 +75,10 @@
 								disabled={goal.stage === 0}
 								class="btn btn-ghost btn-sm btn-block"
 							>
-								<div class="w-full text-start">- Previous</div>
+								<div class="flex w-full flex-row items-center gap-1 text-start">
+									<Icon icon={ICON_MAP.minus} class="text-lg" />
+									Previous
+								</div>
 							</button>
 						</form>
 					</li>
@@ -92,7 +95,7 @@
 								disabled={goal.stage !== goal.target}
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<CheckIconComponent class="h-3 w-3" />
+									<Icon icon={ICON_MAP.check} class="text-lg" />
 									Complete
 								</div>
 							</button>
@@ -106,7 +109,10 @@
 								onclick={() => editModal?.showModal()}
 								class="btn btn-ghost btn-sm btn-block"
 							>
-								<div class="flex w-full flex-row items-center gap-1 text-start">Edit</div>
+								<div class="flex w-full flex-row items-center gap-1 text-start">
+									<Icon icon={ICON_MAP.edit} class="text-lg" />
+									Edit
+								</div>
 							</button>
 						</div>
 					</li>
@@ -118,7 +124,7 @@
 								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
-									<TashIconComponent class="h-3 w-3" />
+									<Icon icon={ICON_MAP.delete} class="text-lg" />
 									Delete
 								</div>
 							</button>

@@ -29,13 +29,13 @@
 		<div class="flex flex-row justify-between gap-3">
 			<div class="flex flex-col justify-between">
 				{#each habits as habit}
-					<a class="link-hover link text-sm" href="/{habit.id}">
+					<a class="link-hover link hover:text-primary text-sm" href="/{habit.id}">
 						{habit.title}
 					</a>
 				{/each}
 			</div>
 
-			<div class="my-1 flex flex-grow flex-col">
+			<div class="my-1 flex grow flex-col">
 				<div bind:clientWidth={containerWidth} class="flex h-full flex-col justify-between">
 					{#each habits as habit}
 						<div class="flex flex-row justify-end gap-1">

@@ -32,7 +32,7 @@
 >
 	<div class="modal-box">
 		<form method="dialog">
-			<button class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">✕</button>
+			<button class="btn btn-circle btn-ghost btn-sm absolute top-2 right-2">✕</button>
 		</form>
 		<h3 class="text-lg font-bold">Confirmation</h3>
 		<p class="py-4">

@@ -4,7 +4,7 @@
 	let { children, class: className }: { children: Snippet; class?: string } = $props();
 </script>
 
-<div class="card rounded-md border border-base-300 bg-base-200 {className}">
+<div class="card border-base-300 bg-base-200 rounded-md border {className}">
 	{@render children()}
 </div>
 

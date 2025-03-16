@@ -9,18 +9,20 @@
 	}>();
 
 	let loading = $state(false);
-	let editGoal: Goal = $state(structuredClone(goal));
+	let editGoal = $state(structuredClone(goal));
+	$effect(() => {
+		editGoal = structuredClone(goal);
+	});
 
-	const handleSubmit: SubmitFunction = async () => {
+	const handleSubmit: SubmitFunction = () => {
 		loading = true;
 
 		return async ({ result, update }) => {
 			loading = false;
-			update();
+			await update();
 
 			if (result.type === 'success') {
 				editModal.close();
-				return result;
 			}
 		};
 	};
@@ -29,49 +31,43 @@
 <dialog id="edit_modal_{goal.id}" bind:this={editModal} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box">
 		<form method="dialog">
-			<button class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">✕</button>
+			<button class="btn btn-circle btn-ghost btn-sm absolute top-2 right-2">✕</button>
 		</form>
 		<h3 class="text-lg font-bold">Edit Goal</h3>
 		<form
 			method="POST"
 			action="/goal/{goal.id}?/update"
 			use:enhance={handleSubmit}
-			class="flex flex-col items-end gap-3"
+			class="mt-4 flex flex-col items-end gap-3"
 		>
-			<label class="form-control w-full text-sm">
-				<div class="label">
-					<span class="label-text">Title</span>
-				</div>
+			<label class="input w-full">
+				<span class="label">Title</span>
 				<input
+					type="text"
 					name="title"
-					class="input input-bordered"
-					placeholder="Enter title..."
 					bind:value={editGoal.title}
 					required
+					placeholder="Enter title..."
 				/>
 			</label>
-			<label class="form-control w-full text-sm">
-				<div class="label">
-					<span class="label-text">Description (optional)</span>
-				</div>
+			<label class="input w-full">
+				<span class="label">Description</span>
 				<input
+					type="text"
 					name="description"
-					class="input input-bordered"
-					placeholder="Enter description..."
 					bind:value={editGoal.description}
+					placeholder="Enter description..."
 				/>
+				<span class="badge badge-neutral badge-xs">Optional</span>
 			</label>
-			<label class="form-control w-full text-sm">
-				<div class="label">
-					<span class="label-text">Target</span>
-				</div>
+			<label class="input w-full">
+				<span class="label">Value</span>
 				<input
-					name="target"
 					type="number"
-					class="input input-bordered"
-					placeholder="Target Value"
-					required
+					name="target"
 					bind:value={editGoal.target}
+					required
+					placeholder="Enter Target value..."
 				/>
 			</label>
 			<div class="modal-action">

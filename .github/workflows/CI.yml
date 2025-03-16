@@ -21,5 +21,8 @@ jobs:
         with:
           run_install: true
 
+      #- name: Svelte check
+      #  run: pnpm check
+
       - name: Build production bundle
         run: pnpm build

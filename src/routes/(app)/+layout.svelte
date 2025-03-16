@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { ICON_MAP } from '$lib/components/icons';
+	import Icon from '@iconify/svelte';
 	import type { Snippet } from 'svelte';
 	import '../../app.css';
 	import type { LayoutData } from './$types';
@@ -14,7 +16,7 @@
 		</div>
 	</noscript>
 	<div class="mb-7 flex flex-row items-center justify-between">
-		<a href="/" class="flex flex-row gap-1 text-4xl font-bold text-primary">
+		<a href="/" class="text-primary flex flex-row gap-1 text-4xl font-bold">
 			<img src="/habitkit-icon.svg" alt="Logo" width="38" />Habit<span class="text-secondary"
 				>Kit</span
 			>
@@ -24,7 +26,10 @@
 				Logged in as <span class="font-extrabold">{data.user?.username ?? 'UNDEFINED'}</span>
 			</span>
 			<form method="POST" action="/?/logout" use:enhance>
-				<button class="text-md btn btn-link link-secondary btn-xs px-0">Sign out</button>
+				<button class="text-md btn btn-link link-secondary btn-xs gap-1 px-0">
+					<Icon icon={ICON_MAP.logout} />
+					Sign out
+				</button>
 			</form>
 		</div>
 	</div>
