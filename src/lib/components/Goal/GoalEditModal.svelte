@@ -14,12 +14,12 @@
 		editGoal = structuredClone(goal);
 	});
 
-	const handleSubmit: SubmitFunction = async () => {
+	const handleSubmit: SubmitFunction = () => {
 		loading = true;
 
 		return async ({ result, update }) => {
 			loading = false;
-			update();
+			await update();
 
 			if (result.type === 'success') {
 				editModal.close();
