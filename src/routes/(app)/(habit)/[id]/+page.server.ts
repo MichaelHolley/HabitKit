@@ -82,7 +82,7 @@ const getDatesData = (
 	current: string[];
 	completionRate: number;
 	mostActive: { day: string; count: number } | undefined;
-	completionRateByWeeks: { week: string; count: number }[];
+	completionRateByMonths: { week: string; count: number }[];
 } => {
 	const sortedDates = [...new Set(dates)]
 		.map((date) => dayjs(date))
@@ -96,7 +96,7 @@ const getDatesData = (
 			current: [],
 			completionRate: 0,
 			mostActive: undefined,
-			completionRateByWeeks: []
+			completionRateByMonths: []
 		};
 
 	let currentStreak = [sortedDates[0]];
@@ -125,7 +125,7 @@ const getDatesData = (
 
 	const weekMap = new Map<string, number>();
 	for (let i = 0; i < sortedDates.length; i++) {
-		const week = sortedDates[i].startOf('isoWeek').format('YYYY-MM');
+		const week = sortedDates[i].startOf('isoWeek').format('YYYY-MMM');
 		weekMap.set(week, (weekMap.get(week) || 0) + 1);
 	}
 
@@ -143,6 +143,6 @@ const getDatesData = (
 		current: currentStreak.map((date) => date.format('YYYY-MM-DD')),
 		completionRate: sortedDates.length / daysSinceFirstDate,
 		mostActive: { day: weekdayMapArray[0][0], count: weekdayMapArray[0][1] },
-		completionRateByWeeks: completionRateByMonths
+		completionRateByMonths: completionRateByMonths
 	};
 };
