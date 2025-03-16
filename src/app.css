@@ -34,7 +34,3 @@ html {
 body {
 	@apply bg-base-100;
 }
-
-label.input > span:first-child {
-	@apply text-neutral-400;
-}

@@ -9,18 +9,20 @@
 	}>();
 
 	let loading = $state(false);
-	let editGoal: Goal = $state(structuredClone(goal));
+	let editGoal = $state(structuredClone(goal));
+	$effect(() => {
+		editGoal = structuredClone(goal);
+	});
 
-	const handleSubmit: SubmitFunction = async () => {
+	const handleSubmit: SubmitFunction = () => {
 		loading = true;
 
 		return async ({ result, update }) => {
 			loading = false;
-			update();
+			await update();
 
 			if (result.type === 'success') {
 				editModal.close();
-				return result;
 			}
 		};
 	};
@@ -39,7 +41,7 @@
 			class="mt-4 flex flex-col items-end gap-3"
 		>
 			<label class="input w-full">
-				<span>Title</span>
+				<span class="label">Title</span>
 				<input
 					type="text"
 					name="title"
@@ -49,7 +51,7 @@
 				/>
 			</label>
 			<label class="input w-full">
-				<span>Description</span>
+				<span class="label">Description</span>
 				<input
 					type="text"
 					name="description"
@@ -59,7 +61,7 @@
 				<span class="badge badge-neutral badge-xs">Optional</span>
 			</label>
 			<label class="input w-full">
-				<span>Value</span>
+				<span class="label">Value</span>
 				<input
 					type="number"
 					name="target"

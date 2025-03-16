@@ -32,20 +32,28 @@
 		</p>
 	</div>
 	<form method="POST" action="?/createHabit" use:enhance class="flex flex-col items-end gap-3">
-		<label class="input w-full">
-			<span>Title</span>
-			<input type="text" name="title" bind:value={title} required placeholder="Enter title..." />
-		</label>
-		<label class="input w-full">
-			<span>Description</span>
+		<fieldset class="fieldset w-full">
+			<legend class="fieldset-legend">Title</legend>
 			<input
 				type="text"
+				class="input w-full"
+				name="title"
+				bind:value={title}
+				required
+				placeholder="Enter title..."
+			/>
+		</fieldset>
+		<fieldset class="fieldset w-full">
+			<legend class="fieldset-legend">Description</legend>
+			<input
+				type="text"
+				class="input w-full"
 				name="description"
 				bind:value={description}
 				placeholder="Enter description..."
 			/>
-			<span class="badge badge-neutral badge-xs">Optional</span>
-		</label>
+			<p class="fieldset-label">Optional</p>
+		</fieldset>
 		<button class="btn btn-primary w-fit">+ Create</button>
 	</form>
 </div>

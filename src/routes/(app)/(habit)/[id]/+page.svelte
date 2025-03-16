@@ -61,14 +61,16 @@
 
 <div class="my-6 mt-3 flex flex-row flex-wrap items-center justify-end gap-8">
 	<form method="POST" action="?/addDate" use:enhance class="flex flex-row items-end gap-2">
-		<label class="input input-sm w-full">
-			<span>Date</span>
-			<input type="date" name="date" required placeholder="Select a date" />
-		</label>
-		<button class="btn btn-sm btn-primary gap-0">
-			<Icon icon={ICON_MAP.plus} class="text-base" />
-			Date
-		</button>
+		<div class="join">
+			<label class="input input-sm join-item w-full">
+				<span class="label">Date</span>
+				<input type="date" name="date" required />
+			</label>
+			<button class="btn btn-sm btn-primary join-item gap-0">
+				<Icon icon={ICON_MAP.plus} class="text-base" />
+				Date
+			</button>
+		</div>
 	</form>
 </div>
 
