@@ -33,6 +33,10 @@
 			>
 		</p>
 	</div>
+	<p class="mb-3 text-sm">
+		Include <span class="bg-base-200 rounded-xs p-1">&#123;&#125;</span> in title or description to print
+		the current target value.
+	</p>
 	<form method="POST" action="?/createGoal" use:enhance class="flex flex-col items-end gap-3">
 		<fieldset class="fieldset w-full">
 			<legend class="fieldset-legend">Title</legend>

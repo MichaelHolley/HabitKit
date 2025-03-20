@@ -34,6 +34,10 @@
 			<button class="btn btn-circle btn-ghost btn-sm absolute top-2 right-2">✕</button>
 		</form>
 		<h3 class="text-lg font-bold">Edit Goal</h3>
+		<p class="text-sm">
+			Include <span class="bg-base-200 rounded-xs p-1">&#123;&#125;</span> in title or description to
+			print the current target value.
+		</p>
 		<form
 			method="POST"
 			action="/goal/{goal.id}?/update"
