@@ -10,7 +10,7 @@
 
 	let loading = $state(false);
 
-	const handleSubmit: SubmitFunction = async () => {
+	const handleSubmit: SubmitFunction = () => {
 		loading = true;
 
 		return async ({ result, update }) => {
@@ -19,7 +19,6 @@
 
 			if (result.type === 'success') {
 				deleteModal.close();
-				return result;
 			}
 		};
 	};
