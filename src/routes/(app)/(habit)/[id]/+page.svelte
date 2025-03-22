@@ -21,13 +21,15 @@
 		{ title: 'Most Active', value: '0', description: '' }
 	]);
 	$effect(() => {
-		getHabitStats(data.habit)
-			.then((statsRes) => {
-				stats = statsRes;
-			})
-			.finally(() => {
-				statsLoading = false;
-			});
+		if (data.habit.dates.length > 0) {
+			getHabitStats(data.habit)
+				.then((statsRes) => {
+					stats = statsRes;
+				})
+				.finally(() => {
+					statsLoading = false;
+				});
+		}
 	});
 </script>
 
@@ -93,7 +95,7 @@
 	</form>
 </div>
 
-{#if !!stats && stats.length > 0}
+{#if data.habit.dates.length > 0 && !!stats && stats.length > 0}
 	<CardComponent class="p-4">
 		<div class="flex flex-row flex-wrap items-center justify-center gap-4">
 			{#each stats as stat}
