@@ -8,6 +8,8 @@
 		deleteModal: HTMLDialogElement | null;
 	}>();
 
+	const goalTitle = $derived(goal.title.replace('{}', goal.target));
+
 	let loading = $state(false);
 
 	const handleSubmit: SubmitFunction = () => {
@@ -35,7 +37,7 @@
 		</form>
 		<h3 class="text-lg font-bold">Confirmation</h3>
 		<p class="py-4">
-			Are you sure you want to delete the goal <span class="italic">{goal.title}</span>?
+			Are you sure you want to delete the goal <span class="italic">{goalTitle}</span>?
 		</p>
 		<p>This action can not be undone.</p>
 		<div class="modal-action">
