@@ -7,13 +7,28 @@
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { getHabitStats } from '$lib/utils/stats';
+	import { getHabitStats, type StatItem } from '$lib/utils/stats';
 	import CardComponent from '$lib/components/CardComponent.svelte';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
 
-	const stats = $derived(getHabitStats(data.habit));
+	let statsLoading = $state(true);
+	let stats = $state<StatItem[]>([
+		{ title: 'Longest Streak', value: '0', description: '' },
+		{ title: 'Current Streak', value: '0', description: '' },
+		{ title: 'Completion Rate', value: '0%', description: '' },
+		{ title: 'Most Active', value: '0', description: '' }
+	]);
+	$effect(() => {
+		getHabitStats(data.habit)
+			.then((statsRes) => {
+				stats = statsRes;
+			})
+			.finally(() => {
+				statsLoading = false;
+			});
+	});
 </script>
 
 <div>
@@ -78,11 +93,11 @@
 	</form>
 </div>
 
-{#if stats.length > 0}
+{#if !!stats && stats.length > 0}
 	<CardComponent class="p-4">
 		<div class="flex flex-row flex-wrap items-center justify-center gap-4">
 			{#each stats as stat}
-				<StatComponent {stat} />
+				<StatComponent {stat} loading={statsLoading} />
 			{/each}
 		</div>
 	</CardComponent>

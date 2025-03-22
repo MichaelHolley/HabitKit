@@ -1,7 +1,7 @@
 import type { HabitDTO } from '$lib/server/habit';
 import dayjs from 'dayjs';
 
-export const getHabitStats = (habit: HabitDTO) => {
+export const getHabitStats = async (habit: HabitDTO) => {
 	return getDatesData(habit.dates);
 };
 
