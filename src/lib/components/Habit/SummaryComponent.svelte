@@ -1,6 +1,8 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import CardComponent from '../CardComponent.svelte';
+	import Icon from '@iconify/svelte';
+	import { ICON_MAP } from '../icons';
 
 	const { summary } = $props<{
 		summary: {
@@ -27,7 +29,9 @@
 		</div>
 		<div>
 			<div class="stat place-items-center">
-				<div class="stat-title">Current Streak</div>
+				<div class="stat-title flex flex-row gap-1">
+					Current Streak<Icon icon={ICON_MAP.arrowRightUp} class="text-success size-4" />
+				</div>
 				<div class="stat-value">{summary.current.length}</div>
 				{#if summary.current.length > 0}
 					<div class="stat-desc">
