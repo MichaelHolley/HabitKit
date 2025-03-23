@@ -15,6 +15,9 @@
 	let deleteModal: HTMLDialogElement | null = $state(null);
 	let editModal: HTMLDialogElement | null = $state(null);
 
+	const titleDisplay = $derived(goal.title.replace('{}', goal.target));
+	const descrDisplay = $derived(goal.description.replace('{}', goal.target));
+
 	const progress = new Tween(0, {
 		duration: 800,
 		easing: cubicOut
@@ -31,7 +34,7 @@
 	<div class="flex h-full flex-col justify-between p-4">
 		<div>
 			<div class="flex flex-row justify-between gap-1">
-				<span class="group-hover:text-primary text-lg">{goal.title}</span>
+				<span class="group-hover:text-primary text-lg">{titleDisplay}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
 						class="btn btn-outline btn-secondary btn-xs px-0.5"
@@ -42,7 +45,7 @@
 					</button>
 				</form>
 			</div>
-			<p class="line-clamp-2 text-xs text-neutral-400">{goal.description}</p>
+			<p class="line-clamp-2 text-xs text-neutral-400">{descrDisplay}</p>
 		</div>
 
 		<div>

@@ -1,15 +1,36 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
-	import SummaryComponent from '$lib/components/Habit/SummaryComponent.svelte';
+	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import { getHabitStats, type StatItem } from '$lib/utils/stats';
+	import CardComponent from '$lib/components/CardComponent.svelte';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
+
+	let statsLoading = $state(true);
+	let stats = $state<StatItem[]>([
+		{ title: 'Longest Streak', value: '0', description: '' },
+		{ title: 'Current Streak', value: '0', description: '' },
+		{ title: 'Completion Rate', value: '0%', description: '' },
+		{ title: 'Most Active', value: '0', description: '' }
+	]);
+	$effect(() => {
+		if (data.habit.dates.length > 0) {
+			getHabitStats(data.habit)
+				.then((statsRes) => {
+					stats = statsRes;
+				})
+				.finally(() => {
+					statsLoading = false;
+				});
+		}
+	});
 </script>
 
 <div>
@@ -74,8 +95,14 @@
 	</form>
 </div>
 
-{#if !!data.summary}
-	<SummaryComponent summary={data.summary} />
+{#if data.habit.dates.length > 0 && !!stats && stats.length > 0}
+	<CardComponent class="p-4">
+		<div class="flex flex-row flex-wrap items-center justify-center gap-4">
+			{#each stats as stat}
+				<StatComponent {stat} loading={statsLoading} />
+			{/each}
+		</div>
+	</CardComponent>
 {/if}
 
 <dialog id="delete_modal" bind:this={deleteModal} class="modal modal-bottom sm:modal-middle">
