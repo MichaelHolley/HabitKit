@@ -9,6 +9,7 @@
 	import type { PageData } from './$types';
 	import { getHabitStats, type StatItem } from '$lib/utils/stats';
 	import CardComponent from '$lib/components/CardComponent.svelte';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -51,7 +52,12 @@
 
 <div class="mt-6 mb-4 flex flex-row flex-wrap justify-between gap-2">
 	<div class="flex flex-row gap-2">
-		<form method="POST" action="?/addToday" use:enhance class="flex flex-col justify-start">
+		<form
+			method="POST"
+			action="?/addToday"
+			use:enhance={defaultHandleSubmit}
+			class="flex flex-col justify-start"
+		>
 			<button
 				class="btn btn-outline btn-secondary btn-xs gap-0"
 				title="Add Today"
@@ -81,7 +87,12 @@
 <HabitHistory dates={data.habit?.dates} />
 
 <div class="my-6 mt-3 flex flex-row flex-wrap items-center justify-end gap-8">
-	<form method="POST" action="?/addDate" use:enhance class="flex flex-row items-end gap-2">
+	<form
+		method="POST"
+		action="?/addDate"
+		use:enhance={defaultHandleSubmit}
+		class="flex flex-row items-end gap-2"
+	>
 		<div class="join">
 			<label class="input input-sm join-item w-full">
 				<span class="label">Date</span>
@@ -116,7 +127,7 @@
 		</p>
 		<p>This action can not be undone.</p>
 		<div class="modal-action">
-			<form method="POST" action="?/delete" use:enhance>
+			<form method="POST" action="?/delete" use:enhance={defaultHandleSubmit}>
 				<button class="btn btn-error">Delete</button>
 			</form>
 		</div>

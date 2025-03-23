@@ -5,6 +5,7 @@
 	import CardComponent from '../CardComponent.svelte';
 	import { ICON_MAP } from '../icons';
 	import HabitActivityHistory from './HistoryComponent.svelte';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { habit } = $props();
 </script>
@@ -14,7 +15,7 @@
 		<a href="/{habit.id}">
 			<span class="link-hover link group-hover:text-primary text-lg">{habit.title}</span>
 		</a>
-		<form method="POST" action="/{habit.id}?/addToday" use:enhance>
+		<form method="POST" action="/{habit.id}?/addToday" use:enhance={defaultHandleSubmit}>
 			<button
 				class="btn btn-outline btn-secondary btn-xs px-0.5"
 				title="Add Today"

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 	import type { PageData } from './$types';
 
 	const { data } = $props<{ data: PageData }>();
@@ -37,7 +38,12 @@
 		Include <span class="bg-base-200 rounded-xs p-1">&#123;&#125;</span> in title or description to print
 		the current target value.
 	</p>
-	<form method="POST" action="?/createGoal" use:enhance class="flex flex-col items-end gap-3">
+	<form
+		method="POST"
+		action="?/createGoal"
+		use:enhance={defaultHandleSubmit}
+		class="flex flex-col items-end gap-3"
+	>
 		<fieldset class="fieldset w-full">
 			<legend class="fieldset-legend">Title</legend>
 			<input

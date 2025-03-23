@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 	import type { PageData } from './$types';
 
 	const { data } = $props<{ data: PageData }>();
@@ -7,7 +8,12 @@
 
 <div class="max-w-md">
 	<h3 class="pb-4 text-3xl">Update Habit</h3>
-	<form method="POST" action="?/updateHabit" use:enhance class="flex flex-col items-end gap-3">
+	<form
+		method="POST"
+		action="?/updateHabit"
+		use:enhance={defaultHandleSubmit}
+		class="flex flex-col items-end gap-3"
+	>
 		<fieldset class="fieldset w-full">
 			<legend class="fieldset-legend">Title</legend>
 			<input
