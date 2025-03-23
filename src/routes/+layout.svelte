@@ -3,11 +3,13 @@
 	import Icon from '@iconify/svelte';
 	import type { Snippet } from 'svelte';
 	import '../app.css';
+	import ToastComponent from '$lib/components/ToastComponent.svelte';
 
 	const { children } = $props<{ children: Snippet }>();
 </script>
 
 <main class="container mx-auto min-h-screen px-3">
+	<ToastComponent />
 	{@render children()}
 </main>
 
