@@ -20,7 +20,6 @@
 
 		return async ({ result, update }) => {
 			loading = false;
-			await update();
 
 			if (result.type === 'success') {
 				toasts.show('Success!', 'success');
@@ -28,6 +27,8 @@
 			} else if (result.type === 'error') {
 				toasts.show(result.error?.message || 'Operation failed!', 'error');
 			}
+
+			await update();
 		};
 	};
 </script>
