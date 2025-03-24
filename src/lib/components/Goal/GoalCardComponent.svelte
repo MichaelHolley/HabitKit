@@ -9,6 +9,7 @@
 	import { ICON_MAP } from '../icons';
 	import GoalDeleteModal from './GoalDeleteModal.svelte';
 	import GoalEditModal from './GoalEditModal.svelte';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { goal } = $props<{ goal: Goal }>();
 
@@ -89,7 +90,7 @@
 						<form
 							method="POST"
 							action="/goal/{goal.id}?/complete"
-							use:enhance
+							use:enhance={defaultHandleSubmit}
 							class="flex flex-row p-0"
 						>
 							<button
@@ -108,7 +109,7 @@
 					<li>
 						<div class="flex flex-row p-0">
 							<button
-								title="Delete Goal"
+								title="Edit Goal"
 								onclick={() => editModal?.showModal()}
 								class="btn btn-ghost btn-sm btn-block"
 							>

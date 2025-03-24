@@ -27,7 +27,7 @@ export const actions: Actions = {
 		const existingUser = await findUser(username as string);
 
 		if (!existingUser) {
-			return fail(400, { message: 'Incorrect username or password' });
+			return fail(400, { message: 'Incorrect credentials' });
 		}
 
 		const validPassword = await verify(existingUser.passwordHash, password, {
@@ -38,7 +38,7 @@ export const actions: Actions = {
 		});
 
 		if (!validPassword) {
-			return fail(400, { message: 'Incorrect username or password' });
+			return fail(400, { message: 'Incorrect credentials' });
 		}
 
 		const sessionToken = auth.generateSessionToken();
