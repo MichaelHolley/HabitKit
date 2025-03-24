@@ -9,8 +9,8 @@
 </script>
 
 <main class="container mx-auto min-h-screen px-3">
-	<ToastComponent />
 	{@render children()}
+	<ToastComponent />
 </main>
 
 <footer class="bg-base-300 py-4">
