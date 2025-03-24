@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { defaultHandleSubmit } from '$lib/utils/form';
+	import { defaultHandleDeleteSubmit } from '$lib/utils/form';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 
@@ -22,7 +22,7 @@
 				<tr>
 					<td class="pl-4">{dayjs(date as string).format('DD MMM YYYY')}</td>
 					<td>
-						<form method="POST" action="?/delete" use:enhance={defaultHandleSubmit}>
+						<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 							<input type="hidden" name="date" value={date} />
 							<button class="btn btn-outline btn-error btn-xs">Delete</button>
 						</form>

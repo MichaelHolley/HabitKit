@@ -53,7 +53,7 @@ const getDatesData = (dates: string[]): StatItem[] => {
 		{
 			title: 'Completion Rate',
 			value: Math.floor((sortedDates.length / daysSinceFirstDate) * 100) + '%',
-			description: `Active days since starting`
+			description: `${sortedDates.length} of ${daysSinceFirstDate} days`
 		},
 		{
 			title: 'Most Active',

@@ -4,14 +4,14 @@
 
 <div class="toast toast-end z-50">
 	{#each $toasts as toast (toast.id)}
-		<div class="alert alert-{toast.type} alert-soft">
+		<div
+			class="alert alert-soft"
+			class:alert-success={toast.type === 'success'}
+			class:alert-error={toast.type === 'error'}
+			class:alert-warning={toast.type === 'warning'}
+			class:alert-info={toast.type === 'info'}
+		>
 			<span>{toast.message}</span>
-			<!-- <button
-				class="btn btn-circle btn-ghost btn-sm absolute top-2 right-2"
-				on:click={() => toasts.remove(toast.id)}
-			>
-				<Icon icon="mdi:close" />
-			</button> -->
 		</div>
 	{/each}
 </div>

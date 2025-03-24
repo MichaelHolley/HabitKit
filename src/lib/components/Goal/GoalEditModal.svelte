@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { toasts } from '$lib/stores/toast';
 	import type { Goal } from '@prisma/client';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
@@ -22,7 +23,10 @@
 			await update();
 
 			if (result.type === 'success') {
+				toasts.show('Success!', 'success');
 				editModal.close();
+			} else if (result.type === 'error') {
+				toasts.show(result.error?.message || 'Operation failed!', 'error');
 			}
 		};
 	};

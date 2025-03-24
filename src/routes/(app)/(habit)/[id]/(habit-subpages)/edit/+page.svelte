@@ -4,6 +4,9 @@
 	import type { PageData } from './$types';
 
 	const { data } = $props<{ data: PageData }>();
+
+	let title = $state(data.habit.title);
+	let description = $state(data.habit.description);
 </script>
 
 <div class="max-w-md">
@@ -20,7 +23,7 @@
 				type="text"
 				class="input w-full"
 				name="title"
-				bind:value={data.habit.title}
+				bind:value={title}
 				required
 				placeholder="Enter title..."
 			/>
@@ -31,7 +34,7 @@
 				type="text"
 				class="input w-full"
 				name="description"
-				bind:value={data.habit.description}
+				bind:value={description}
 				placeholder="Enter description..."
 			/>
 			<p class="fieldset-label">Optional</p>

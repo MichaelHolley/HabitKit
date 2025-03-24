@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import CardComponent from '$lib/components/CardComponent.svelte';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
+	import { defaultHandleDeleteSubmit, defaultHandleSubmit } from '$lib/utils/form';
+	import { getHabitStats, type StatItem } from '$lib/utils/stats';
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { getHabitStats, type StatItem } from '$lib/utils/stats';
-	import CardComponent from '$lib/components/CardComponent.svelte';
-	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -21,6 +21,7 @@
 		{ title: 'Completion Rate', value: '0%', description: '' },
 		{ title: 'Most Active', value: '0', description: '' }
 	]);
+
 	$effect(() => {
 		if (data.habit.dates.length > 0) {
 			getHabitStats(data.habit)
@@ -127,7 +128,7 @@
 		</p>
 		<p>This action can not be undone.</p>
 		<div class="modal-action">
-			<form method="POST" action="?/delete" use:enhance={defaultHandleSubmit}>
+			<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 				<button class="btn btn-error">Delete</button>
 			</form>
 		</div>

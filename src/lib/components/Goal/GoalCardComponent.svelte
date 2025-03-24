@@ -109,7 +109,7 @@
 					<li>
 						<div class="flex flex-row p-0">
 							<button
-								title="Delete Goal"
+								title="Edit Goal"
 								onclick={() => editModal?.showModal()}
 								class="btn btn-ghost btn-sm btn-block"
 							>

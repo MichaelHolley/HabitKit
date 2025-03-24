@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { defaultHandleDeleteSubmit } from '$lib/utils/form';
 	import type { Goal } from '@prisma/client';
-	import type { SubmitFunction } from '@sveltejs/kit';
 
 	let { goal, deleteModal = $bindable() } = $props<{
 		goal: Goal;
@@ -9,21 +9,6 @@
 	}>();
 
 	const goalTitle = $derived(goal.title.replace('{}', goal.target));
-
-	let loading = $state(false);
-
-	const handleSubmit: SubmitFunction = () => {
-		loading = true;
-
-		return async ({ result, update }) => {
-			loading = false;
-			update();
-
-			if (result.type === 'success') {
-				deleteModal.close();
-			}
-		};
-	};
 </script>
 
 <dialog
@@ -41,8 +26,8 @@
 		</p>
 		<p>This action can not be undone.</p>
 		<div class="modal-action">
-			<form method="POST" action="/goal/{goal.id}?/delete" use:enhance={handleSubmit}>
-				<button class="btn btn-error" disabled={loading}>Delete</button>
+			<form method="POST" action="/goal/{goal.id}?/delete" use:enhance={defaultHandleDeleteSubmit}>
+				<button class="btn btn-error">Delete</button>
 			</form>
 		</div>
 	</div>
