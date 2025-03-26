@@ -4,7 +4,7 @@
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/e28df914-209a-4330-9104-a622fee12cb7" />
+![image](https://github.com/user-attachments/assets/a728cc12-88a3-4485-9cdb-92169214a5b8)
 
 ## Running locally
 
