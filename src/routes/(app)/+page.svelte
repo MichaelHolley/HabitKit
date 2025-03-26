@@ -16,7 +16,7 @@
 		<h2 class="text-3xl font-semibold">Habits</h2>
 		<a href="/create" class="btn btn-outline btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
-			Track New
+			Add
 		</a>
 	</div>
 
