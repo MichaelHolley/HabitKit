@@ -4,7 +4,7 @@
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-![ascent michaelholley de_ (1)](https://github.com/user-attachments/assets/e05f0eed-e120-4430-b6b6-0968644a5e8b)
+![ascent michaelholley de_ (1)](https://github.com/user-attachments/assets/b3d72a81-d877-4de7-960e-9840be3df663)
 
 ## Running locally
 
