@@ -40,4 +40,4 @@
 	<p style="color: red">{form?.message ?? ''}</p>
 </div>
 
-<div class="absolute right-2 bottom-2"><ThemeSwitchComponent /></div>
+<div class="absolute top-3 right-3"><ThemeSwitchComponent /></div>
