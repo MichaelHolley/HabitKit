@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import ThemeSwitchComponent from '$lib/components/ThemeSwitchComponent.svelte';
 	import { toasts } from '$lib/stores/toast';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { ActionData } from './$types';
@@ -38,3 +39,5 @@
 	</form>
 	<p style="color: red">{form?.message ?? ''}</p>
 </div>
+
+<div class="absolute right-2 bottom-2"><ThemeSwitchComponent /></div>
