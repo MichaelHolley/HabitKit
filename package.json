@@ -46,7 +46,6 @@
 		"@oslojs/encoding": "^1.1.0",
 		"@prisma/client": "6.5.0",
 		"dayjs": "^1.11.13",
-		"mysql2": "^3.13.0",
-		"theme-change": "^2.5.0"
+		"mysql2": "^3.13.0"
 	}
 }
