@@ -34,19 +34,20 @@
 		<a href="/" class="flex flex-row gap-1 text-4xl font-bold">
 			<img src="/ascent-icon.svg" alt="Logo" width="38" />Ascent
 		</a>
-		<div class="flex flex-row items-center gap-2 text-right">
-			<ThemeSwitchComponent />
-			<div>
+		<div class="text-right">
+			<div class="flex flex-row items-center gap-3">
+				<ThemeSwitchComponent />
 				<span class="text-xs">
 					Logged in as <span class="font-extrabold">{data.user?.username ?? 'UNDEFINED'}</span>
 				</span>
-				<form method="POST" action="/?/logout" use:enhance={handleLogout}>
-					<button class="text-md btn btn-link link-secondary btn-xs gap-1 px-0">
-						<Icon icon={ICON_MAP.logout} />
-						Sign out
-					</button>
-				</form>
 			</div>
+
+			<form method="POST" action="/?/logout" use:enhance={handleLogout}>
+				<button class="text-md btn btn-link link-secondary btn-xs gap-1 px-0">
+					<Icon icon={ICON_MAP.logout} />
+					Sign out
+				</button>
+			</form>
 		</div>
 	</div>
 

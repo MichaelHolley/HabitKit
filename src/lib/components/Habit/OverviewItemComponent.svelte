@@ -8,6 +8,7 @@
 	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { habit } = $props();
+	const todaySelected = $derived(habit.dates.includes(dayjs().format('YYYY-MM-DD')));
 </script>
 
 <CardComponent class="group flex flex-col p-4">
@@ -19,9 +20,9 @@
 			<button
 				class="btn btn-outline btn-secondary btn-xs px-0.5"
 				title="Add Today"
-				disabled={habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
+				disabled={todaySelected}
 			>
-				<Icon icon={ICON_MAP.plus} class="text-lg" />
+				<Icon icon={todaySelected ? ICON_MAP.check : ICON_MAP.plus} class="text-lg" />
 			</button>
 		</form>
 	</div>
