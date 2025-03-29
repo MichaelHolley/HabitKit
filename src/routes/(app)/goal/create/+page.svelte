@@ -27,7 +27,7 @@
 		<h3 class="text-3xl">Create Goal</h3>
 		<p>
 			or <button
-				class="link link-primary"
+				class="link link-secondary"
 				onclick={() => {
 					presetModal.showModal();
 				}}>use a Preset</button

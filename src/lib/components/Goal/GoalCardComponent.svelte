@@ -35,7 +35,7 @@
 	<div class="flex h-full flex-col justify-between p-4">
 		<div>
 			<div class="flex flex-row justify-between gap-1">
-				<span class="group-hover:text-primary text-lg">{titleDisplay}</span>
+				<span class="group-hover:text-secondary text-lg">{titleDisplay}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
 						class="btn btn-outline btn-secondary btn-xs px-0.5"
