@@ -1,5 +1,6 @@
 <script lang="ts">
-	type Theme = 'light' | 'dark';
+	const THEMES = ['light', 'dark'] as const;
+	type Theme = (typeof THEMES)[number];
 
 	let lightActive = $state(false);
 
