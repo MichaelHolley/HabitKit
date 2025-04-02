@@ -1,33 +1,40 @@
 <script lang="ts">
-	let current_theme = $state('');
+	type Theme = 'light' | 'dark';
+
+	let lightActive = $state(false);
 
 	$effect(() => {
 		if (typeof window !== 'undefined') {
 			const theme = window.localStorage.getItem('theme');
 			if (theme && ['dark', 'light'].includes(theme)) {
 				document.documentElement.setAttribute('data-theme', theme);
-				current_theme = theme;
+				lightActive = theme === 'light';
 			}
 		}
 	});
 
-	function setTheme(event: Event) {
-		const cbTarget = event.currentTarget as HTMLInputElement;
-		const theme = cbTarget.checked ? 'light' : 'dark';
-
-		console.log(theme);
-
+	const setTheme = (theme: Theme) => {
 		const one_year = 60 * 60 * 24 * 365;
 		window.localStorage.setItem('theme', theme);
 		document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
 		document.documentElement.setAttribute('data-theme', theme);
-		current_theme = theme;
+		lightActive = theme === 'light';
+	};
+
+	function onThemeSwitch(event: Event) {
+		const cbTarget = event.currentTarget as HTMLInputElement;
+		setTheme(cbTarget.checked ? 'light' : 'dark');
 	}
 </script>
 
 <label class="swap swap-rotate">
 	<!-- this hidden checkbox controls the state -->
-	<input type="checkbox" class="theme-controller" on:change={setTheme} />
+	<input
+		type="checkbox"
+		class="theme-controller"
+		onchange={onThemeSwitch}
+		bind:checked={lightActive}
+	/>
 
 	<!-- sun icon -->
 	<svg class="swap-on size-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
