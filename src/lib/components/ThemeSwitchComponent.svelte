@@ -18,15 +18,17 @@
 				const systemTheme = prefersDark ? 'dark' : 'light';
 				setTheme(systemTheme);
 			} else if (['dark', 'light'].includes(theme)) {
-				document.documentElement.setAttribute('data-theme', theme);
-				lightActive = theme === 'light';
+				setTheme(theme as Theme, true);
 			}
 		}
 	});
 
-	const setTheme = (theme: Theme) => {
-		const one_year = 60 * 60 * 24 * 365;
-		document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
+	const setTheme = (theme: Theme, skipCookie = false) => {
+		if (!skipCookie) {
+			const one_year = 60 * 60 * 24 * 365;
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
+		}
+
 		document.documentElement.setAttribute('data-theme', theme);
 		lightActive = theme === 'light';
 	};
