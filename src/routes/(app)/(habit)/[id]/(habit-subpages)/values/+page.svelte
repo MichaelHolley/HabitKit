@@ -20,7 +20,7 @@
 			{/if}
 			<tbody>
 				<tr>
-					<td class="pl-4">{dayjs(date as string).format('DD MMM YYYY')}</td>
+					<td class="pl-4">{dayjs(date as string).format('ddd, DD MMM YYYY')}</td>
 					<td>
 						<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 							<input type="hidden" name="date" value={date} />

@@ -33,6 +33,8 @@
 				});
 		}
 	});
+
+	const todaySelected = $derived(data.habit.dates.includes(dayjs().format('YYYY-MM-DD')));
 </script>
 
 <div>
@@ -64,7 +66,7 @@
 				title="Add Today"
 				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
-				<Icon icon={ICON_MAP.plus} class="text-base" />
+				<Icon icon={todaySelected ? ICON_MAP.check : ICON_MAP.plus} class="me-1 text-base" />
 				Today
 			</button>
 		</form>
