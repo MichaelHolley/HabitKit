@@ -6,8 +6,18 @@
 
 	$effect(() => {
 		if (typeof window !== 'undefined') {
-			const theme = window.localStorage.getItem('theme');
-			if (theme && ['dark', 'light'].includes(theme)) {
+			// Check cookie first
+			const theme = document.cookie
+				.split('; ')
+				.find((row) => row.startsWith('theme='))
+				?.split('=')[1];
+
+			// If no cookie, check system preference
+			if (!theme) {
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const systemTheme = prefersDark ? 'dark' : 'light';
+				setTheme(systemTheme);
+			} else if (['dark', 'light'].includes(theme)) {
 				document.documentElement.setAttribute('data-theme', theme);
 				lightActive = theme === 'light';
 			}
@@ -16,7 +26,6 @@
 
 	const setTheme = (theme: Theme) => {
 		const one_year = 60 * 60 * 24 * 365;
-		window.localStorage.setItem('theme', theme);
 		document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
 		document.documentElement.setAttribute('data-theme', theme);
 		lightActive = theme === 'light';
