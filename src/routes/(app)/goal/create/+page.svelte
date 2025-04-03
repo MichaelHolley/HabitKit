@@ -96,7 +96,7 @@
 				>
 					<div>{preset.title}</div>
 					{#if preset.description}
-						<div class="text-xs text-neutral-400">{preset.description}</div>
+						<div class="text-base-content/50 text-xs">{preset.description}</div>
 					{/if}
 				</button>
 			{/each}

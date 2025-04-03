@@ -44,13 +44,13 @@
 			<h2 class="text-3xl">{data.habit?.title}</h2>
 		</div>
 		<div class="items-center gap-x-3 text-right text-xs">
-			<p class="text-2xs text-neutral-400 sm:text-xs">Modified at</p>
+			<p class="text-2xs text-base-content/50 sm:text-xs">Modified at</p>
 			<p>
 				{dayjs(data.habit.updatedAt).format('DD MMM YYYY - HH:mm')}
 			</p>
 		</div>
 	</div>
-	<p class="text-xs text-neutral-400">{data.habit?.description}</p>
+	<p class="text-base-content/50 text-xs">{data.habit?.description}</p>
 </div>
 
 <div class="mt-6 mb-4 flex flex-row flex-wrap justify-between gap-2">
