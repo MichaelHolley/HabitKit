@@ -4,14 +4,6 @@
 	let { children, class: className }: { children: Snippet; class?: string } = $props();
 </script>
 
-<div class="card border-base-300 bg-base-200 rounded-box border {className}">
+<div class="border-base-300 bg-base-200 rounded-box border {className} shadow-md">
 	{@render children()}
 </div>
-
-<style>
-	.card {
-		box-shadow:
-			rgba(0, 0, 0, 0.16) 0px 3px 6px,
-			rgba(0, 0, 0, 0.23) 0px 3px 6px;
-	}
-</style>

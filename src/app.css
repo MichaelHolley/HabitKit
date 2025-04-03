@@ -1,10 +1,6 @@
 @import 'tailwindcss';
 
-@plugin 'daisyui' {
-	themes:
-		dark --prefersdark --default,
-		light;
-}
+@plugin 'daisyui';
 
 @theme {
 	--breakpoint-xs: 480px;
@@ -36,6 +32,8 @@ html {
 body {
 	@apply bg-base-100;
 }
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui/theme" {
 	name: 'dark';
