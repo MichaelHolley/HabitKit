@@ -1,10 +1,10 @@
-# HabitKit
+# Ascent
 
-[![Build & Publish](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml/badge.svg?branch=main)](https://github.com/MichaelHolley/HabitKit/actions/workflows/nixpacks_publish.yml)
+[![Build & Publish](https://github.com/MichaelHolley/Ascent/actions/workflows/nixpacks_publish.yml/badge.svg?branch=main)](https://github.com/MichaelHolley/Ascent/actions/workflows/nixpacks_publish.yml)
 
 A simple and intuitive app to track, build, and maintain your habits for a better you!
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/e28df914-209a-4330-9104-a622fee12cb7" />
+![ascent michaelholley de_ (1)](https://github.com/user-attachments/assets/b3d72a81-d877-4de7-960e-9840be3df663)
 
 ## Running locally
 
@@ -26,22 +26,22 @@ Start the web server:
 
 ```yml
 services:
-  habitkitweb:
-    image: mpholley/habitkit:latest
+  ascentweb:
+    image: mpholley/ascent:latest
     restart: always
     ports:
       - 3000:3000
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql://root:mysecretpassword@db:3306/HabitKit
+      - DATABASE_URL=mysql://root:mysecretpassword@db:3306/Ascent
       - ORIGIN=
   db:
     image: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mysecretpassword
-      MYSQL_DATABASE: HabitKit
+      MYSQL_DATABASE: Ascent
     volumes:
       - mysql_data:/var/lib/mysql
 

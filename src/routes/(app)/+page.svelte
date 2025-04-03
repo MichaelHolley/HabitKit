@@ -14,20 +14,20 @@
 <section class="my-6">
 	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
 		<h2 class="text-3xl font-semibold">Habits</h2>
-		<a href="/create" class="btn btn-outline btn-primary btn-sm gap-0">
+		<a href="/create" class="btn btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
-			Track New
+			Add
 		</a>
 	</div>
 
 	{#if data.habits.length > 0}
-		<div class="my-3 mt-2 max-w-lg">
+		<div class="my-4 mt-2 max-w-lg">
 			<LastXDays habits={data.habits} />
 		</div>
 	{/if}
 
-	<div class="my-3">
-		<div class="habit-overview-grid grid flex-wrap justify-start gap-3">
+	<div class="my-4">
+		<div class="habit-overview-grid grid flex-wrap justify-start gap-4">
 			{#each data.habits as habit}
 				<HabitOverviewItem {habit} />
 			{/each}
@@ -35,16 +35,16 @@
 	</div>
 </section>
 
-<section class="my-6 mt-8">
+<section class="my-6 mt-10">
 	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
 		<h2 class="text-3xl font-semibold">Goals</h2>
-		<a href="/goal/create" class="btn btn-outline btn-primary btn-sm gap-0">
+		<a href="/goal/create" class="btn btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Add
 		</a>
 	</div>
 
-	<div class="goal-overview-grid my-3 mt-2 grid flex-wrap justify-start gap-3">
+	<div class="goal-overview-grid my-3 mt-2 grid flex-wrap justify-start gap-4">
 		{#each visibleGoals as goal}
 			<GoalCardComponent {goal} />
 		{/each}

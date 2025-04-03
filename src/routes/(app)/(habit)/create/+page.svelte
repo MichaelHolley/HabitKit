@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 	import type { PageData } from './$types';
 
 	const { data } = $props<{ data: PageData }>();
@@ -24,14 +25,19 @@
 		<h3 class="text-3xl">Create Habit</h3>
 		<p>
 			or <button
-				class="link link-primary"
+				class="link link-secondary"
 				onclick={() => {
 					presetModal.showModal();
 				}}>use a Preset</button
 			>
 		</p>
 	</div>
-	<form method="POST" action="?/createHabit" use:enhance class="flex flex-col items-end gap-3">
+	<form
+		method="POST"
+		action="?/createHabit"
+		use:enhance={defaultHandleSubmit}
+		class="flex flex-col items-end gap-3"
+	>
 		<fieldset class="fieldset w-full">
 			<legend class="fieldset-legend">Title</legend>
 			<input
@@ -68,7 +74,7 @@
 		<div class="-mr-4 flex max-h-80 grow flex-col gap-1 self-stretch overflow-y-scroll pr-4">
 			{#each data.presetOptions as preset}
 				<button
-					class="border-base-300 bg-base-200 hover:bg-base-300 rounded-md border px-4 py-2 text-left"
+					class="border-base-300 bg-base-200 hover:bg-base-300 rounded-box border px-4 py-2 text-left hover:cursor-pointer"
 					onclick={() => selectPreset(preset)}
 				>
 					<div>{preset.title}</div>

@@ -22,10 +22,10 @@ jobs:
         run: curl -sSL https://nixpacks.com/install.sh | bash
 
       - name: Build image with nixpacks
-        run: nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/habitkit:${{ github.sha }}
+        run: nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }}
 
       - name: Push image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/habitkit:${{ github.sha }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/habitkit:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/habitkit:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/habitkit:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:latest

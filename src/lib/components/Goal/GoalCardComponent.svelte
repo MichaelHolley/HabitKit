@@ -9,6 +9,7 @@
 	import { ICON_MAP } from '../icons';
 	import GoalDeleteModal from './GoalDeleteModal.svelte';
 	import GoalEditModal from './GoalEditModal.svelte';
+	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { goal } = $props<{ goal: Goal }>();
 
@@ -34,7 +35,7 @@
 	<div class="flex h-full flex-col justify-between p-4">
 		<div>
 			<div class="flex flex-row justify-between gap-1">
-				<span class="group-hover:text-primary text-lg">{titleDisplay}</span>
+				<span class="group-hover:text-secondary text-lg">{titleDisplay}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
 					<button
 						class="btn btn-outline btn-secondary btn-xs px-0.5"
@@ -52,7 +53,7 @@
 			<div class="flex flex-col">
 				<div class="mt-4 flex flex-row justify-center">
 					<div
-						class="radial-progress border-base-300 bg-base-300 text-primary border-4"
+						class="radial-progress border-base-300 bg-base-300 text-secondary border-4"
 						style="--value:{progressValue}"
 						role="progressbar"
 					>
@@ -89,7 +90,7 @@
 						<form
 							method="POST"
 							action="/goal/{goal.id}?/complete"
-							use:enhance
+							use:enhance={defaultHandleSubmit}
 							class="flex flex-row p-0"
 						>
 							<button
@@ -108,7 +109,7 @@
 					<li>
 						<div class="flex flex-row p-0">
 							<button
-								title="Delete Goal"
+								title="Edit Goal"
 								onclick={() => editModal?.showModal()}
 								class="btn btn-ghost btn-sm btn-block"
 							>

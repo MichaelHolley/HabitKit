@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import CardComponent from '$lib/components/CardComponent.svelte';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
+	import { defaultHandleDeleteSubmit, defaultHandleSubmit } from '$lib/utils/form';
+	import { getHabitStats, type StatItem } from '$lib/utils/stats';
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { getHabitStats, type StatItem } from '$lib/utils/stats';
-	import CardComponent from '$lib/components/CardComponent.svelte';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -20,6 +21,7 @@
 		{ title: 'Completion Rate', value: '0%', description: '' },
 		{ title: 'Most Active', value: '0', description: '' }
 	]);
+
 	$effect(() => {
 		if (data.habit.dates.length > 0) {
 			getHabitStats(data.habit)
@@ -31,6 +33,8 @@
 				});
 		}
 	});
+
+	const todaySelected = $derived(data.habit.dates.includes(dayjs().format('YYYY-MM-DD')));
 </script>
 
 <div>
@@ -51,13 +55,18 @@
 
 <div class="mt-6 mb-4 flex flex-row flex-wrap justify-between gap-2">
 	<div class="flex flex-row gap-2">
-		<form method="POST" action="?/addToday" use:enhance class="flex flex-col justify-start">
+		<form
+			method="POST"
+			action="?/addToday"
+			use:enhance={defaultHandleSubmit}
+			class="flex flex-col justify-start"
+		>
 			<button
 				class="btn btn-outline btn-secondary btn-xs gap-0"
 				title="Add Today"
 				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
-				<Icon icon={ICON_MAP.plus} class="text-base" />
+				<Icon icon={todaySelected ? ICON_MAP.check : ICON_MAP.plus} class="me-1 text-base" />
 				Today
 			</button>
 		</form>
@@ -81,7 +90,12 @@
 <HabitHistory dates={data.habit?.dates} />
 
 <div class="my-6 mt-3 flex flex-row flex-wrap items-center justify-end gap-8">
-	<form method="POST" action="?/addDate" use:enhance class="flex flex-row items-end gap-2">
+	<form
+		method="POST"
+		action="?/addDate"
+		use:enhance={defaultHandleSubmit}
+		class="flex flex-row items-end gap-2"
+	>
 		<div class="join">
 			<label class="input input-sm join-item w-full">
 				<span class="label">Date</span>
@@ -116,7 +130,7 @@
 		</p>
 		<p>This action can not be undone.</p>
 		<div class="modal-action">
-			<form method="POST" action="?/delete" use:enhance>
+			<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 				<button class="btn btn-error">Delete</button>
 			</form>
 		</div>

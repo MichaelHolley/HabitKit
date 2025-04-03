@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { toasts } from '$lib/stores/toast';
 	import type { Goal } from '@prisma/client';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
@@ -17,11 +18,14 @@
 
 		return async ({ result, update }) => {
 			loading = false;
-			update();
 
-			if (result.type === 'success') {
-				deleteModal.close();
+			if (result.type === 'success' || result.type === 'redirect') {
+				toasts.show('Item deleted!', 'info');
+			} else if (result.type === 'error') {
+				toasts.show('Deletion failed!', 'error');
 			}
+
+			await update();
 		};
 	};
 </script>

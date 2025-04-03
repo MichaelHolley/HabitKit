@@ -8,7 +8,7 @@
 
 <div>
 	<div class="stat place-items-center">
-		<div class="stat-title flex flex-row gap-1">
+		<div class="stat-title flex flex-row items-center gap-1">
 			{#if loading && !stat.title}
 				<div class="skeleton h-4 w-28"></div>
 			{:else}
