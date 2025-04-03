@@ -46,7 +46,7 @@
 					</button>
 				</form>
 			</div>
-			<p class="text-base-content/50 line-clamp-2 text-xs">{descrDisplay}</p>
+			<p class="text-base-content/60 line-clamp-2 text-xs">{descrDisplay}</p>
 		</div>
 
 		<div>
