@@ -14,16 +14,22 @@ export const defaultOptions = {
 		},
 		background: 'transparent'
 	},
-	// xaxis: { labels: { style: { colors: themes.dim['base-content'] } } },
-	// yaxis: { labels: { style: { colors: themes.dim['base-content'] } } },
+	xaxis: {
+		// labels: { style: { colors: themes.dim['base-content'] } }
+	},
+	yaxis: {
+		// labels: { style: { colors: themes.dim['base-content'] } }
+	},
 	stroke: {
 		curve: 'smooth'
 	},
 	theme: {
 		mode: 'dark'
+	},
+	colors: [
+		// themes.dim.primary
+	],
+	grid: {
+		// borderColor: themes.dim['neutral']
 	}
-	// colors: [themes.dim.primary],
-	// grid: {
-	// 	borderColor: themes.dim['neutral']
-	// }
 };

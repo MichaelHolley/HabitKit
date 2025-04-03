@@ -10,6 +10,7 @@
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import LineChartComponent from '$lib/components/Charts/LineChartComponent.svelte';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -116,6 +117,7 @@
 				<StatComponent {stat} loading={statsLoading} />
 			{/each}
 		</div>
+		<LineChartComponent series={[{ name: 'Date', data: data.habit.dates }]} />
 	</CardComponent>
 {/if}
 
