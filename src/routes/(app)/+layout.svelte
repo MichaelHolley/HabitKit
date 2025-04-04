@@ -32,7 +32,8 @@
 	</noscript>
 	<div class="mb-7 flex flex-row items-center justify-between">
 		<a href="/" class="flex flex-row gap-1 text-4xl font-bold">
-			<img src="/ascent-icon.svg" alt="Logo" width="38" />Ascent
+			<img src="/ascent-icon.svg" alt="Logo" width="38" />
+			<span class="text-shadow-sm">Ascent</span>
 		</a>
 		<div class="text-right">
 			<div class="flex flex-row items-center gap-3">
