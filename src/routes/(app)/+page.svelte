@@ -52,10 +52,7 @@
 </section>
 
 <style>
-	.habit-overview-grid {
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	}
-
+	.habit-overview-grid,
 	.goal-overview-grid {
 		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	}
