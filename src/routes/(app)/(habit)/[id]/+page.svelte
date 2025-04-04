@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import CardComponent from '$lib/components/CardComponent.svelte';
+	import DropDownComponent from '$lib/components/DropDownComponent.svelte';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
@@ -75,16 +76,27 @@
 			Show Values
 		</a>
 	</div>
-	<div class="flex flex-row gap-2">
-		<a href="/{data.habit.id}/edit" class="btn btn-outline btn-error btn-xs gap-1">
-			<Icon icon={ICON_MAP.edit} class="text-base" />
-			Edit
-		</a>
-		<button class="btn btn-error btn-xs gap-0" onclick={() => deleteModal?.showModal()}>
-			<Icon icon={ICON_MAP.delete} class="text-base" />
-			Delete
-		</button>
-	</div>
+	<DropDownComponent class="dropdown-end">
+		<li>
+			<a href="/{data.habit.id}/edit" class="btn btn-ghost btn-sm btn-block">
+				<div class="flex w-full flex-row items-center gap-1 text-start">
+					<Icon icon={ICON_MAP.edit} class="text-base" />
+					Edit
+				</div>
+			</a>
+		</li>
+		<li>
+			<button
+				class="btn btn-ghost btn-sm btn-block hover:bg-error hover:border-error"
+				onclick={() => deleteModal?.showModal()}
+			>
+				<div class="flex w-full flex-row items-center gap-1 text-start">
+					<Icon icon={ICON_MAP.delete} class="text-base" />
+					Delete
+				</div>
+			</button>
+		</li>
+	</DropDownComponent>
 </div>
 
 <HabitHistory dates={data.habit?.dates} />
