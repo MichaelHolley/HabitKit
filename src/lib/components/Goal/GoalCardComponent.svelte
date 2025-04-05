@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="-mb-2 flex flex-row justify-end">
-				<DropDownComponent class="dropdown-top">
+				<DropDownComponent class="dropdown-end  dropdown-top">
 					<li>
 						<form
 							method="POST"
