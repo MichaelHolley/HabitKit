@@ -53,7 +53,7 @@
 			<div class="flex flex-col">
 				<div class="mt-4 flex flex-row justify-center">
 					<div
-						class="radial-progress border-base-300 bg-base-300 text-secondary border-4"
+						class="radial-progress border-base-300 bg-base-300 text-secondary border-4 shadow-md"
 						style="--value:{progressValue}"
 						role="progressbar"
 					>
