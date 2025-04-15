@@ -1,5 +1,5 @@
 import { deleteHabit, getHabitForUser, updateDates } from '$lib/server/habit';
-import { redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import dayjs from 'dayjs';
 
@@ -32,6 +32,8 @@ export const actions: Actions = {
 			const dates = habit.dates;
 			if (!dates.includes(date)) {
 				dates.push(date);
+			} else {
+				return fail(400, { message: 'Date already exists' });
 			}
 
 			await updateDates(event.params.id, event.locals.user.id, dates);

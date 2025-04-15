@@ -15,7 +15,7 @@
 		return async ({ result, update }) => {
 			if (result.type === 'success' || result.type === 'redirect') {
 				toasts.show('You were logged out!', 'success');
-			} else if (result.type === 'error') {
+			} else if (result.type === 'error' || result.type === 'failure') {
 				toasts.show('Logout failed!', 'error');
 			}
 

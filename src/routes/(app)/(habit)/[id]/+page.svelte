@@ -15,6 +15,8 @@
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
 
+	const today = dayjs().format('YYYY-MM-DD');
+
 	let statsLoading = $state(true);
 	let stats = $state<StatItem[]>([
 		{ title: 'Longest Streak', value: '0', description: '' },
@@ -111,7 +113,7 @@
 		<div class="join">
 			<label class="input input-sm join-item w-full">
 				<span class="label">Date</span>
-				<input type="date" name="date" required />
+				<input type="date" name="date" max={today} required />
 			</label>
 			<button class="btn btn-sm btn-primary join-item gap-0">
 				<Icon icon={ICON_MAP.plus} class="text-base" />

@@ -7,6 +7,11 @@ export const defaultHandleSubmit: SubmitFunction = () => {
 			toasts.show('Success!', 'success');
 		} else if (result.type === 'error') {
 			toasts.show(result.error?.message || 'Operation failed!', 'error');
+		} else if (result.type === 'failure') {
+			toasts.show(
+				result.data?.message || JSON.stringify(result.data) || 'Operation failed!',
+				'warning'
+			);
 		}
 
 		await update();
@@ -19,6 +24,11 @@ export const defaultHandleDeleteSubmit: SubmitFunction = () => {
 			toasts.show('Item deleted!', 'info');
 		} else if (result.type === 'error') {
 			toasts.show('Deletion failed!', 'error');
+		} else if (result.type === 'failure') {
+			toasts.show(
+				result.data?.message || JSON.stringify(result.data) || 'Operation failed!',
+				'warning'
+			);
 		}
 
 		await update();
