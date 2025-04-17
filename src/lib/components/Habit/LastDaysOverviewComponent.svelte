@@ -25,7 +25,9 @@
 
 <CardComponent>
 	<div class="p-4 pt-2">
-		<h4 class="mb-1 text-right text-xs">Last {showDaysValue} Days</h4>
+		<h4 class="text-base-content/60 mb-1 text-right text-xs">
+			Last <span class="text-base-content">{showDaysValue}</span> Days
+		</h4>
 		<div class="flex flex-row justify-between gap-3">
 			<div class="flex flex-col justify-between">
 				{#each habits as habit}

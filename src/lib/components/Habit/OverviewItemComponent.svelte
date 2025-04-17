@@ -27,7 +27,7 @@
 		</form>
 	</div>
 	<a href="/{habit.id}">
-		<p class="mb-1 line-clamp-2 text-xs text-neutral-400">{habit.description}</p>
+		<p class="text-base-content/60 mb-1 line-clamp-2 text-xs">{habit.description}</p>
 		<HabitActivityHistory dates={habit.dates} />
 	</a>
 </CardComponent>

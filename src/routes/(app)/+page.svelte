@@ -13,7 +13,7 @@
 
 <section class="my-6">
 	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
-		<h2 class="text-3xl font-semibold">Habits</h2>
+		<h2 class="text-base-content/70 text-3xl font-semibold text-shadow-sm">Habits</h2>
 		<a href="/create" class="btn btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Add
@@ -37,7 +37,7 @@
 
 <section class="my-6 mt-10">
 	<div class="xs:justify-start flex flex-row items-center justify-between gap-4">
-		<h2 class="text-3xl font-semibold">Goals</h2>
+		<h2 class="text-base-content/70 text-3xl font-semibold text-shadow-sm">Goals</h2>
 		<a href="/goal/create" class="btn btn-primary btn-sm gap-0">
 			<Icon icon={ICON_MAP.plus} class="text-lg" />
 			Add
@@ -52,10 +52,7 @@
 </section>
 
 <style>
-	.habit-overview-grid {
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	}
-
+	.habit-overview-grid,
 	.goal-overview-grid {
 		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	}

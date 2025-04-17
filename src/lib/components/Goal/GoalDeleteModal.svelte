@@ -21,7 +21,7 @@
 
 			if (result.type === 'success' || result.type === 'redirect') {
 				toasts.show('Item deleted!', 'info');
-			} else if (result.type === 'error') {
+			} else if (result.type === 'error' || result.type === 'failure') {
 				toasts.show('Deletion failed!', 'error');
 			}
 

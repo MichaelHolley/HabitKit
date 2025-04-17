@@ -11,7 +11,7 @@
 		return async ({ result, update }) => {
 			if (result.type === 'success' || result.type === 'redirect') {
 				toasts.show('Welcome!', 'success');
-			} else if (result.type === 'error') {
+			} else if (result.type === 'error' || result.type === 'failure') {
 				toasts.show('Submission failed!', 'error');
 			}
 

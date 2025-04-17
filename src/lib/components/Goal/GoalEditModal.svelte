@@ -26,6 +26,11 @@
 				editModal.close();
 			} else if (result.type === 'error') {
 				toasts.show(result.error?.message || 'Operation failed!', 'error');
+			} else if (result.type === 'failure') {
+				toasts.show(
+					result.data?.message || JSON.stringify(result.data) || 'Operation failed!',
+					'warning'
+				);
 			}
 
 			await update();

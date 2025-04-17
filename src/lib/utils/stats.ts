@@ -58,10 +58,12 @@ const getDatesData = (dates: string[]): StatItem[] => {
 		}
 	}
 
+	const maxStreakLength = maxStreak.map((date) => date.format('YYYY-MM-DD')).length;
+
 	return [
 		{
 			title: 'Longest Streak',
-			value: maxStreak.map((date) => date.format('YYYY-MM-DD')).length,
+			value: maxStreakLength,
 			description: `Starting ${maxStreak[0].format('DD MMM YYYY')}`
 		},
 		{
@@ -71,7 +73,7 @@ const getDatesData = (dates: string[]): StatItem[] => {
 				countCurrentStreak != 0 && currentStreakLast
 					? `Starting ${currentStreakLast.format('DD MMM YYYY')}`
 					: 'Not on a streak',
-			trend: tempMaxStreak.length >= maxStreak.length ? 'up' : undefined
+			trend: countCurrentStreak >= maxStreakLength ? 'up' : undefined
 		},
 		{
 			title: 'Completion Rate',

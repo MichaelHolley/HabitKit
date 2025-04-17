@@ -46,14 +46,14 @@
 					</button>
 				</form>
 			</div>
-			<p class="line-clamp-2 text-xs text-neutral-400">{descrDisplay}</p>
+			<p class="text-base-content/60 line-clamp-2 text-xs">{descrDisplay}</p>
 		</div>
 
 		<div>
 			<div class="flex flex-col">
 				<div class="mt-4 flex flex-row justify-center">
 					<div
-						class="radial-progress border-base-300 bg-base-300 text-secondary border-4"
+						class="radial-progress border-base-300 bg-base-300 text-secondary border-4 shadow-md"
 						style="--value:{progressValue}"
 						role="progressbar"
 					>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="-mb-2 flex flex-row justify-end">
-				<DropDownComponent>
+				<DropDownComponent class="dropdown-end  dropdown-top">
 					<li>
 						<form
 							method="POST"
@@ -125,7 +125,7 @@
 							<button
 								title="Delete Goal"
 								onclick={() => deleteModal?.showModal()}
-								class="btn btn-ghost btn-sm btn-block"
+								class="btn btn-ghost btn-sm btn-block hover:bg-error hover:border-error"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
 									<Icon icon={ICON_MAP.delete} class="text-lg" />
