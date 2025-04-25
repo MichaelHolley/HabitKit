@@ -20,16 +20,16 @@
 <div bind:clientWidth={containerWidth} class="flex flex-row justify-end">
 	<div class="text-2xs grid grid-flow-col grid-rows-8 items-center justify-center gap-1">
 		<div></div>
-		<div class="sticky left-0 pr-1">Mon</div>
+		<div class="sticky left-0 pr-1 text-base-content/60">Mon</div>
 		<div></div>
-		<div class="sticky left-0 pr-1">Wed</div>
+		<div class="sticky left-0 pr-1 text-base-content/60">Wed</div>
 		<div></div>
-		<div class="sticky left-0 pr-1">Fri</div>
+		<div class="sticky left-0 pr-1 text-base-content/60">Fri</div>
 		<div></div>
-		<div class="sticky left-0 pr-1">Sun</div>
+		<div class="sticky left-0 pr-1 text-base-content/60">Sun</div>
 		{#each { length: showDays }, i}
 			{#if i % 7 === 0 && today.subtract(showDays - i, 'days').date() <= 7}
-				<div class="-mr-2">
+				<div class="-mr-2 text-base-content/60">
 					{today
 						.subtract(visibleWeeks * 7 - i, 'days')
 						.add(6, 'days')
