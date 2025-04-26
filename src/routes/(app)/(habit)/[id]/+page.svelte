@@ -142,7 +142,7 @@
 
 {#if data.habit.dates.length > 0 && !!stats && stats.length > 0}
 	<CardComponent class="p-4">
-		<div class="flex flex-row flex-wrap items-center items-end justify-center gap-4">
+		<div class="flex flex-row flex-wrap items-end justify-center gap-4">
 			{#each stats as stat}
 				<StatComponent {stat} loading={statsLoading} />
 			{/each}
