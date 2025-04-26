@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import CardComponent from '$lib/components/CardComponent.svelte';
 	import DropDownComponent from '$lib/components/DropDownComponent.svelte';
+	import EngagementComponent from '$lib/components/Habit/EngagementComponent.svelte';
 	import HabitHistory from '$lib/components/Habit/HistoryComponent.svelte';
 	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
@@ -18,12 +19,7 @@
 	const today = dayjs().format('YYYY-MM-DD');
 
 	let statsLoading = $state(true);
-	let stats = $state<StatItem[]>([
-		{ title: 'Longest Streak', value: '0', description: '' },
-		{ title: 'Current Streak', value: '0', description: '' },
-		{ title: 'Completion Rate', value: '0%', description: '' },
-		{ title: 'Most Active', value: '0', description: '' }
-	]);
+	let stats = $state<StatItem[]>([]);
 
 	$effect(() => {
 		if (data.habit.dates.length > 0) {
@@ -38,6 +34,27 @@
 	});
 
 	const todaySelected = $derived(data.habit.dates.includes(dayjs().format('YYYY-MM-DD')));
+
+	const completionRate = $derived.by(() => {
+		if (stats.length === 0) {
+			return 0;
+		}
+
+		const completionStatValue = stats.find((stat) => stat.title === 'Completion Rate')?.value;
+		if (!completionStatValue) {
+			return 0;
+		}
+
+		if (typeof completionStatValue === 'string') {
+			return parseFloat(completionStatValue.replace('%', '')) / 100;
+		}
+
+		if (typeof completionStatValue === 'number') {
+			return completionStatValue / 100;
+		}
+
+		return 0;
+	});
 </script>
 
 <div>
@@ -125,10 +142,11 @@
 
 {#if data.habit.dates.length > 0 && !!stats && stats.length > 0}
 	<CardComponent class="p-4">
-		<div class="flex flex-row flex-wrap items-center justify-center gap-4">
+		<div class="flex flex-row flex-wrap items-center items-end justify-center gap-4">
 			{#each stats as stat}
 				<StatComponent {stat} loading={statsLoading} />
 			{/each}
+			<EngagementComponent {completionRate} loading={statsLoading} />
 		</div>
 	</CardComponent>
 {/if}
