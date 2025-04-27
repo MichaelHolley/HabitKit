@@ -28,7 +28,9 @@
 					stats = statsRes;
 				})
 				.finally(() => {
-					statsLoading = false;
+					setTimeout(() => {
+						statsLoading = false;
+					}, 1000);
 				});
 		}
 	});
@@ -142,11 +144,23 @@
 
 {#if data.habit.dates.length > 0 && !!stats && stats.length > 0}
 	<CardComponent class="p-4">
-		<div class="flex flex-row flex-wrap items-end justify-center gap-4">
+		<div class="flex flex-row flex-wrap items-start justify-center gap-4">
 			{#each stats as stat}
-				<StatComponent {stat} loading={statsLoading} />
+				<StatComponent
+					title={stat.title}
+					description={stat.description}
+					value={stat.value}
+					trend={stat.trend}
+					loading={statsLoading}
+				/>
 			{/each}
-			<EngagementComponent {completionRate} loading={statsLoading} />
+			<StatComponent
+				title="Engagement"
+				description="based on your completion-rate"
+				loading={statsLoading}
+			>
+				<EngagementComponent {completionRate} class="min-h-8" />
+			</StatComponent>
 		</div>
 	</CardComponent>
 {/if}
