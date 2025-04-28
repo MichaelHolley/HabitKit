@@ -38,11 +38,11 @@
 			{#if loading}
 				<div class="skeleton my-2 h-8 w-8"></div>
 			{:else}
-				{#if value}
+				{#if value != undefined && value != null}
 					{value}
 				{/if}
 				{#if children}
-					<div class="min-h-5">
+					<div class="flex h-full min-h-12 flex-col justify-center">
 						{@render children()}
 					</div>
 				{/if}

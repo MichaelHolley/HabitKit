@@ -154,10 +154,10 @@
 			{/each}
 			<StatComponent
 				title="Engagement"
-				description="based on your completion-rate"
+				description="based on completion-rate"
 				loading={statsLoading}
 			>
-				<EngagementComponent {completionRate} class="min-h-8" />
+				<EngagementComponent {completionRate} />
 			</StatComponent>
 		</div>
 	</CardComponent>

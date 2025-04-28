@@ -18,6 +18,7 @@
 </script>
 
 <div class={className}>
+	<div class="h-5"></div>
 	<div
 		class="*:bg-base-100 *:border-base-content/60 text-2xs flex h-2 flex-row gap-1 text-center font-bold *:h-full *:w-12 *:rounded-full *:border"
 	>
