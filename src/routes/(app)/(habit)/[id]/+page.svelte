@@ -28,9 +28,7 @@
 					stats = statsRes;
 				})
 				.finally(() => {
-					setTimeout(() => {
-						statsLoading = false;
-					}, 1000);
+					statsLoading = false;
 				});
 		}
 	});
