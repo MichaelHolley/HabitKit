@@ -6,9 +6,9 @@ A simple and intuitive app to track, build, and maintain your habits for a bette
 
 ## Screenshots
 
-![image](https://github.com/user-attachments/assets/feedddc6-df51-4815-97d8-b7f585c4dc3e)
+![Dashboard View](https://github.com/user-attachments/assets/feedddc6-df51-4815-97d8-b7f585c4dc3e)
 
-![image](https://github.com/user-attachments/assets/afc8594c-7bb8-49b1-bd43-69ab3a455668)
+![Habit Details](https://github.com/user-attachments/assets/afc8594c-7bb8-49b1-bd43-69ab3a455668 | width=100)
 
 ## Running locally
 
