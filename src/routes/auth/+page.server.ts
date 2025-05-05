@@ -17,9 +17,11 @@ export const actions: Actions = {
 		const username = formData.get('username');
 		const password = formData.get('password');
 
-		if (!validateUsername(username)) {
-			return fail(400, { message: 'Invalid username' });
+		const usernameValidation = validateUsername(username);
+		if (!usernameValidation.valid) {
+			return fail(400, { message: usernameValidation.error });
 		}
+
 		if (!validatePassword(password)) {
 			return fail(400, { message: 'Invalid password' });
 		}
@@ -52,9 +54,11 @@ export const actions: Actions = {
 		const username = formData.get('username');
 		const password = formData.get('password');
 
-		if (!validateUsername(username)) {
-			return fail(400, { message: 'Invalid username' });
+		const usernameValidation = validateUsername(username);
+		if (!usernameValidation.valid) {
+			return fail(400, { message: usernameValidation.error });
 		}
+
 		if (!validatePassword(password)) {
 			return fail(400, { message: 'Invalid password' });
 		}
@@ -72,13 +76,23 @@ export const actions: Actions = {
 	}
 };
 
-function validateUsername(username: unknown): username is string {
-	return (
-		typeof username === 'string' &&
-		username.length >= 3 &&
-		username.length <= 31 &&
-		/^[a-zA-Z0-9_-]+$/.test(username)
-	);
+function validateUsername(username: unknown): { valid: boolean; error?: string } {
+	if (typeof username !== 'string') {
+		return { valid: false, error: 'Username must be a string' };
+	}
+	if (username.length < 3) {
+		return { valid: false, error: 'Username must be at least 3 characters long' };
+	}
+	if (username.length > 31) {
+		return { valid: false, error: 'Username must be at most 31 characters long' };
+	}
+	if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
+		return {
+			valid: false,
+			error: 'Username can only contain letters, numbers, underscores and hyphens'
+		};
+	}
+	return { valid: true };
 }
 
 function validatePassword(password: unknown): password is string {
