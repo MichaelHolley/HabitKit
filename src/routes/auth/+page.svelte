@@ -37,7 +37,9 @@
 		<button class="btn btn-primary">Login</button>
 		<button class="btn btn-outline btn-secondary" formaction="?/register">Register</button>
 	</form>
-	<p style="color: red">{form?.message ?? ''}</p>
+	{#if form?.message}
+		<p class="text-error">{form.message}</p>
+	{/if}
 </div>
 
 <div class="absolute top-3 right-3"><ThemeSwitchComponent /></div>
