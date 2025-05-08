@@ -2,7 +2,8 @@ name: Build & Publish
 
 on:
   push:
-    branches: [main]
+    tags:
+      - '*'
   workflow_dispatch:
 
 jobs:
@@ -22,10 +23,11 @@ jobs:
         run: curl -sSL https://nixpacks.com/install.sh | bash
 
       - name: Build image with nixpacks
-        run: nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }}
-
-      - name: Push image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }} ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+
+      - name: Push images
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }}
           docker push ${{ secrets.DOCKER_USERNAME }}/ascent:latest
