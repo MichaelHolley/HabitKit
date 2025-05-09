@@ -15,7 +15,7 @@ A simple and intuitive app to track, build, and maintain your habits for a bette
 Start the database:
 `pnpm db:start`
 
-Generate Prisma Client:
+Launch another console and generate Prisma Client:
 `pnpm prisma:generate`
 
 Migrate the database:
