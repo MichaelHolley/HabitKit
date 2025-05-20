@@ -105,10 +105,7 @@
 			</a>
 		</li>
 		<li>
-			<button
-				class="btn btn-ghost btn-sm btn-block hover:bg-error hover:border-error"
-				onclick={() => deleteModal?.showModal()}
-			>
+			<button class="btn btn-ghost btn-sm btn-block" onclick={() => deleteModal?.showModal()}>
 				<div class="flex w-full flex-row items-center gap-1 text-start">
 					<Icon icon={ICON_MAP.delete} class="text-base" />
 					Delete

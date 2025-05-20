@@ -125,7 +125,7 @@
 							<button
 								title="Delete Goal"
 								onclick={() => deleteModal?.showModal()}
-								class="btn btn-ghost btn-sm btn-block hover:bg-error hover:border-error"
+								class="btn btn-ghost btn-sm btn-block"
 							>
 								<div class="flex w-full flex-row items-center gap-1 text-start">
 									<Icon icon={ICON_MAP.delete} class="text-lg" />
