@@ -5,7 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "oklch(26.346% 0.018 262.177)",
-  "theme_color": "oklch(86.133% 0.141 139.549)",
+  "theme_color": "oklch(30.857% 0.023 264.149)",
   "icons": [
     {
       "src": "/ascent-icon.svg",
