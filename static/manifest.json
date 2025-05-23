@@ -1,0 +1,16 @@
+{
+  "name": "Ascent",
+  "short_name": "Ascent",
+  "description": "A simple and intuitive app to track, build, and maintain your habits for a better you!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "oklch(26.346% 0.018 262.177)",
+  "theme_color": "oklch(86.133% 0.141 139.549)",
+  "icons": [
+    {
+      "src": "/ascent-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
