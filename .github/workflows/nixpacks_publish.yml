@@ -1,4 +1,4 @@
-name: Build & Publish
+name: Build, Publish & Release
 
 on:
   push:
@@ -8,10 +8,11 @@ on:
 
 jobs:
   publish:
+    name: Build & Push Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -23,11 +24,86 @@ jobs:
         run: curl -sSL https://nixpacks.com/install.sh | bash
 
       - name: Build image with nixpacks
+        id: build_image
         run: |
-          nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }} ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          IMAGE_TAG=${{ github.ref_name }}
+          echo "Building image with tag: ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG"
+          nixpacks build . --name ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG
+
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref_type }}" == "tag" ]]; then
+            echo "Tagging ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG as latest"
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          else
+            echo "Not a tag push, or you might want to handle 'latest' differently for workflow_dispatch."
+            # Optionally, still tag as latest if that's your desired behavior for manual runs
+            # docker tag ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          fi
 
       - name: Push images
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:${{ github.ref_name }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          IMAGE_TAG=${{ github.ref_name }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ascent:$IMAGE_TAG
+          # Only push 'latest' if it was tagged in the previous step
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref_type }}" == "tag" ]]; then
+            docker push ${{ secrets.DOCKER_USERNAME }}/ascent:latest
+          fi
+
+  create_release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    # Only run this job for tag pushes, not for workflow_dispatch
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: publish # Ensure Docker image is pushed before creating release
+    permissions:
+      contents: write # Required to create releases
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history for all tags and branches
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your project's Node.js version
+
+      - name: Get package version
+        id: package_version
+        run: |
+          echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: Get tag name from ref
+        id: tag_name
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Verify tag matches package.json version
+        run: |
+          # Remove 'v' prefix from tag for comparison, if your tags have it
+          # Adjust this logic if your tags don't have a 'v' prefix but package.json does, or vice-versa
+          TAG_VERSION_PART="${TAG_NAME#v}"
+          echo "Comparing Git Tag version part: '$TAG_VERSION_PART' with package.json version: '$PACKAGE_VERSION'"
+          if [ "$TAG_VERSION_PART" != "$PACKAGE_VERSION" ]; then
+            echo "Error: Git tag '$TAG_NAME' (version part: '$TAG_VERSION_PART') does not match package.json version '$PACKAGE_VERSION'."
+            exit 1
+          fi
+          echo "Tag version matches package.json version."
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          name: Release ${{ env.TAG_NAME }} # e.g., Release v1.0.0
+          body: |
+            Released version **${{ env.PACKAGE_VERSION }}**.
+
+            The Docker image for this release is available at:
+            - `${{ secrets.DOCKER_USERNAME }}/ascent:${{ env.TAG_NAME }}`
+            - `${{ secrets.DOCKER_USERNAME }}/ascent:latest`
+
+            *You can add more details here, like changes from your CHANGELOG.md.*
+          draft: false # Set to true to create a draft release
+          prerelease: false # Set to true if this is a pre-release
+          # files: | # Optional: Add build artifacts to your release
+          #   my-build-artifact.zip
