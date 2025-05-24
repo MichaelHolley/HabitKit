@@ -1,14 +1,25 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { createFlashHandler } from '$lib/utils/form';
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import CardComponent from '../CardComponent.svelte';
 	import { ICON_MAP } from '../icons';
 	import HabitActivityHistory from './HistoryComponent.svelte';
-	import { defaultHandleSubmit } from '$lib/utils/form';
 
 	const { habit } = $props();
 	const todaySelected = $derived(habit.dates.includes(dayjs().format('YYYY-MM-DD')));
+
+	let isFlashing = $state(false);
+	const handleSubmit = createFlashHandler(
+		(value) => {
+			isFlashing = value;
+		},
+		600,
+		{
+			successMessage: 'Today has been added!'
+		}
+	);
 </script>
 
 <CardComponent class="group flex flex-col p-4">
@@ -16,9 +27,11 @@
 		<a href="/{habit.id}">
 			<span class="link-hover link group-hover:text-secondary text-lg">{habit.title}</span>
 		</a>
-		<form method="POST" action="/{habit.id}?/addToday" use:enhance={defaultHandleSubmit}>
+		<form method="POST" action="/{habit.id}?/addToday" use:enhance={handleSubmit}>
 			<button
-				class="btn btn-outline btn-secondary btn-xs px-0.5"
+				class="btn btn-outline btn-secondary btn-xs px-0.5 transition-all duration-300 {isFlashing
+					? 'btn-success scale-110'
+					: ''}"
 				title="Add Today"
 				disabled={todaySelected}
 			>

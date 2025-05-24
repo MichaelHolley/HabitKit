@@ -36,7 +36,7 @@
 		<div>
 			<div class="flex flex-row justify-between gap-1">
 				<span class="group-hover:text-secondary text-lg">{titleDisplay}</span>
-				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance>
+				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance={defaultHandleSubmit}>
 					<button
 						class="btn btn-outline btn-secondary btn-xs px-0.5"
 						title="Next"

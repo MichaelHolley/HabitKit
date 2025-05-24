@@ -7,7 +7,11 @@
 	import StatComponent from '$lib/components/Habit/StatComponent.svelte';
 	import { ICON_MAP } from '$lib/components/icons';
 	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
-	import { defaultHandleDeleteSubmit, defaultHandleSubmit } from '$lib/utils/form';
+	import {
+		createFlashHandler,
+		defaultHandleDeleteSubmit,
+		defaultHandleSubmit
+	} from '$lib/utils/form';
 	import { getHabitStats, type StatItem } from '$lib/utils/stats';
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
@@ -55,6 +59,17 @@
 
 		return 0;
 	});
+
+	let isFlashing = $state(false);
+	const handleAddTodaySubmit = createFlashHandler(
+		(value) => {
+			isFlashing = value;
+		},
+		600,
+		{
+			successMessage: 'Today has been added!'
+		}
+	);
 </script>
 
 <div>
@@ -78,11 +93,13 @@
 		<form
 			method="POST"
 			action="?/addToday"
-			use:enhance={defaultHandleSubmit}
+			use:enhance={handleAddTodaySubmit}
 			class="flex flex-col justify-start"
 		>
 			<button
-				class="btn btn-outline btn-secondary btn-xs gap-0"
+				class="btn btn-outline btn-secondary btn-xs gap-0 {isFlashing
+					? 'btn-success scale-110'
+					: ''}"
 				title="Add Today"
 				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
