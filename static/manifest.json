@@ -6,11 +6,19 @@
   "display": "standalone",
   "background_color": "oklch(26.346% 0.018 262.177)",
   "theme_color": "oklch(30.857% 0.023 264.149)",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/ascent-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
-  ]
+  ],
+  "categories": [
+    "productivity",
+    "utilities",
+    "lifestyle"
+  ],
+  "lang": "en-US",
+  "dir": "ltr"
 }
