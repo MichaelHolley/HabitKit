@@ -4,15 +4,17 @@
 		class?: string;
 	}>();
 
-	type EngagementScore = 'low' | 'medium' | 'high';
+	type EngagementScore = 'apathic' | 'interested' | 'committed' | 'obsessed';
 
 	const engagementScore: EngagementScore = $derived.by(() => {
-		if (completionRate < 0.33) {
-			return 'low';
-		} else if (completionRate < 0.66) {
-			return 'medium';
+		if (completionRate < 0.15) {
+			return 'apathic' as EngagementScore;
+		} else if (completionRate < 0.4) {
+			return 'interested';
+		} else if (completionRate < 0.7) {
+			return 'committed';
 		} else {
-			return 'high';
+			return 'obsessed';
 		}
 	});
 </script>
@@ -22,14 +24,17 @@
 	<div
 		class="*:bg-base-100 *:border-base-content/60 text-2xs flex h-2 flex-row gap-1 text-center font-bold *:h-full *:w-12 *:rounded-full *:border"
 	>
-		<div class={engagementScore === 'low' ? '!bg-secondary' : ''}>
-			{#if engagementScore === 'low'}<div class="-mt-4">LOW</div>{/if}
+		<div class={engagementScore === 'apathic' ? '!bg-secondary' : ''}>
+			{#if engagementScore === 'apathic'}<div class="-mt-4">Apathic</div>{/if}
 		</div>
-		<div class={engagementScore === 'medium' ? '!bg-accent' : ''}>
-			{#if engagementScore === 'medium'}<div class="-mt-4">MEDIUM</div>{/if}
+		<div class={engagementScore === 'interested' ? '!bg-primary' : ''}>
+			{#if engagementScore === 'interested'}<div class="-mt-4">Interested</div>{/if}
 		</div>
-		<div class={engagementScore === 'high' ? '!bg-primary' : ''}>
-			{#if engagementScore === 'high'}<div class="-mt-4">HIGH</div>{/if}
+		<div class={engagementScore === 'committed' ? '!bg-info' : ''}>
+			{#if engagementScore === 'committed'}<div class="-mt-4">Commited</div>{/if}
+		</div>
+		<div class={engagementScore === 'obsessed' ? '!bg-accent' : ''}>
+			{#if engagementScore === 'obsessed'}<div class="-mt-4">Obsessed</div>{/if}
 		</div>
 	</div>
 </div>
