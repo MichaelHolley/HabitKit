@@ -14,7 +14,9 @@
 			{#if i === 0 || !dayjs(date as string).isSame(dayjs(data.habit.dates[i - 1] as string), 'month')}
 				<thead>
 					<tr>
-						<th colspan="2" class="text-neutral-500">{dayjs(date as string).format('MMM YYYY')}</th>
+						<th colspan="2" class="pt-4 text-neutral-500 dark:text-neutral-300">
+							{dayjs(date as string).format('MMM YYYY')}
+						</th>
 					</tr>
 				</thead>
 			{/if}
