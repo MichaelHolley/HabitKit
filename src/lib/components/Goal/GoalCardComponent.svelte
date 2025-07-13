@@ -38,7 +38,7 @@
 				<span class="group-hover:text-secondary text-lg">{titleDisplay}</span>
 				<form method="POST" action="/goal/{goal.id}?/nextStage" use:enhance={defaultHandleSubmit}>
 					<button
-						class="btn btn-outline btn-secondary btn-xs px-0.5"
+						class="btn btn-soft btn-secondary btn-xs px-0.5"
 						title="Next"
 						disabled={goal.stage === goal.target}
 					>

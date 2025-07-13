@@ -97,9 +97,7 @@
 			class="flex flex-col justify-start"
 		>
 			<button
-				class="btn btn-outline btn-secondary btn-xs gap-0 {isFlashing
-					? 'btn-success scale-110'
-					: ''}"
+				class="btn btn-soft btn-secondary btn-xs gap-0 {isFlashing ? 'btn-success scale-110' : ''}"
 				title="Add Today"
 				disabled={data.habit.dates.includes(dayjs().format('YYYY-MM-DD'))}
 			>
@@ -107,7 +105,7 @@
 				Today
 			</button>
 		</form>
-		<a href="/{data.habit.id}/values" class="btn btn-outline btn-accent btn-xs gap-1">
+		<a href="/{data.habit.id}/values" class="btn btn-soft btn-accent btn-xs gap-1">
 			<Icon icon={ICON_MAP.eye} class="text-base" />
 			Show Values
 		</a>
