@@ -27,7 +27,7 @@
 <h2 class="mb-3 text-3xl">{data.habit?.title}</h2>
 <div class="my-4 max-w-lg overflow-x-auto">
 	<div class="flex flex-row justify-between">
-		<button class="btn btn-soft btn-accent btn-xs" onclick={previousMonth}>Previos</button>
+		<button class="btn btn-soft btn-accent btn-xs" onclick={previousMonth}>Previous</button>
 		<p>{currentMonth.format('MMMM YYYY')}</p>
 		<button class="btn btn-soft btn-accent btn-xs" onclick={nextMonth}>Next</button>
 	</div>
