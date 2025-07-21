@@ -130,7 +130,7 @@
 	</DropDownComponent>
 </div>
 
-<HabitHistory dates={data.habit?.dates} />
+<HabitHistory dates={data.habit?.dates} bubbleDelay={2} />
 
 <div class="my-6 mt-3 flex flex-row flex-wrap items-center justify-end gap-8">
 	<form

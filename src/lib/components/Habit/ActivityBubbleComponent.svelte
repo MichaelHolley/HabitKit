@@ -6,6 +6,6 @@
 
 <div
 	class="size-3 rounded-xs {active ? 'bg-base-content/60 dark:bg-base-content' : 'bg-base-300'}"
-	in:scale={{ duration: active ? 200 : 0, delay }}
+	in:scale={{ duration: 100, delay }}
 	{title}
 ></div>

@@ -12,7 +12,7 @@
 	const visibleDays = $derived(Math.ceil(containerWidth / 16) - 1);
 
 	const daysProgress = new Tween(0, {
-		duration: 600,
+		duration: 800,
 		easing: cubicOut
 	});
 
@@ -47,7 +47,7 @@
 										today.subtract(visibleDays - (i + 1), 'days').format('YYYY-MM-DD')
 									)}
 									title={today.subtract(visibleDays - (i + 1), 'days').format('ddd YYYY-MM-DD')}
-									delay={i * 10}
+									delay={i * 20}
 								/>
 							{/each}
 						</div>

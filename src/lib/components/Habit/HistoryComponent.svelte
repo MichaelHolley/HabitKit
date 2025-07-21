@@ -4,7 +4,7 @@
 	import ActivityBubble from './ActivityBubbleComponent.svelte';
 	dayjs.extend(isoWeek);
 
-	const { dates } = $props<{ dates: string[] }>();
+	const { dates, bubbleDelay = 5 } = $props<{ dates: string[]; bubbleDelay?: number }>();
 	let containerWidth = $state(0);
 
 	const activeDateSet = $derived(new Set(dates));
@@ -20,16 +20,16 @@
 <div bind:clientWidth={containerWidth} class="flex flex-row justify-end">
 	<div class="text-2xs grid grid-flow-col grid-rows-8 items-center justify-center gap-1">
 		<div></div>
-		<div class="sticky left-0 pr-1 text-base-content/60">Mon</div>
+		<div class="text-base-content/60 sticky left-0 pr-1">Mon</div>
 		<div></div>
-		<div class="sticky left-0 pr-1 text-base-content/60">Wed</div>
+		<div class="text-base-content/60 sticky left-0 pr-1">Wed</div>
 		<div></div>
-		<div class="sticky left-0 pr-1 text-base-content/60">Fri</div>
+		<div class="text-base-content/60 sticky left-0 pr-1">Fri</div>
 		<div></div>
-		<div class="sticky left-0 pr-1 text-base-content/60">Sun</div>
+		<div class="text-base-content/60 sticky left-0 pr-1">Sun</div>
 		{#each { length: showDays }, i}
 			{#if i % 7 === 0 && today.subtract(showDays - i, 'days').date() <= 7}
-				<div class="-mr-2 text-base-content/60">
+				<div class="text-base-content/60 -mr-2">
 					{today
 						.subtract(visibleWeeks * 7 - i, 'days')
 						.add(6, 'days')
@@ -41,7 +41,7 @@
 			<ActivityBubble
 				active={activeDateSet.has(activityDate(i))}
 				title={activityDate(i)}
-				delay={dates.indexOf(activityDate(i)) * 10}
+				delay={i * bubbleDelay}
 			/>
 		{/each}
 	</div>
