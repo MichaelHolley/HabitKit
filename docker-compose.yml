@@ -4,7 +4,7 @@
 services:
   db:
     image: mysql
-    restart: "no"
+    restart: 'no'
     ports:
       - 3306:3306
     environment:
