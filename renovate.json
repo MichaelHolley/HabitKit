@@ -3,5 +3,11 @@
   "extends": ["config:recommended"],
   "includePaths": ["package.json"],
   "schedule": ["every weekday at 4am"],
-  "automerge": false
+  "automerge": false,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
 }
