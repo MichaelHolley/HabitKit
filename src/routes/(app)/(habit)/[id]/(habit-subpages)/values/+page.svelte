@@ -3,6 +3,7 @@
 	import { defaultHandleDeleteSubmit } from '$lib/utils/form';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import { downloadBlob } from '$lib/utils/file';
 
 	const { data } = $props<{ data: PageData }>();
 
@@ -22,9 +23,25 @@
 	const nextMonth = () => {
 		currentMonth = currentMonth.add(1, 'month');
 	};
+
+	const downloadValues = async () => {
+		if (!data.habit?.id) {
+			return;
+		}
+
+		const resp = await fetch(`/${data.habit.id}/values/download`, { method: 'GET' });
+		const blob = await resp.blob();
+
+		const filename = `${data.habit.title}_${data.habit.id}_values.csv`;
+		downloadBlob(blob, filename);
+	};
 </script>
 
-<h2 class="mb-3 text-3xl">{data.habit?.title}</h2>
+<div class="mb-3 flex flex-row items-center justify-start gap-4">
+	<h2 class="text-3xl">{data.habit?.title}</h2>
+	<button class="btn btn-outline btn-sm btn-secondary" onclick={downloadValues}>Export</button>
+</div>
+
 <div class="my-4 max-w-lg overflow-x-auto">
 	<div class="flex flex-row justify-between">
 		<button class="btn btn-soft btn-accent btn-xs" onclick={previousMonth}>Previous</button>
