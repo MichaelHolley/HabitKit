@@ -9,5 +9,6 @@ export const ICON_MAP = {
 	logout: 'ic:baseline-logout',
 	eye: 'ic:outline-remove-red-eye',
 	arrowLeft: 'ic:round-arrow-back',
-	arrowRightUp: 'ic:round-arrow-outward'
+	arrowRightUp: 'ic:round-arrow-outward',
+	exportFile: 'mdi:file-export'
 };

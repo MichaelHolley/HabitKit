@@ -4,6 +4,8 @@
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 	import { downloadBlob } from '$lib/utils/file';
+	import { ICON_MAP } from '$lib/components/icons';
+	import Icon from '@iconify/svelte';
 
 	const { data } = $props<{ data: PageData }>();
 
@@ -39,7 +41,9 @@
 
 <div class="mb-3 flex flex-row items-center justify-start gap-4">
 	<h2 class="text-3xl">{data.habit?.title}</h2>
-	<button class="btn btn-outline btn-sm btn-secondary" onclick={downloadValues}>Export</button>
+	<button class="btn btn-outline btn-sm btn-secondary" onclick={downloadValues}>
+		<Icon icon={ICON_MAP.exportFile} class="text-base" />Export
+	</button>
 </div>
 
 <div class="my-4 max-w-lg overflow-x-auto">
@@ -67,7 +71,7 @@
 					<td>
 						<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 							<input type="hidden" name="date" value={date.format('YYYY-MM-DD')} />
-							<button class="btn btn-soft btn-error btn-xs">Delete</button>
+							<button class="btn btn-soft btn-error btn-xs" type="submit">Delete</button>
 						</form>
 					</td>
 				</tr>

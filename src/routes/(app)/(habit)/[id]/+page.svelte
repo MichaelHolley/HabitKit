@@ -16,6 +16,7 @@
 	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import { downloadBlob } from '$lib/utils/file';
 
 	const { data } = $props<{ data: PageData }>();
 	let deleteModal: HTMLDialogElement;
@@ -70,6 +71,18 @@
 			successMessage: 'Today has been added!'
 		}
 	);
+
+	const exportHabit = async () => {
+		if (!data.habit?.id) {
+			return;
+		}
+
+		const resp = await fetch(`/${data.habit.id}/export`, { method: 'GET' });
+		const blob = await resp.blob();
+
+		const filename = `${data.habit.title}_${data.habit.id}.json`;
+		downloadBlob(blob, filename);
+	};
 </script>
 
 <div>
@@ -112,6 +125,14 @@
 	</div>
 	<DropDownComponent class="dropdown-end">
 		<li>
+			<button class="btn btn-ghost btn-sm btn-block" onclick={exportHabit}>
+				<div class="flex w-full flex-row items-center gap-1 text-start">
+					<Icon icon={ICON_MAP.exportFile} class="text-base" />
+					Export
+				</div>
+			</button>
+		</li>
+		<li>
 			<a href="/{data.habit.id}/edit" class="btn btn-ghost btn-sm btn-block">
 				<div class="flex w-full flex-row items-center gap-1 text-start">
 					<Icon icon={ICON_MAP.edit} class="text-base" />
@@ -120,7 +141,7 @@
 			</a>
 		</li>
 		<li>
-			<button class="btn btn-ghost btn-sm btn-block" onclick={() => deleteModal?.showModal()}>
+			<button class="btn btn-ghost btn-sm btn-block" onclick={deleteModal?.showModal}>
 				<div class="flex w-full flex-row items-center gap-1 text-start">
 					<Icon icon={ICON_MAP.delete} class="text-base" />
 					Delete

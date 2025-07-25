@@ -13,12 +13,10 @@ export const GET: RequestHandler = async (event) => {
 		return redirect(302, '/');
 	}
 
-	const dates = habit.dates || [];
-
-	return new Response(JSON.stringify(dates), {
+	return new Response(JSON.stringify(habit), {
 		headers: {
 			'Content-Type': 'application/json',
-			'Content-Disposition': `attachment; filename=${event.params.id}_values.json`
+			'Content-Disposition': `attachment; filename=${event.params.id}.json`
 		}
 	});
 };
