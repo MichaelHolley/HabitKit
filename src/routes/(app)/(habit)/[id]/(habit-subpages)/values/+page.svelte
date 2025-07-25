@@ -29,7 +29,7 @@
 			return;
 		}
 
-		const resp = await fetch(`/${data.habit.id}/values/download`, { method: 'GET' });
+		const resp = await fetch(`/${data.habit.id}/values/export`, { method: 'GET' });
 		const blob = await resp.blob();
 
 		const filename = `${data.habit.title}_${data.habit.id}_values.json`;
