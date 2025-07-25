@@ -14,12 +14,11 @@ export const GET: RequestHandler = async (event) => {
 	}
 
 	const dates = habit.dates || [];
-	const csvContent = dates.join('\n');
 
-	return new Response(csvContent, {
+	return new Response(JSON.stringify(dates), {
 		headers: {
-			'Content-Type': 'text/csv',
-			'Content-Disposition': `attachment; filename=${event.params.id}.csv`
+			'Content-Type': 'application/json',
+			'Content-Disposition': `attachment; filename=${event.params.id}.json`
 		}
 	});
 };

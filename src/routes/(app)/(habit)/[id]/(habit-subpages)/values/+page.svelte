@@ -32,7 +32,7 @@
 		const resp = await fetch(`/${data.habit.id}/values/download`, { method: 'GET' });
 		const blob = await resp.blob();
 
-		const filename = `${data.habit.title}_${data.habit.id}_values.csv`;
+		const filename = `${data.habit.title}_${data.habit.id}_values.json`;
 		downloadBlob(blob, filename);
 	};
 </script>
