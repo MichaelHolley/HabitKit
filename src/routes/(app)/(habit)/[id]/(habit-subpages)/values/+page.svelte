@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { page } from '$app/state';
+	import { ICON_MAP } from '$lib/components/icons';
+	import NavigateBackButtonComponent from '$lib/components/NavigateBackButtonComponent.svelte';
+	import { downloadBlob } from '$lib/utils/file';
 	import { defaultHandleDeleteSubmit } from '$lib/utils/form';
+	import Icon from '@iconify/svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
-	import { downloadBlob } from '$lib/utils/file';
-	import { ICON_MAP } from '$lib/components/icons';
-	import Icon from '@iconify/svelte';
 
 	const { data } = $props<{ data: PageData }>();
 
@@ -39,11 +41,20 @@
 	};
 </script>
 
-<div class="mb-3 flex flex-row items-center justify-start gap-4">
+<div class="mb-3">
+	<NavigateBackButtonComponent backUrl="/{page.params.id}" />
+</div>
+
+<div class="mb-3 flex flex-row items-center justify-between gap-4">
 	<h2 class="text-3xl">{data.habit?.title}</h2>
-	<button class="btn btn-outline btn-sm btn-secondary" onclick={downloadValues}>
-		<Icon icon={ICON_MAP.exportFile} class="text-base" />Export
-	</button>
+	<div class="flex flex-row gap-2">
+		<button class="btn btn-outline btn-sm btn-secondary" onclick={downloadValues}>
+			<Icon icon={ICON_MAP.exportFile} class="text-base" />Export
+		</button>
+		<a href="values/import" class="btn btn-secondary btn-sm">
+			<Icon icon={ICON_MAP.importFile} class="text-base" />Import
+		</a>
+	</div>
 </div>
 
 <div class="my-4 max-w-lg overflow-x-auto">
