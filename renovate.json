@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "includePaths": ["package.json"],
-  "schedule": ["every weekday at 4am"],
+  "schedule": ["* 0-3 * * *"],
   "automerge": false,
   "packageRules": [
     {
