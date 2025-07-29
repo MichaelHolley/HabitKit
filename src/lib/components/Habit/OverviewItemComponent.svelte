@@ -29,7 +29,7 @@
 		</a>
 		<form method="POST" action="/{habit.id}?/addToday" use:enhance={handleSubmit}>
 			<button
-				class="btn btn-soft btn-secondary btn-xs px-0.5 transition-all duration-300 {isFlashing
+				class="btn btn-outline btn-secondary btn-xs px-0.5 transition-all duration-300 {isFlashing
 					? 'btn-success scale-110'
 					: ''}"
 				title="Add Today"

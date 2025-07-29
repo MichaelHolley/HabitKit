@@ -82,7 +82,7 @@
 					<td>
 						<form method="POST" action="?/delete" use:enhance={defaultHandleDeleteSubmit}>
 							<input type="hidden" name="date" value={date.format('YYYY-MM-DD')} />
-							<button class="btn btn-soft btn-error btn-xs" type="submit">Delete</button>
+							<button class="btn btn-error btn-xs" type="submit">Delete</button>
 						</form>
 					</td>
 				</tr>
