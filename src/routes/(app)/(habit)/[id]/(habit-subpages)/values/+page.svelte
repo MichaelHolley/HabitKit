@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
 	import { ICON_MAP } from '$lib/components/icons';
-	import NavigateBackButtonComponent from '$lib/components/NavigateBackButtonComponent.svelte';
+	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import { downloadBlob } from '$lib/utils/file';
 	import { defaultHandleDeleteSubmit } from '$lib/utils/form';
 	import Icon from '@iconify/svelte';
@@ -41,9 +41,7 @@
 	};
 </script>
 
-<div class="mb-3">
-	<NavigateBackButtonComponent backUrl="/{page.params.id}" />
-</div>
+<NavigateBackButton class="mb-3" backUrl="/{page.params.id}" />
 
 <div class="mb-3 flex flex-row items-center justify-between gap-4">
 	<h2 class="text-3xl">{data.habit?.title}</h2>

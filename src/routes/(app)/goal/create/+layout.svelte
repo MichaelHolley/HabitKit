@@ -5,8 +5,6 @@
 	const { children } = $props<{ children: Snippet }>();
 </script>
 
-<div class="mb-3">
-	<NavigateBackButton backUrl="/" />
-</div>
+<NavigateBackButton class="mb-3" backUrl="/" />
 
 {@render children()}

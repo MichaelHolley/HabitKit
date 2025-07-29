@@ -86,7 +86,7 @@
 </script>
 
 <div>
-	<div class="mb-3"><NavigateBackButton backUrl="/" /></div>
+	<NavigateBackButton class="mb-3" backUrl="/" />
 	<div class="mb-1 grid grid-cols-2">
 		<div>
 			<h2 class="text-3xl">{data.habit?.title}</h2>

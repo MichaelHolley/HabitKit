@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import NavigateBackButtonComponent from '$lib/components/NavigateBackButtonComponent.svelte';
+	import NavigateBackButton from '$lib/components/NavigateBackButtonComponent.svelte';
 	import { defaultHandleSubmit } from '$lib/utils/form';
 	import type { PageData } from './$types';
 	import { page } from '$app/state';
@@ -11,9 +11,7 @@
 	let description = $state(data.habit.description);
 </script>
 
-<div class="mb-3">
-	<NavigateBackButtonComponent backUrl="/{page.params.id}" />
-</div>
+<NavigateBackButton class="mb-3" backUrl="/{page.params.id}" />
 
 <div class="max-w-md">
 	<h3 class="pb-4 text-3xl">Update Habit</h3>
